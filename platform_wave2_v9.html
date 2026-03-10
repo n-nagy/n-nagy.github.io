@@ -162,6 +162,9 @@
   .status-pill.tbd{background:var(--rule);color:var(--ink-muted);}
   .note-box{padding:16px 20px;background:white;border:1px solid var(--rule);border-radius:10px;font-size:13px;color:var(--ink-muted);line-height:1.75;}
   .note-box strong{color:var(--ink);}
+  .signal-pill{display:inline-flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:20px;font-weight:600;margin-top:10px;border-top:1px solid rgba(0,0,0,.06);padding-top:9px;width:100%;}
+  .signal-pill.strong{color:#1A7A4A;}
+  .signal-pill.building{color:#9A5500;}
 
   @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
   .focus-card{animation:fadeUp .3s ease both;}
@@ -314,8 +317,8 @@
         <div class="card-top"><span class="card-number">01</span><div class="card-dot"></div></div>
         <div class="card-title">First 90 Days</div>
         <div class="card-desc">Structured intake that reduces downstream CS tickets and scales how many kickoffs CS can run effectively.</div>
-        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
-        <div class="card-cta">↓ See details below</div>
+        <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
+        <div class="signal-pill building"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#9A5500"/></svg> Building signal · CS data pending</div>
       </div>
     </a>
 
@@ -343,7 +346,7 @@
         <div class="card-title">Attributes & Identity</div>
         <div class="card-desc">The data layer everything else runs on. Attribute friction costs CS time today and blocks autofish, new SKUs, and Email Security.</div>
         <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
-        <div class="card-cta">↓ See details below</div>
+        <div class="signal-pill building"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#9A5500"/></svg> Building signal · ROI to be validated</div>
       </div>
     </a>
 
@@ -363,8 +366,8 @@
         <div class="card-top"><span class="card-number">03</span><div class="card-dot"></div></div>
         <div class="card-title" style="font-size:13px;">ARV <span style="font-weight:400;color:var(--ink-muted);">(Availability, Reliability & Visibility)</span></div>
         <div class="card-desc">Group builder on ClickHouse for availability across SKUs, predictable data freshness SLAs, and reliable notification delivery across all SKUs.</div>
-        <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
-        <div class="card-cta">↓ See details below</div>
+        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
+        <div class="signal-pill strong"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#1A7A4A"/></svg> Strong signal · Eng value prop + CS gains</div>
       </div>
     </a>
 
@@ -391,7 +394,7 @@
         <div class="card-title">Multi-tenancy</div>
         <div class="card-desc">Named enterprise deals need parent/child support. Roll-up reporting is the likely minimum viable unlock. MSP is a separate bet.</div>
         <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">SKU Scale</span></div>
-        <div class="card-cta">↓ See details below</div>
+        <div class="signal-pill strong"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#1A7A4A"/></svg> Strong signal · Active deal blocker</div>
       </div>
     </a>
 
@@ -414,7 +417,7 @@
         <div class="card-title">AI Agent</div>
         <div class="card-desc">The destination, not a near-term commitment. Build automation primitives first. The agent becomes the interface for the long tail.</div>
         <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
-        <div class="card-cta">↓ See details below</div>
+        <div class="signal-pill building"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#9A5500"/></svg> Building signal · Primitives first</div>
       </div>
     </a>
 
@@ -442,7 +445,7 @@
         <div class="card-title">Automation</div>
         <div class="card-desc">Co-pilot automation: recommend and run with approvals. 90% rated importance 8+/10. Remediation programs are the most comfortable first step.</div>
         <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span></div>
-        <div class="card-cta">↓ See details below</div>
+        <div class="signal-pill strong"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#1A7A4A"/></svg> Strong signal · Survey results + deal data</div>
       </div>
     </a>
 
@@ -472,7 +475,7 @@
       </div>
       <div class="hyp-block context">
         <div class="hyp-label">Additional context</div>
-        <p>CS is already proving this manually — today they send a Google Form link plus an email with 7+ helpsite links before every kickoff call. Customers who go through that flow arrive better prepared and generate fewer follow-up tickets. A product-native version replaces that manual work and scales it. Other SAT platforms, including KnowBe4, have extensive intake flows — this is also a parity and differentiation opportunity through personalization.</p>
+        <p>CS is already proving this manually — today they send a Google Form link plus an email with 7+ helpsite links before every kickoff call. Customers who go through that flow arrive better prepared and generate fewer follow-up tickets. A product-native version replaces that manual work and scales it. Current signal on this area is mixed: there's limited evidence it moves the sales funnel directly, but the POC angle is underexplored — structured onboarding is operationally expensive for CS and a high-leverage part of the funnel where better tooling could meaningfully improve close rates. The key question is whether the data confirms this is primarily a CS efficiency story, a conversion story, or both.</p>
       </div>
     </div>
     <div class="detail-lower">
@@ -484,9 +487,10 @@
         <h3>Discovery · What we need to learn</h3>
         <ul>
           <li>CS interviews on current manual workarounds and prep burden per kickoff call</li>
-          <li>Analyze early-tenure support tickets to understand where customers actually get stuck</li>
+          <li>Analyze early-tenure support tickets to understand where customers actually get stuck — this is the most important input for moving signal from "building" to "strong"</li>
           <li>Research how frequently admins are added outside of the kickoff window (30+ days post-kickoff) to validate the impact of individual-level onboarding guidance at scale</li>
-          <li>Key questions: Is friction a product or education problem? What does CS want from a lighter motion, and what does "lighter" actually mean to them?</li>
+          <li>Assess POC operational cost and close rate data — the hypothesis that structured onboarding improves POC conversion is the most compelling business case and needs validation</li>
+          <li>Key questions: Is friction a product or education problem? Does the data show this is CS efficiency, POC conversion, or both?</li>
         </ul>
       </div>
       <div class="detail-block">
@@ -598,7 +602,7 @@
       </div>
       <div class="hyp-block context">
         <div class="hyp-label">Additional context</div>
-        <p>We've expanded custom attribute support across some integrations and via CSV — which introduced the concept — but coverage is incomplete across our integration surface and we don't support derived fields, inline editing, or remapping without eng intervention. The user profile page has accumulated these capabilities as bandaids rather than a cohesive design, and it lacks the value customers expect to get from it. For example, we have zero custom attribute support from Microsoft integrations today — and that gap has real cost. The Email Security team will bring another set of attributes we'll need to incorporate. Getting this right reduces CS load now and unlocks downstream product velocity.</p>
+        <p>We've expanded custom attribute support across some integrations and via CSV — which introduced the concept — but coverage is incomplete across our integration surface and we don't support derived fields, inline editing, or remapping without eng intervention. The user profile page has accumulated these capabilities as bandaids rather than a cohesive design, and it lacks the value customers expect to get from it. Current read is that this is a significant point of friction rather than a hard blocker — customers work around it, which makes the ROI harder to quantify than a deal-stopper. The Intercom ticket data is the key input: if attribute-related tickets represent a meaningful share of CS load, the efficiency case becomes clear. The new SKU argument (Email Security, Risk) is a second vector that may prove stronger than the direct customer-facing one.</p>
       </div>
     </div>
     <div class="detail-lower">
@@ -609,11 +613,11 @@
       <div class="detail-block">
         <h3>Discovery · What we need to learn</h3>
         <ul>
-          <li>CS survey on attribute-related ticket sources — which primitives create the most friction today?</li>
-          <li>Customer problem hunting: what use cases can't we support because we lack non-CSV attribute handling? E.g. zero custom attributes from Microsoft — what deals or expansions has that cost us?</li>
+          <li>Intercom ticket taxonomy: how much CS load is actually attributable to attribute friction? This is the primary input for determining ROI — vibes suggest it's significant, but the data needs to confirm it</li>
+          <li>Customer problem hunting: what use cases can't we support because we lack non-CSV attribute handling? E.g. zero custom attributes from Microsoft — what deals or expansions has that gap cost us?</li>
           <li>Review Republic, Trintech CSV upload discovery for existing signal on what customers tried to do that the product couldn't support</li>
-          <li>Early conversation with Email Security team on their attribute requirements</li>
-          <li>Key questions: Which integration gaps are most costly? What's the engineering cost of closing them vs. building the primitives on top?</li>
+          <li>Early conversation with Email Security team — the new SKU argument (a solid attribute foundation is required for Risk and Email) may prove a stronger case than the direct CS friction angle</li>
+          <li>Key questions: Is this primarily a CS efficiency story, a SKU enablement story, or do both hold up?</li>
         </ul>
       </div>
       <div class="detail-block">
@@ -740,7 +744,7 @@
       </div>
       <div class="hyp-block context">
         <div class="hyp-label">Additional context</div>
-        <p>Three connected problems: (1) <strong>Availability</strong> — ClickHouse is the only place we can guarantee all SKU data will be, but the group builder doesn't run against it yet, making cross-SKU segmentation unreliable. (2) <strong>Reliability</strong> — the platform promises "immediate" data but delivers variable refresh cycles (4–5 min, trending upward) with no defined SLA and no measurement. (3) <strong>Visibility</strong> — when platform notifications (SendGrid) fail, CS has no self-serve visibility and must escalate to eng. Phishing notifications (Mailgun, SAT BU) are out of scope here.</p>
+        <p>Three connected problems: (1) <strong>Availability</strong> — ClickHouse is the only place we can guarantee all SKU data will be, but the group builder doesn't run against it yet, making cross-SKU segmentation unreliable. (2) <strong>Reliability</strong> — the platform promises "immediate" data but delivers variable refresh cycles (4–5 min, trending upward) with no defined SLA and no measurement. (3) <strong>Visibility</strong> — when platform notifications (SendGrid) fail, CS has no self-serve visibility and must escalate to eng. The new SKU group condition problem is a <em>when</em>, not an <em>if</em> — reporting performance is already degrading as we grow and the trajectory is clear. Phishing notifications (Mailgun, SAT BU) are out of scope here.</p>
       </div>
     </div>
     <div class="detail-lower">
@@ -875,7 +879,7 @@
       </div>
       <div class="hyp-block context">
         <div class="hyp-label">Additional context</div>
-        <p>MSP is a related but substantially harder problem (~8–10 inbound requests/week) and should be scoped as a separate bet. The full multi-tenancy architecture needs to be sequenced carefully relative to the Email Security roadmap — enterprise roll-up reporting may be the right interim step to unblock near-term pipeline without betting on the full architecture prematurely.</p>
+        <p>This is one of the clearest cases in the six areas — both existing and prospective customers <em>need</em> this, not just want it, and they tend to be the largest accounts. The absence is a blocker, not friction: deals are being lost or stitched together with engineering workarounds. Estimated pipeline impact is ~$600K/year in incoming opportunities. MSP is a related but substantially harder problem (~8–10 inbound requests/week) and should be scoped as a separate bet. The full multi-tenancy architecture needs to be sequenced carefully relative to the Email Security roadmap — enterprise roll-up reporting may be the right interim step to unblock near-term pipeline without betting on the full architecture prematurely.</p>
       </div>
     </div>
     <div class="detail-lower">
@@ -1022,7 +1026,7 @@
       </div>
       <div class="hyp-block context">
         <div class="hyp-label">Additional context</div>
-        <p>In the automation survey, customers ranked the AI assistant last (14% selected it as most valuable) — consistent with it being a workaround for direct automation rather than a first choice. The right sequencing is direct automation primitives and a reliable data layer first, then let the agent become the interface for tasks too varied for point-and-click workflows. Naming it now ensures future investments are sequenced with the agent vision in mind.</p>
+        <p>The AI agent is seen as the clearest "platformy" approach to the automation problem — a shared primitive that benefits every BU rather than a point solution. There are three directions we could take: (1) build a framework that helps other BUs automate (a genuinely good assistant), (2) focus on Platform product areas like reporting and risk score, or (3) a cross-cutting initiative that automates key parts of the platform directly. In the automation survey, customers ranked the AI assistant last (14%) — consistent with it being a workaround today rather than a first choice. The right sequencing is primitives first, agent as the interface second. Naming it now ensures those investments are sequenced with the agent vision in mind.</p>
       </div>
     </div>
     <div class="detail-lower">
@@ -1138,7 +1142,7 @@
       </div>
       <div class="hyp-block context">
         <div class="hyp-label">Additional context</div>
-        <p>Feb 2026 survey (n=69): importance averaged 8.8/10, 90% rated 8+. The preferred mode was "recommend and run with approvals" (58%) — only a minority want fully automated execution. Remediation program setup after a phishing fail has the highest comfort with more automation (59%), making it the right starting point. This is a retention and CS load story: 45% wouldn't pay more for it, so it's not a pricing play.</p>
+        <p>Automation as a theme has strong, consistent signal — the question for Platform is which direction to take it. Three options: (1) build a framework that other BUs automate on top of, (2) focus on Platform-specific product areas like reporting and risk score, or (3) cross-cutting automations for key platform workflows like campaigns and remediation. Feb 2026 survey (n=69): importance averaged 8.8/10, 90% rated 8+. The preferred mode was "recommend and run with approvals" (58%) — only a minority want fully automated execution. Remediation program setup after a phishing fail has the highest comfort with more automation (59%), making it the right starting point. This is a retention and CS load story: 45% wouldn't pay more for it, so it's not a pricing play.</p>
       </div>
     </div>
     <div class="detail-lower">
@@ -1244,6 +1248,10 @@
 <!-- ══ CONVICTION ══ -->
 <div class="page-section" id="conviction">
   <div class="section-eyebrow">Building Conviction</div>
+  <div style="background:#FFFBF0;border:1px solid #EDD97A;border-left:3px solid #D4B000;border-radius:8px;padding:16px 20px;max-width:720px;margin-bottom:24px;">
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#8B6A00;margin-bottom:8px;">On the current signal labels</div>
+    <p style="font-size:13px;color:var(--ink);line-height:1.7;margin:0;">Four of the six focus areas show <strong>strong signal</strong> — cross-validated by customer data, deal analysis, and eng context. Two show <strong>building signal</strong>, which reflects a data gap more than a conviction gap. In a recent conversation with the eng lead on this BU, skepticism on First 90 Days and Attributes surfaced — but that conversation happened before seeing CS ticket data and Intercom taxonomy. The discovery work in progress is specifically designed to close that gap. <strong>Full conviction on all six areas comes from completing the data analysis, not from this document.</strong></p>
+  </div>
   <p style="font-size:14px;color:var(--ink-muted);line-height:1.75;max-width:680px;margin-bottom:28px;">There was significant discovery done under the old bet structure that we're dusting off — not everyone was directly involved in those previous bets, so part of this process is making that work visible and useful. Specific examples: the automation survey (n=69), customer research reports, and the discovery work done with Republic and Trintech. New activities layer on top of that foundation.</p>
 
   <div class="stat-row">
