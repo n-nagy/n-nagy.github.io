@@ -342,7 +342,7 @@
         <div class="card-top"><span class="card-number">02</span><div class="card-dot"></div></div>
         <div class="card-title">Attributes & Identity</div>
         <div class="card-desc">The data layer everything else runs on. Attribute friction costs CS time today and blocks autofish, new SKUs, and Email Security.</div>
-        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">SKU Scale</span><span class="theme-tag">CS Scale</span></div>
+        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
         <div class="card-cta">↓ See details below</div>
       </div>
     </a>
@@ -362,8 +362,8 @@
       <div class="card-body">
         <div class="card-top"><span class="card-number">03</span><div class="card-dot"></div></div>
         <div class="card-title">ARV</div>
-        <div class="card-desc">Availability, Reliability & Visibility. ClickHouse as the shared data layer for all SKUs, with predictable data SLAs.</div>
-        <div class="card-themes"><span class="theme-tag">SKU Scale</span><span class="theme-tag">CS Scale</span><span class="theme-tag">Parity</span></div>
+        <div class="card-desc">Availability, Reliability & Visibility. Predictable data freshness, reliable notification delivery, and a shared data layer every SKU can build on.</div>
+        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
         <div class="card-cta">↓ See details below</div>
       </div>
     </a>
@@ -413,7 +413,7 @@
         <div class="card-top"><span class="card-number">05</span><div class="card-dot"></div></div>
         <div class="card-title">AI Agent</div>
         <div class="card-desc">The destination, not a near-term commitment. Build automation primitives first. The agent becomes the interface for the long tail.</div>
-        <div class="card-themes"><span class="theme-tag">SKU Scale</span><span class="theme-tag">CS Scale</span></div>
+        <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
         <div class="card-cta">↓ See details below</div>
       </div>
     </a>
@@ -481,21 +481,20 @@
         <p>Making the first 90 days with Adaptive more proactive, personalized, and operationally lighter for CS — without eliminating the kickoff call. The kickoff is valuable. The goal is to arrive prepared and reduce post-call support volume.</p>
       </div>
       <div class="detail-block">
-        <h3>What we need to learn</h3>
+        <h3>Discovery · What we need to learn</h3>
         <ul>
-          <li>Which onboarding steps drive the most CS burden?</li>
-          <li>Is friction a product or an education problem?</li>
-          <li>What does ticket data say about where customers get stuck?</li>
-          <li>What does CS want from a lighter motion?</li>
+          <li>CS interviews on current manual workarounds and prep burden per kickoff call</li>
+          <li>Analyze early-tenure support tickets to understand where customers actually get stuck</li>
+          <li>Competitive review of KnowBe4 intake experience for parity benchmarking</li>
+          <li>Key questions: Is friction a product or education problem? What does CS want from a lighter motion, and what does "lighter" actually mean to them?</li>
         </ul>
       </div>
       <div class="detail-block">
-        <h3>Discovery plan</h3>
+        <h3>How things change if we're successful</h3>
         <ul>
-          <li>CS interviews on current manual workarounds</li>
-          <li>Analyze early-tenure support ticket patterns</li>
-          <li>Review old bet discovery</li>
-          <li>Competitive review of KnowBe4 intake experience</li>
+          <li>New admins arrive at kickoff already prepared — CS spends less time per call and can take on more accounts without scaling headcount</li>
+          <li>Admins added post-kickoff don't generate their own wave of "how do I…" tickets</li>
+          <li>The first 90 days becomes a differentiator in sales conversations — not a liability</li>
         </ul>
       </div>
     </div>
@@ -511,7 +510,7 @@
         </button>
         <div class="project-detail"><p>Today CS manually sends a Google Form link and an email with 7+ helpsite links to prep each customer ahead of a kickoff call. Step 0 is a product-native magic link CS sends pre-kickoff — the customer answers a short set of setup questions and the answers personalize their first-run experience and give the CSM a ready-made pre-read. Customers who've gone through the manual version arrive in materially better shape. This automates that entirely.</p></div>
       </div>
-      <div class="project-row has-mockup">
+      <div class="project-row has-mockup open">
         <button class="project-trigger" onclick="toggleProject(this)">
           <div class="project-trigger-inner">
             <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -588,7 +587,7 @@
     <div class="detail-top-row">
       <div><div class="detail-num">Focus Area 02</div><h2>Attributes & Identity</h2></div>
       <div style="display:flex;align-items:flex-start;gap:10px;margin-top:28px;">
-        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">SKU Scale</span><span class="theme-tag">CS Scale</span></div>
+        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
         <a class="back-link" href="#focus-summary">↑ All areas</a>
       </div>
     </div>
@@ -608,20 +607,21 @@
         <p>Making employee identity data more usable, configurable, and strategic across the platform. Every downstream investment — automation, personalization, risk scoring, new SKU infrastructure — runs on this data layer.</p>
       </div>
       <div class="detail-block">
-        <h3>What we need to learn</h3>
+        <h3>Discovery · What we need to learn</h3>
         <ul>
-          <li>Which attribute primitives unlock the most downstream value?</li>
-          <li>What does ticket data say about where friction actually lives?</li>
-          <li>Engineering cost of making this layer reliable enough to build on?</li>
+          <li>CS survey on attribute-related ticket sources — which primitives create the most friction today?</li>
+          <li>Review Republic, Trintech CSV upload discovery for existing signal</li>
+          <li>Early conversation with Email Security team on their attribute requirements</li>
+          <li>Key questions: Which primitives unlock the most downstream value? What's the engineering cost of making this layer reliable enough to build on?</li>
         </ul>
       </div>
       <div class="detail-block">
-        <h3>Discovery plan</h3>
+        <h3>How things change if we're successful</h3>
         <ul>
-          <li>CS survey on attribute-related ticket sources</li>
-          <li>Review Republic, Trintech CSV upload discovery</li>
-          <li>Early conversation with Email Security team</li>
-          <li>Engineering scoping of derived field feasibility</li>
+          <li>Attribute friction disappears from CS ticket volume — admins self-serve corrections that today require CSV uploads or eng tickets</li>
+          <li>Downstream investments (automation, personalization, risk scoring) become viable because the data layer is reliable and extensible</li>
+          <li>Email Security and future SKUs bring their own attributes into a mature model instead of working around it</li>
+          <li>The profile drawer becomes the operational surface for managing an employee's full security posture</li>
         </ul>
       </div>
     </div>
@@ -647,7 +647,7 @@
         </button>
         <div class="project-detail"><p>Today customers must upload a CSV to update attribute values for individual employees. For small corrections — updating a job title, correcting a department — this creates friction and drives CS tickets. Admin-editable attributes in the profile drawer let admins make targeted updates without a CSV upload.</p></div>
       </div>
-      <div class="project-row has-mockup">
+      <div class="project-row has-mockup open">
         <button class="project-trigger" onclick="toggleProject(this)">
           <div class="project-trigger-inner">
             <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -728,7 +728,7 @@
     <div class="detail-top-row">
       <div><div class="detail-num">Focus Area 03</div><h2>ARV <span style="font-size:15px;font-family:'DM Sans',sans-serif;font-weight:300;color:var(--ink-muted);">Availability, Reliability & Visibility</span></h2></div>
       <div style="display:flex;align-items:flex-start;gap:10px;margin-top:28px;">
-        <div class="card-themes"><span class="theme-tag">SKU Scale</span><span class="theme-tag">CS Scale</span><span class="theme-tag">Parity</span></div>
+        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
         <a class="back-link" href="#focus-summary">↑ All areas</a>
       </div>
     </div>
@@ -745,24 +745,24 @@
     <div class="detail-lower">
       <div class="detail-block">
         <h3>What it is</h3>
-        <p>Establishing ClickHouse as the authoritative shared data layer for the platform, replacing implicit variable behavior with explicit, measurable commitments we can build products on top of.</p>
+        <p>Establishing ClickHouse as the authoritative shared data layer for the platform, replacing implicit variable behavior with explicit, measurable commitments — and giving CS visibility into notification delivery so they can self-serve answers without engineering tickets.</p>
       </div>
       <div class="detail-block">
-        <h3>What we need to learn</h3>
+        <h3>Discovery · What we need to learn</h3>
         <ul>
-          <li>What data does Email Security need in ClickHouse?</li>
-          <li>What is the right SLA — not real-time, but what exactly?</li>
-          <li>Engineering cost of decoupling from CDC variability?</li>
-          <li>Which CS notification tickets most need tooling?</li>
+          <li>Email Security team conversation on ClickHouse data requirements and what needs to land there before their launch</li>
+          <li>Engineering assessment of CDC variability trajectory and cost of decoupling</li>
+          <li>CS survey on notification-related tickets — which visibility gaps drive the most escalations?</li>
+          <li>Key questions: What SLA commitment is right — not real-time, but what exactly? Which CS tools would eliminate the most notification tickets?</li>
         </ul>
       </div>
       <div class="detail-block">
-        <h3>Discovery plan</h3>
+        <h3>How things change if we're successful</h3>
         <ul>
-          <li>Email Security team conversation on ClickHouse data requirements</li>
-          <li>Engineering assessment of current CDC variability and growth trajectory</li>
-          <li>CS survey on notification-related ticket volume</li>
-          <li>Define "good enough" SLA for downstream investments</li>
+          <li>CS can self-serve "did this notification send?" without an engineering ticket — a meaningful slice of escalation volume disappears</li>
+          <li>The platform can make and keep data freshness commitments — automation rules that depend on data timing become trustworthy</li>
+          <li>New SKUs build on ClickHouse as a shared primitive instead of standing up their own data layer</li>
+          <li>Internal account access becomes time-bounded and scoped, reducing the blast radius of a compromised account and strengthening our security posture story</li>
         </ul>
       </div>
     </div>
@@ -798,7 +798,7 @@
         </button>
         <div class="project-detail"><p>Current data freshness is coupled to CDC variability, which is getting worse as customer and data volume grows. An append-only event architecture decouples freshness from CDC, making the data layer more predictable and scalable. Foundation for the data SLA work and for reliable ClickHouse replication as new SKU data is added.</p></div>
       </div>
-      <div class="project-row has-mockup">
+      <div class="project-row has-mockup open">
         <button class="project-trigger" onclick="toggleProject(this)">
           <div class="project-trigger-inner">
             <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -843,7 +843,6 @@
           </div>
         </div>
       </div>
-    </div>
       <div class="project-row">
         <button class="project-trigger" onclick="toggleProject(this)">
           <div class="project-trigger-inner">
@@ -856,7 +855,7 @@
           <p>Today, almost all Adaptive staff have standing SUPER_ADMIN access across all customer tenants with no expiration. The blast radius of a single compromised internal account is every customer tenant. This project introduces two targeted changes to the company switcher: <strong>time-bound access</strong> (30 min – 8 hr durations, server-side enforced via JWT claim) and <strong>use-case-scoped roles</strong> — a <code>PROVISIONING</code> role limited to demo/provisioning environments and a <code>SUPPORT</code> role covering demo through active tenants. While switched in, admins see a visible countdown banner. When it expires, they're automatically returned to their home company. No approval workflows or per-tenant permissions changes in scope — this is a well-scoped, high-trust improvement that directly supports our position as a securely operated platform.</p>
         </div>
       </div>
-    <p class="projects-note">Pre-discovery. Scope will be determined through problem hunting and customer conversations.</p>
+    </div><p class="projects-note">Pre-discovery. Scope will be determined through problem hunting and customer conversations.</p>
   </div>
 
   <!-- ── FA-4: MULTI-TENANCY ── -->
@@ -884,20 +883,21 @@
         <p>Enabling the platform to support customers with complex org structures — large global enterprises with parent/child relationships, and eventually MSPs/MSSPs managing multiple end customers (separate bet).</p>
       </div>
       <div class="detail-block">
-        <h3>What we need to learn</h3>
+        <h3>Discovery · What we need to learn</h3>
         <ul>
-          <li>What's the minimum viable version to unblock named enterprise accounts?</li>
-          <li>Does full architecture need to be solved before Email Security?</li>
-          <li>What does the MSP motion require beyond enterprise?</li>
+          <li>Sales review of named enterprise accounts — what exactly are the blockers and which deals are held together with eng workarounds?</li>
+          <li>Engineering assessment of roll-up reporting scope vs. full parent/child architecture</li>
+          <li>Email Security team conversation on sequencing dependencies</li>
+          <li>Key questions: What's the minimum viable version to unblock near-term pipeline? Does the full architecture need to be solved before Email Security?</li>
         </ul>
       </div>
       <div class="detail-block">
-        <h3>Discovery plan</h3>
+        <h3>How things change if we're successful</h3>
         <ul>
-          <li>Sales review of named enterprise accounts and specific blockers</li>
-          <li>Engineering assessment of roll-up vs. full architecture scope</li>
-          <li>Email Security team conversation on sequencing dependencies</li>
-          <li>MSP intake interviews (separate track)</li>
+          <li>Named enterprise accounts in pipeline unblock — no more eng workarounds per deal</li>
+          <li>Parent org admins see aggregate program health across subsidiaries without managing separate logins</li>
+          <li>Adaptive can credibly pursue global enterprise deals that today we have to decline or stitch together manually</li>
+          <li>MSP is treated as the separate bet it is — with a clear on-ramp once enterprise is working</li>
         </ul>
       </div>
     </div>
@@ -913,7 +913,7 @@
         </button>
         <div class="project-detail"><p>The likely minimum viable unlock for named enterprise accounts in pipeline — a parent organization can view aggregated reporting across child accounts (completion rates, phishing performance, risk scores) without requiring a full parent/child account architecture. Scoped to unblock near-term deals while the larger architecture question gets resolved.</p></div>
       </div>
-      <div class="project-row has-mockup">
+      <div class="project-row has-mockup open">
         <button class="project-trigger" onclick="toggleProject(this)">
           <div class="project-trigger-inner">
             <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1010,7 +1010,7 @@
     <div class="detail-top-row">
       <div><div class="detail-num">Focus Area 05</div><h2>AI Agent</h2></div>
       <div style="display:flex;align-items:flex-start;gap:10px;margin-top:28px;">
-        <div class="card-themes"><span class="theme-tag">SKU Scale</span><span class="theme-tag">CS Scale</span></div>
+        <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
         <a class="back-link" href="#focus-summary">↑ All areas</a>
       </div>
     </div>
@@ -1030,25 +1030,27 @@
         <p>Developing the existing AI admin assistant into a genuine platform primitive — grounded in product logic, customer data, and help content, capable of taking meaningful actions on an admin's behalf.</p>
       </div>
       <div class="detail-block">
-        <h3>What we need to learn</h3>
+        <h3>Discovery · What we need to learn</h3>
         <ul>
-          <li>What would the agent do in its first genuinely useful version?</li>
-          <li>What infra work is required before it can be reliable?</li>
-          <li>How dependent is its value on attribute and automation maturity?</li>
+          <li>Audit current assistant usage — what are people actually asking it and where does it consistently fail?</li>
+          <li>Map which agentic actions become most useful once automation primitives exist</li>
+          <li>Engineering assessment of grounding infrastructure requirements</li>
+          <li>Key questions: What does the agent do in its first genuinely useful version? How dependent is its value on attribute and automation surface maturity?</li>
         </ul>
       </div>
       <div class="detail-block">
-        <h3>Discovery plan</h3>
+        <h3>How things change if we're successful</h3>
         <ul>
-          <li>Audit current assistant usage and where it falls short</li>
-          <li>Map which agentic actions are most useful once automation primitives exist</li>
-          <li>Engineering assessment of infra hardening requirements</li>
+          <li>Admins get grounded answers to config-specific questions ("why didn't this send?") without escalating to CS</li>
+          <li>The long tail of tasks too varied for point-and-click automation gets handled — the agent covers what rules can't</li>
+          <li>Adaptive Cowork becomes a product surface other SKUs can route to — not a standalone feature</li>
+          <li>When a customer adds a new SKU, they get agent knowledge for that surface essentially for free</li>
         </ul>
       </div>
     </div>
     <div class="section-sub-label">Illustrative Projects <span style="font-style:italic;font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;color:var(--ink-faint);">· ✦ includes mockup</span></div>
     <div class="project-list">
-      <div class="project-row has-mockup">
+      <div class="project-row has-mockup open">
         <button class="project-trigger" onclick="toggleProject(this)">
           <div class="project-trigger-inner">
             <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1139,34 +1141,35 @@
     </div>
     <div class="detail-lower">
       <div class="data-callout">
-        <strong>📊 Feb 2026 Automation Survey · n=69</strong>
+        <strong>📊 Feb 2026 Automation Survey · n=69 &nbsp;<a href="https://docs.google.com/spreadsheets/d/1OaIA0z2UfEG43wHmpshXyMwhQtyP8mV3a0Hw9R5j7nE/edit?gid=2011875997#gid=2011875997" target="_blank" style="font-size:9px;color:#8B6600;font-family:'DM Mono',monospace;text-decoration:underline;letter-spacing:.04em;">View results ↗</a></strong>
         Avg importance: <strong>8.8/10</strong> · 90% at 8+. Top concepts: automated phishing sims (36%), automated training (23%), automated remediation (17%), AI assistant (14%). Highest comfort with automation: remediation (59%). Preferred mode: "recommend and run with approvals" (58%).
       </div>
       <div class="detail-block">
-        <h3>What we need to learn</h3>
+        <h3>What it is</h3>
+        <p>Moving from a product where admins manage everything manually to one where the platform handles routine, signal-driven tasks — proposing and preparing actions for admin review before anything runs. Co-pilot, not autopilot.</p>
+      </div>
+      <div class="detail-block">
+        <h3>Discovery · What we need to learn</h3>
         <ul>
-          <li>Which 2–3 automations most reduce CS load and admin time?</li>
-          <li>How much does quality depend on attribute maturity?</li>
-          <li>What does the right "approve before it runs" UX look like?</li>
+          <li>Revisit survey data with a CS lens — map answers to the tickets that generate the most escalations</li>
+          <li>CS survey on the most repetitive manual admin work per customer type</li>
+          <li>Map each proposed automation to its attribute dependency level to sequence correctly</li>
+          <li>Key questions: Which 2–3 automations most reduce CS load? What does the right "approve before it runs" UX look like?</li>
         </ul>
       </div>
       <div class="detail-block">
-        <h3>Discovery plan</h3>
+        <h3>How things change if we're successful</h3>
         <ul>
-          <li>Revisit survey data with CS lens</li>
-          <li>Old bet discovery review on automation topics</li>
-          <li>CS survey on most repetitive manual admin work</li>
-          <li>Map automations to attribute dependency level</li>
+          <li>Admin time on routine tasks drops from 2–5 hrs/month toward under 2 hours — primarily a retention story, secondarily a CS load story</li>
+          <li>CS no longer guides admins through remediating phishing failures — the platform handles it with approval</li>
+          <li>Adaptive differentiates vs. KnowBe4 for buyers who care about operational efficiency</li>
+          <li>Automation primitives become the foundation the AI agent stands on — the agent routes to these instead of reinventing them</li>
         </ul>
-      </div>
-      <div class="detail-block">
-        <h3>Why it matters</h3>
-        <p>Customers want to go from 2–5 hrs/month to under 2 hours. Primarily a retention and CS load story. Also a differentiation story vs. KnowBe4 for buyers who care about operational efficiency.</p>
       </div>
     </div>
     <div class="section-sub-label">Illustrative Projects <span style="font-style:italic;font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;color:var(--ink-faint);">· ✦ includes mockup</span></div>
     <div class="project-list">
-      <div class="project-row has-mockup">
+      <div class="project-row has-mockup open">
         <button class="project-trigger" onclick="toggleProject(this)">
           <div class="project-trigger-inner">
             <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
