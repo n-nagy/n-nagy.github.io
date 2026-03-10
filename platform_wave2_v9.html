@@ -166,6 +166,16 @@
   .signal-pill.strong{color:#1A7A4A;}
   .signal-pill.building{color:#9A5500;}
 
+
+  .illustrations-hidden .card-illustration { display: none; }
+  .img-toggle-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .08em;
+    text-transform: uppercase; padding: 6px 12px; border-radius: 6px;
+    border: 1px solid var(--rule); background: white; color: var(--ink-muted);
+    cursor: pointer; transition: background .15s, color .15s;
+  }
+  .img-toggle-btn:hover { background: var(--surface); color: var(--ink); }
   @keyframes fadeUp{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
   .focus-card{animation:fadeUp .3s ease both;}
   .focus-card:nth-child(1){animation-delay:.04s;}.focus-card:nth-child(2){animation-delay:.08s;}
@@ -191,9 +201,9 @@
   </div>
   <nav class="section-nav">
     <a href="#hero" class="active">Overview</a>
-    <a href="#focus-areas">Focus Areas</a>
-    <a href="#conviction">Building Conviction</a>
-    <a href="#radar">On Our Radar</a>
+    <a href="#focus-summary">Focus Areas</a>
+    <a href="#conviction">Building Signal</a>
+    <a href="#focus-areas">Area Details</a>
   </nav>
 </header>
 
@@ -211,6 +221,38 @@
     Pre-BU bets and current in-flight focus areas are building the credibility and foundational product quality that make Adaptive trustworthy at scale. <strong>What comes next is about compounding the impact of that foundation</strong> — reducing friction across every surface Platform owns, and making the infrastructure reliable and flexible enough that future SKUs don't have to rebuild it from scratch.<br><br>
     <strong>Current focus areas (Notifications, Risk Score Foundations, Reporting) remain the highest priority</strong> — reaffirmed through GTM feedback and prioritization discussions since the Florida offsite. That work takes us at least to mid-April, and likely beyond. In parallel, we want to harden our prioritization by focusing on a smaller set of potential focus areas in the coming weeks — so the highest-conviction project is ready for engineering before mid-to-late April and into May, when we expect more eng capacity to open up.
   </div>
+
+  <div class="timeline-strip">
+    <div class="timeline-block">
+      <div class="tl-phase" style="color:var(--current);">In progress — mid to late April</div>
+      <div class="tl-title">In-Flight Focus Areas</div>
+      <div class="tl-chips">
+        <span class="tl-chip" style="background:var(--current-light);color:var(--current);">Notifications</span>
+        <span class="tl-chip" style="background:var(--current-light);color:var(--current);">Risk Score Foundations</span>
+        <span class="tl-chip" style="background:var(--current-light);color:var(--current);">Reporting</span>
+      </div>
+    </div>
+    <div class="timeline-block">
+      <div class="tl-phase" style="color:var(--wave);">Starting now — parallel discovery</div>
+      <div class="tl-title">Discovery on Next Things</div>
+      <div class="tl-chips">
+        <span class="tl-chip" style="background:var(--wave-light);color:var(--wave);">Old bet discovery</span>
+        <span class="tl-chip" style="background:var(--wave-light);color:var(--wave);">CS survey</span>
+        <span class="tl-chip" style="background:var(--wave-light);color:var(--wave);">Ticket analysis</span>
+        <span class="tl-chip" style="background:var(--wave-light);color:var(--wave);">Customer calls</span>
+      </div>
+    </div>
+    <div class="timeline-block">
+      <div class="tl-phase" style="color:var(--accent);">Late April / May — eng capacity opens up</div>
+      <div class="tl-title">Next Wave Kicks Off</div>
+      <div class="tl-chips">
+        <span class="tl-chip" style="background:var(--accent-light);color:var(--accent);">Hardened POV ready</span>
+        <span class="tl-chip" style="background:var(--accent-light);color:var(--accent);">Top project ready for eng</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:1px;background:var(--rule);margin:40px 0 32px;"></div>
 
   <div class="themes-strip">
     <div class="themes-strip-top">
@@ -257,41 +299,22 @@
     </div>
   </div>
 
-  <div class="timeline-strip">
-    <div class="timeline-block">
-      <div class="tl-phase" style="color:var(--current);">In progress — mid to late April</div>
-      <div class="tl-title">In-Flight Focus Areas</div>
-      <div class="tl-chips">
-        <span class="tl-chip" style="background:var(--current-light);color:var(--current);">Notifications</span>
-        <span class="tl-chip" style="background:var(--current-light);color:var(--current);">Risk Score Foundations</span>
-        <span class="tl-chip" style="background:var(--current-light);color:var(--current);">Reporting</span>
-      </div>
-    </div>
-    <div class="timeline-block">
-      <div class="tl-phase" style="color:var(--wave);">Starting now — parallel discovery</div>
-      <div class="tl-title">Discovery on Next Things</div>
-      <div class="tl-chips">
-        <span class="tl-chip" style="background:var(--wave-light);color:var(--wave);">Old bet discovery</span>
-        <span class="tl-chip" style="background:var(--wave-light);color:var(--wave);">CS survey</span>
-        <span class="tl-chip" style="background:var(--wave-light);color:var(--wave);">Ticket analysis</span>
-        <span class="tl-chip" style="background:var(--wave-light);color:var(--wave);">Customer calls</span>
-      </div>
-    </div>
-    <div class="timeline-block">
-      <div class="tl-phase" style="color:var(--accent);">Late April / May — eng capacity opens up</div>
-      <div class="tl-title">Next Wave Kicks Off</div>
-      <div class="tl-chips">
-        <span class="tl-chip" style="background:var(--accent-light);color:var(--accent);">Hardened POV ready</span>
-        <span class="tl-chip" style="background:var(--accent-light);color:var(--accent);">Top project ready for eng</span>
-      </div>
-    </div>
-  </div>
 </div>
 
 <!-- ══ FOCUS CARDS ══ -->
-<div class="page-section" id="focus-summary">
+<div class="page-section" id="focus-summary" style="border-top:none;margin-top:0;padding-top:24px;">
   <div class="section-eyebrow">Six Candidate Focus Areas</div>
-  <div class="focus-grid">
+  <div class="disclaimer-box" style="margin-bottom:24px;">
+    <strong>On sequencing:</strong> These six areas aren't ranked yet, and this isn't a roadmap. But the order in which we pursue them matters as much as the areas themselves — the right sequence means each investment makes the next one faster and cheaper to build. That's the compounding we're after. Firmer prioritization comes from the discovery work starting now in parallel with current execution.
+  </div>
+
+  <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+    <button class="img-toggle-btn" id="imgToggle" onclick="toggleImages()">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="3" width="10" height="7" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 7l2.5-2.5L6 7l2-2 3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span id="imgToggleLabel">Show images</span>
+    </button>
+  </div>
+  <div class="focus-grid" id="focusGrid">
 
     <!-- 01 FIRST 90 DAYS -->
     <a class="focus-card c1" href="#fa-1">
@@ -450,8 +473,99 @@
     </a>
 
   </div>
-  <div class="disclaimer-box">
-    <strong>On sequencing:</strong> These six areas aren't ranked yet, and this isn't a roadmap. But the order in which we pursue them matters as much as the areas themselves — the right sequence means each investment makes the next one faster and cheaper to build. That's the compounding we're after. Firmer prioritization comes from the discovery work starting now in parallel with current execution.
+</div>
+
+  <!-- On Our Radar collapsible -->
+  <details style="margin-top:28px;border:1px solid var(--rule);border-radius:12px;overflow:hidden;">
+    <summary style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px;cursor:pointer;user-select:none;list-style:none;background:var(--surface);outline:none;">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:4px;">Conscious deferrals</div>
+        <div style="font-size:15px;font-weight:600;color:var(--ink);">On our radar — but not in focus</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span style="font-size:12px;color:var(--ink-muted);">Real problems, not yet funded</span>
+        <svg class="radar-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;transition:transform .2s;"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </summary>
+    <div style="padding:4px 20px 20px;border-top:1px solid var(--rule);">
+      <p style="font-size:13px;color:var(--ink-muted);line-height:1.75;max-width:680px;margin:16px 0 20px;">These areas have real customer signal — but they don't map cleanly to the six focus areas above, and/or they scored lower on the EPD leads' strategic themes. We're not ignoring them; we're being explicit that we don't have enough conviction to fund them as a primary focus area right now.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
+
+    <!-- Admin Access Expansion -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
+      <div style="font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;">Admin Access Expansion</div>
+      <p style="font-size:12px;color:var(--ink-muted);line-height:1.6;margin-bottom:14px;">Broader control over who can access what inside Adaptive — increasingly relevant as customers grow headcount and add security-specific admins.</p>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;display:flex;justify-content:space-between;align-items:center;">Admin SCIM provisioning <span style="font-size:10px;color:var(--ink-faint);">Cap One</span></div>
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Custom RBAC roles</div>
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Manager-scoped data permissions</div>
+      </div>
+    </div>
+
+    <!-- Outbound Data -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
+      <div style="font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;">Additional Outbound Data</div>
+      <p style="font-size:12px;color:var(--ink-muted);line-height:1.6;margin-bottom:14px;">Customers want Adaptive data to flow into their existing security tooling and data pipelines — currently limited to what our native integrations support.</p>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;display:flex;justify-content:space-between;align-items:center;">Webhooks <span style="font-size:10px;color:var(--ink-faint);">Pega systems</span></div>
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">GraphQL API</div>
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">SIEM integrations</div>
+      </div>
+    </div>
+
+    <!-- Report Automation -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
+      <div style="font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;">Report Automation</div>
+      <p style="font-size:12px;color:var(--ink-muted);line-height:1.6;margin-bottom:14px;">Reducing the manual work around reporting — from scheduled delivery to AI-assisted summarization. Related to in-flight Reporting bet but likely a follow-on investment.</p>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">AI summaries</div>
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Default-on notifications</div>
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Batch notifications</div>
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Recommendation engine</div>
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Report refactor</div>
+      </div>
+    </div>
+
+    <!-- Additional Integrations -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
+      <div style="font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;">Additional Integrations</div>
+      <p style="font-size:12px;color:var(--ink-muted);line-height:1.6;margin-bottom:14px;">Expanding HRIS coverage — primarily driven by prospects and customers on platforms we don't natively support yet.</p>
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Workday partnership</div>
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">HiBob</div>
+        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Additional HRIS coverage</div>
+      </div>
+    </div>
+
+  
+    </div>
+  </details>
+
+
+<!-- ══ CONVICTION ══ -->
+<div class="page-section" id="conviction">
+  <div class="section-eyebrow">Building Stronger Signal</div>
+  <div style="background:#FFFBF0;border:1px solid #EDD97A;border-left:3px solid #D4B000;border-radius:8px;padding:16px 20px;margin-bottom:24px;">
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#8B6A00;margin-bottom:8px;">On the current signal labels</div>
+    <p style="font-size:13px;color:var(--ink);line-height:1.7;margin:0;">Four of the six focus areas show <strong>strong signal</strong> — cross-validated by customer data, deal analysis, and eng context. Two show <strong>building signal</strong>, which reflects a data gap more than a conviction gap. In a recent conversation with the eng lead on this BU, skepticism on First 90 Days and Attributes surfaced — but that conversation happened before seeing CS ticket data and Intercom taxonomy. The discovery work in progress is specifically designed to close that gap. <strong>Full conviction on all six areas comes from completing the data analysis, not from this document.</strong></p>
+  </div>
+  <p style="font-size:14px;color:var(--ink-muted);line-height:1.75;max-width:680px;margin-bottom:28px;">There was significant discovery done under the old bet structure that we're dusting off — not everyone was directly involved in those previous bets, so part of this process is making that work visible and useful. Specific examples: the automation survey (n=69), customer research reports, and the discovery work done with Republic and Trintech. New activities layer on top of that foundation.</p>
+
+  <table class="conviction-table">
+    <thead><tr><th>Activity</th><th>Status</th><th>Informs</th></tr></thead>
+    <tbody>
+      <tr><td>Old bet discovery review</td><td><span class="status-pill in-progress">In progress</span></td><td>All focus areas</td></tr>
+      <tr><td>Automation Survey (n=69)</td><td><span class="status-pill done">Complete</span></td><td>Automation, AI Agent</td></tr>
+      <tr><td>CS team survey</td><td><span class="status-pill in-progress">In progress</span></td><td>First 90 Days, Attributes, Automation</td></tr>
+      <tr><td>Intercom ticket taxonomy (Class A/B/C)</td><td><span class="status-pill in-progress">In progress</span></td><td>First 90 Days, ARV, Automation</td></tr>
+      <tr><td>Risk signal / integrations survey</td><td><span class="status-pill planned">Planned — March</span></td><td>Attributes & Identity, Automation</td></tr>
+      <tr><td>Email Security team conversation</td><td><span class="status-pill planned">Planned</span></td><td>ARV, Multi-tenancy</td></tr>
+      <tr><td>Customer interviews — onboarding friction</td><td><span class="status-pill tbd">To be scheduled</span></td><td>First 90 Days, Attributes</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note-box">
+    <strong>Goal:</strong> Hardened prioritization POV in the coming weeks, so the highest-conviction project is ready for engineering before mid-to-late April and into May when more eng capacity opens up. The current wave — Notifications, Risk Score Foundations, Reporting — continues executing and remains the highest priority for the BU.
   </div>
 </div>
 
@@ -1150,6 +1264,30 @@
         <strong>📊 Feb 2026 Automation Survey · n=69 &nbsp;<a href="https://docs.google.com/spreadsheets/d/1OaIA0z2UfEG43wHmpshXyMwhQtyP8mV3a0Hw9R5j7nE/edit?gid=2011875997#gid=2011875997" target="_blank" style="font-size:9px;color:#8B6600;font-family:'DM Mono',monospace;text-decoration:underline;letter-spacing:.04em;">View results ↗</a></strong>
         Avg importance: <strong>8.8/10</strong> · 90% at 8+. Top concepts: automated phishing sims (36%), automated training (23%), automated remediation (17%), AI assistant (14%). Highest comfort with automation: remediation (59%). Preferred mode: "recommend and run with approvals" (58%).
       </div>
+    </div>
+    <div class="stat-row" style="margin-bottom:12px;">
+      <div class="stat-card">
+        <div class="stat-num">8.8</div>
+        <div class="stat-label">Automation importance avg score out of 10</div>
+        <div class="stat-note">Feb 2026 survey · n=69</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">90%</div>
+        <div class="stat-label">Rated automation importance 8 or higher</div>
+        <div class="stat-note">Feb 2026 survey · n=69</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">58%</div>
+        <div class="stat-label">Prefer "recommend and run with approvals"</div>
+        <div class="stat-note">Feb 2026 survey · n=69</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">59%</div>
+        <div class="stat-label">Comfortable with more automation on remediation</div>
+        <div class="stat-note">Feb 2026 survey · n=69</div>
+      </div>
+    </div>
+    <div class="detail-lower">
       <div class="detail-block">
         <h3>What it is</h3>
         <p>Moving from a product where admins manage everything manually to one where the platform handles routine, signal-driven tasks — proposing and preparing actions for admin review before anything runs. Co-pilot, not autopilot.</p>
@@ -1245,123 +1383,41 @@
 
 </div><!-- end focus areas -->
 
-<!-- ══ CONVICTION ══ -->
-<div class="page-section" id="conviction">
-  <div class="section-eyebrow">Building Conviction</div>
-  <div style="background:#FFFBF0;border:1px solid #EDD97A;border-left:3px solid #D4B000;border-radius:8px;padding:16px 20px;max-width:720px;margin-bottom:24px;">
-    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#8B6A00;margin-bottom:8px;">On the current signal labels</div>
-    <p style="font-size:13px;color:var(--ink);line-height:1.7;margin:0;">Four of the six focus areas show <strong>strong signal</strong> — cross-validated by customer data, deal analysis, and eng context. Two show <strong>building signal</strong>, which reflects a data gap more than a conviction gap. In a recent conversation with the eng lead on this BU, skepticism on First 90 Days and Attributes surfaced — but that conversation happened before seeing CS ticket data and Intercom taxonomy. The discovery work in progress is specifically designed to close that gap. <strong>Full conviction on all six areas comes from completing the data analysis, not from this document.</strong></p>
-  </div>
-  <p style="font-size:14px;color:var(--ink-muted);line-height:1.75;max-width:680px;margin-bottom:28px;">There was significant discovery done under the old bet structure that we're dusting off — not everyone was directly involved in those previous bets, so part of this process is making that work visible and useful. Specific examples: the automation survey (n=69), customer research reports, and the discovery work done with Republic and Trintech. New activities layer on top of that foundation.</p>
 
-  <div class="stat-row">
-    <div class="stat-card">
-      <div class="stat-num">8.8</div>
-      <div class="stat-label">Automation importance avg score out of 10</div>
-      <div class="stat-note">Feb 2026 survey · n=69</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">90%</div>
-      <div class="stat-label">Rated automation importance 8 or higher</div>
-      <div class="stat-note">Feb 2026 survey · n=69</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">58%</div>
-      <div class="stat-label">Prefer "recommend and run with approvals"</div>
-      <div class="stat-note">Feb 2026 survey · n=69</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">59%</div>
-      <div class="stat-label">Comfortable with more automation on remediation</div>
-      <div class="stat-note">Feb 2026 survey · n=69</div>
-    </div>
-  </div>
 
-  <table class="conviction-table">
-    <thead><tr><th>Activity</th><th>Status</th><th>Informs</th></tr></thead>
-    <tbody>
-      <tr><td>Old bet discovery review</td><td><span class="status-pill in-progress">In progress</span></td><td>All focus areas</td></tr>
-      <tr><td>Automation Survey (n=69)</td><td><span class="status-pill done">Complete</span></td><td>Automation, AI Agent</td></tr>
-      <tr><td>CS team survey</td><td><span class="status-pill in-progress">In progress</span></td><td>First 90 Days, Attributes, Automation</td></tr>
-      <tr><td>Intercom ticket taxonomy (Class A/B/C)</td><td><span class="status-pill in-progress">In progress</span></td><td>First 90 Days, ARV, Automation</td></tr>
-      <tr><td>Risk signal / integrations survey</td><td><span class="status-pill planned">Planned — March</span></td><td>Attributes & Identity, Automation</td></tr>
-      <tr><td>Email Security team conversation</td><td><span class="status-pill planned">Planned</span></td><td>ARV, Multi-tenancy</td></tr>
-      <tr><td>Customer interviews — onboarding friction</td><td><span class="status-pill tbd">To be scheduled</span></td><td>First 90 Days, Attributes</td></tr>
-    </tbody>
-  </table>
-
-  <div class="note-box">
-    <strong>Goal:</strong> Hardened prioritization POV in the coming weeks, so the highest-conviction project is ready for engineering before mid-to-late April and into May when more eng capacity opens up. The current wave — Notifications, Risk Score Foundations, Reporting — continues executing and remains the highest priority for the BU.
-  </div>
-</div>
-
-</div><!-- end page-content -->
-
-<!-- ══ ON OUR RADAR ══ -->
-<div class="page-content" id="radar" style="border-top:1px solid var(--border);margin-top:0;padding-top:48px;">
-  <div class="section-eyebrow">On Our Radar</div>
-  <p style="font-size:14px;color:var(--ink-muted);line-height:1.75;max-width:680px;margin-bottom:10px;">These are areas we're aware of and tracking — real problems with real customer signal — but they don't map cleanly to the six focus areas above, and/or they scored lower on the EPD leads' strategic themes. We're not ignoring them; we're being explicit that we don't have enough conviction to fund them as a primary focus area right now.</p>
-  <p style="font-size:13px;color:var(--ink-faint);font-style:italic;margin-bottom:32px;">Not prioritized. Listed here to create alignment on what we're consciously deferring.</p>
-
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
-
-    <!-- Admin Access Expansion -->
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
-      <div style="font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;">Admin Access Expansion</div>
-      <p style="font-size:12px;color:var(--ink-muted);line-height:1.6;margin-bottom:14px;">Broader control over who can access what inside Adaptive — increasingly relevant as customers grow headcount and add security-specific admins.</p>
-      <div style="display:flex;flex-direction:column;gap:6px;">
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;display:flex;justify-content:space-between;align-items:center;">Admin SCIM provisioning <span style="font-size:10px;color:var(--ink-faint);">Cap One</span></div>
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Custom RBAC roles</div>
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Manager-scoped data permissions</div>
-      </div>
-    </div>
-
-    <!-- Outbound Data -->
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
-      <div style="font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;">Additional Outbound Data</div>
-      <p style="font-size:12px;color:var(--ink-muted);line-height:1.6;margin-bottom:14px;">Customers want Adaptive data to flow into their existing security tooling and data pipelines — currently limited to what our native integrations support.</p>
-      <div style="display:flex;flex-direction:column;gap:6px;">
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;display:flex;justify-content:space-between;align-items:center;">Webhooks <span style="font-size:10px;color:var(--ink-faint);">Pega systems</span></div>
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">GraphQL API</div>
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">SIEM integrations</div>
-      </div>
-    </div>
-
-    <!-- Report Automation -->
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
-      <div style="font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;">Report Automation</div>
-      <p style="font-size:12px;color:var(--ink-muted);line-height:1.6;margin-bottom:14px;">Reducing the manual work around reporting — from scheduled delivery to AI-assisted summarization. Related to in-flight Reporting bet but likely a follow-on investment.</p>
-      <div style="display:flex;flex-direction:column;gap:6px;">
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">AI summaries</div>
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Default-on notifications</div>
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Batch notifications</div>
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Recommendation engine</div>
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Report refactor</div>
-      </div>
-    </div>
-
-    <!-- Additional Integrations -->
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px;">
-      <div style="font-size:9px;font-family:'DM Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px;">Additional Integrations</div>
-      <p style="font-size:12px;color:var(--ink-muted);line-height:1.6;margin-bottom:14px;">Expanding HRIS coverage — primarily driven by prospects and customers on platforms we don't natively support yet.</p>
-      <div style="display:flex;flex-direction:column;gap:6px;">
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Workday partnership</div>
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">HiBob</div>
-        <div style="font-size:11px;color:var(--ink);padding:6px 10px;background:white;border:1px solid var(--border);border-radius:6px;">Additional HRIS coverage</div>
-      </div>
-    </div>
-
-  </div>
-</div>
 
 <script>
+
+  // Image toggle — default hidden
+  function toggleImages() {
+    var grid = document.getElementById('focusGrid');
+    var label = document.getElementById('imgToggleLabel');
+    if (grid.classList.contains('illustrations-hidden')) {
+      grid.classList.remove('illustrations-hidden');
+      label.textContent = 'Hide images';
+    } else {
+      grid.classList.add('illustrations-hidden');
+      label.textContent = 'Show images';
+    }
+  }
+  // Start with images hidden
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('focusGrid').classList.add('illustrations-hidden');
+  });
+  document.querySelectorAll('details').forEach(function(el) {
+    el.addEventListener('toggle', function() {
+      var ch = el.querySelector('.radar-chevron');
+      if (ch) ch.style.transform = el.open ? 'rotate(180deg)' : '';
+    });
+  });
+
   function toggleProject(btn) {
     btn.closest('.project-row').classList.toggle('open');
   }
 
-  const sectionIds = ['hero','focus-summary','focus-areas','conviction','radar'];
+  const sectionIds = ['hero','focus-summary','conviction','focus-areas'];
   const navLinks = document.querySelectorAll('.section-nav a');
-  const navMap = [0,1,1,2,3];
+  const navMap = [0,1,2,3];
 
   function updateNav() {
     const y = window.scrollY + 80;
