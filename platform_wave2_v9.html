@@ -361,8 +361,8 @@
       </div>
       <div class="card-body">
         <div class="card-top"><span class="card-number">03</span><div class="card-dot"></div></div>
-        <div class="card-title">ARV</div>
-        <div class="card-desc">Availability, Reliability & Visibility. Predictable data freshness, reliable notification delivery, and a shared data layer every SKU can build on.</div>
+        <div class="card-title" style="font-size:13px;">ARV <span style="font-weight:400;color:var(--ink-muted);">(Availability, Reliability & Visibility)</span></div>
+        <div class="card-desc">Group builder on ClickHouse for availability across SKUs, predictable data freshness SLAs, and reliable notification delivery across all SKUs.</div>
         <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
         <div class="card-cta">↓ See details below</div>
       </div>
@@ -485,16 +485,16 @@
         <ul>
           <li>CS interviews on current manual workarounds and prep burden per kickoff call</li>
           <li>Analyze early-tenure support tickets to understand where customers actually get stuck</li>
-          <li>Competitive review of KnowBe4 intake experience for parity benchmarking</li>
+          <li>Research how frequently admins are added outside of the kickoff window (30+ days post-kickoff) to validate the impact of individual-level onboarding guidance at scale</li>
           <li>Key questions: Is friction a product or education problem? What does CS want from a lighter motion, and what does "lighter" actually mean to them?</li>
         </ul>
       </div>
       <div class="detail-block">
         <h3>How things change if we're successful</h3>
         <ul>
-          <li>New admins arrive at kickoff already prepared — CS spends less time per call and can take on more accounts without scaling headcount</li>
-          <li>Admins added post-kickoff don't generate their own wave of "how do I…" tickets</li>
-          <li>The first 90 days becomes a differentiator in sales conversations — not a liability</li>
+          <li>Tickets per customer go down — CS scales more proportionally to the account base without needing to grow headcount at the same rate</li>
+          <li>Admins added post-kickoff don't generate their own wave of "how do I…" tickets — individual-level onboarding becomes a product motion, not a CS motion</li>
+          <li>POC conversion improves — we expect to see materially higher conversion rates on POCs that go through structured onboarding flows vs. those that don't, which becomes a repeatable lever</li>
         </ul>
       </div>
     </div>
@@ -598,21 +598,22 @@
       </div>
       <div class="hyp-block context">
         <div class="hyp-label">Additional context</div>
-        <p>The CSV upload spec addressed a first version of custom attribute support, but derived fields, admin-editable attributes, override/remapping, and the user profile as a hub remain immature. The Email Security team will almost certainly bring a new set of attributes we'll need to incorporate. Getting this right reduces CS load today and unlocks downstream product velocity.</p>
+        <p>We've expanded custom attribute support across some integrations and via CSV — which introduced the concept — but coverage is incomplete across our integration surface and we don't support derived fields, inline editing, or remapping without eng intervention. The user profile page has accumulated these capabilities as bandaids rather than a cohesive design, and it lacks the value customers expect to get from it. For example, we have zero custom attribute support from Microsoft integrations today — and that gap has real cost. The Email Security team will bring another set of attributes we'll need to incorporate. Getting this right reduces CS load now and unlocks downstream product velocity.</p>
       </div>
     </div>
     <div class="detail-lower">
       <div class="detail-block">
         <h3>What it is</h3>
-        <p>Making employee identity data more usable, configurable, and strategic across the platform. Every downstream investment — automation, personalization, risk scoring, new SKU infrastructure — runs on this data layer.</p>
+        <p>We've expanded attribute capabilities but largely put bandaids on the user profile page — it lacks the coherence and depth customers want from it. This is about closing the coverage gap across integrations, adding the primitives we're missing (derived fields, inline editing, remapping), and rebuilding the profile into something customers actually find valuable. Every downstream investment — automation, personalization, risk scoring, new SKU infrastructure — runs on this data layer.</p>
       </div>
       <div class="detail-block">
         <h3>Discovery · What we need to learn</h3>
         <ul>
           <li>CS survey on attribute-related ticket sources — which primitives create the most friction today?</li>
-          <li>Review Republic, Trintech CSV upload discovery for existing signal</li>
+          <li>Customer problem hunting: what use cases can't we support because we lack non-CSV attribute handling? E.g. zero custom attributes from Microsoft — what deals or expansions has that cost us?</li>
+          <li>Review Republic, Trintech CSV upload discovery for existing signal on what customers tried to do that the product couldn't support</li>
           <li>Early conversation with Email Security team on their attribute requirements</li>
-          <li>Key questions: Which primitives unlock the most downstream value? What's the engineering cost of making this layer reliable enough to build on?</li>
+          <li>Key questions: Which integration gaps are most costly? What's the engineering cost of closing them vs. building the primitives on top?</li>
         </ul>
       </div>
       <div class="detail-block">
@@ -735,11 +736,11 @@
     <div class="hyp-row">
       <div class="hyp-block hypothesis">
         <div class="hyp-label">Hypothesis</div>
-        <p>The absence of ClickHouse as a shared, reliable data layer for all SKUs — combined with undefined data freshness SLAs and opaque notification delivery — creates CS tickets today and blocks automation, multi-tenancy, and new SKU investments tomorrow.</p>
+        <p>Without ClickHouse as a shared, reliable data layer, we can't guarantee consistent group builder behavior across SKUs. Without defined data freshness SLAs, automation rules that depend on data timing aren't trustworthy. And without visibility into notification delivery, CS escalates to eng for answers they should be able to get themselves.</p>
       </div>
       <div class="hyp-block context">
         <div class="hyp-label">Additional context</div>
-        <p>ClickHouse is currently the only place we can guarantee all data will be as more SKUs are added — making it the right shared data primitive for segmentation, group builder, and reporting to run against. Today the platform promises "immediate" data but delivers variable refresh cycles (4–5 min, trending upward as customer volume grows). Platform notifications (SendGrid) have no defined SLA and limited CS visibility when delivery fails. Note: phishing notifications (Mailgun, SAT BU) are out of scope here.</p>
+        <p>Three connected problems: (1) <strong>Availability</strong> — ClickHouse is the only place we can guarantee all SKU data will be, but the group builder doesn't run against it yet, making cross-SKU segmentation unreliable. (2) <strong>Reliability</strong> — the platform promises "immediate" data but delivers variable refresh cycles (4–5 min, trending upward) with no defined SLA and no measurement. (3) <strong>Visibility</strong> — when platform notifications (SendGrid) fail, CS has no self-serve visibility and must escalate to eng. Phishing notifications (Mailgun, SAT BU) are out of scope here.</p>
       </div>
     </div>
     <div class="detail-lower">
@@ -1033,6 +1034,7 @@
         <h3>Discovery · What we need to learn</h3>
         <ul>
           <li>Audit current assistant usage — what are people actually asking it and where does it consistently fail?</li>
+          <li>Could a grounded agent cover the support gap created by not enabling Fin (Intercom's AI agent)? Understand what Fin would have handled and whether a product-native agent can do it with better context</li>
           <li>Map which agentic actions become most useful once automation primitives exist</li>
           <li>Engineering assessment of grounding infrastructure requirements</li>
           <li>Key questions: What does the agent do in its first genuinely useful version? How dependent is its value on attribute and automation surface maturity?</li>
@@ -1041,10 +1043,10 @@
       <div class="detail-block">
         <h3>How things change if we're successful</h3>
         <ul>
-          <li>Admins get grounded answers to config-specific questions ("why didn't this send?") without escalating to CS</li>
           <li>The long tail of tasks too varied for point-and-click automation gets handled — the agent covers what rules can't</li>
           <li>Adaptive Cowork becomes a product surface other SKUs can route to — not a standalone feature</li>
           <li>When a customer adds a new SKU, they get agent knowledge for that surface essentially for free</li>
+          <li>Admins get grounded answers to config-specific questions ("why didn't this send?") without escalating to CS — and the agent sounds like a human, not a bot</li>
         </ul>
       </div>
     </div>
