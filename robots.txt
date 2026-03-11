@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /platform_wave2_v9.html
+
+User-agent: ChatGPT-User
+Disallow: /platform_wave2_v9.html
+
+User-agent: CCBot
+Disallow: /platform_wave2_v9.html
+
+User-agent: anthropic-ai
+Disallow: /platform_wave2_v9.html
