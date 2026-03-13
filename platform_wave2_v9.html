@@ -160,6 +160,7 @@
   .status-pill.done{background:#E8F5EE;color:#1A7A4A;}
   .status-pill.in-progress{background:#FFF3E8;color:#C85A00;}
   .status-pill.planned{background:#EEF1FF;color:#2B4FFF;}
+  .status-pill.waiting{background:#FFF3E8;color:#C85A00;}
   .status-pill.tbd{background:var(--rule);color:var(--ink-muted);}
   .note-box{padding:16px 20px;background:white;border:1px solid var(--rule);border-radius:10px;font-size:13px;color:var(--ink-muted);line-height:1.75;}
   .note-box strong{color:var(--ink);}
@@ -340,9 +341,9 @@
       <div class="card-body">
         <div class="card-top"><span class="card-number">01</span><div class="card-dot"></div></div>
         <div class="card-title">New Admin Activation</div>
-        <div class="card-desc">Reducing CS support load by making Adaptive self-sufficient for new admins — including those added after the kickoff call who never got onboarded.</div>
-        <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
-        <div class="signal-pill building"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#9A5500"/></svg> Building signal · CS data pending</div>
+        <div class="card-desc">CS data is consistent across tickets, surveys, and call timing: we do kickoffs, but significant CS capacity is still going to customers in the first 90 days after. The problem is what happens after the kickoff, not the kickoff itself.</div>
+        <div class="card-themes"><span class="theme-tag">CS Scale</span></div>
+        <div class="signal-pill strong"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#1A7A4A"/></svg> Signal gathered · CS data complete</div>
       </div>
     </a>
 
@@ -369,8 +370,8 @@
         <div class="card-top"><span class="card-number">02</span><div class="card-dot"></div></div>
         <div class="card-title">Attributes & Identity</div>
         <div class="card-desc">The data layer everything else runs on. Attribute friction costs CS time today and blocks autofish, new SKUs, and Email Security.</div>
-        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
-        <div class="signal-pill building"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#9A5500"/></svg> Building signal · ROI to be validated</div>
+        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span></div>
+        <div class="signal-pill strong"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#1A7A4A"/></svg> Signal gathered · CS data / customer feedback</div>
       </div>
     </a>
 
@@ -396,8 +397,8 @@
         <div class="card-top"><span class="card-number">03</span><div class="card-dot"></div></div>
         <div class="card-title">Multi-tenancy</div>
         <div class="card-desc">Named enterprise deals need parent/child support. Roll-up reporting is the likely minimum viable unlock. MSP is a separate bet.</div>
-        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">SKU Scale</span></div>
-        <div class="signal-pill strong"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#1A7A4A"/></svg> Strong signal · Active deal blocker</div>
+        <div class="card-themes"><span class="theme-tag">Parity</span></div>
+        <div class="signal-pill strong"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#1A7A4A"/></svg> Signal gathered · When not if</div>
       </div>
     </a>
 
@@ -419,8 +420,8 @@
         <div class="card-top"><span class="card-number">04</span><div class="card-dot"></div></div>
         <div class="card-title">AI Agent</div>
         <div class="card-desc">The destination, not a near-term commitment. Build automation primitives first. The agent becomes the interface for the long tail.</div>
-        <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
-        <div class="signal-pill building"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#9A5500"/></svg> Building signal · Primitives first</div>
+        <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Speed</span></div>
+        <div class="signal-pill building"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#9A5500"/></svg> Building signal · Validation of use cases</div>
       </div>
     </a>
 
@@ -447,8 +448,8 @@
         <div class="card-top"><span class="card-number">05</span><div class="card-dot"></div></div>
         <div class="card-title">Automation</div>
         <div class="card-desc">Co-pilot automation: recommend and run with approvals. 90% rated importance 8+/10. Remediation programs are the most comfortable first step.</div>
-        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span></div>
-        <div class="signal-pill strong"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#1A7A4A"/></svg> Strong signal · Survey results + deal data</div>
+        <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Speed</span></div>
+        <div class="signal-pill strong"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#1A7A4A"/></svg> Signal gathered · Survey + deal data</div>
       </div>
     </a>
 
@@ -479,8 +480,8 @@
           <div class="card-top"><span class="card-number">03</span><div class="card-dot"></div></div>
           <div class="card-title" style="font-size:13px;">ARV <span style="font-weight:400;color:var(--ink-muted);">(Availability, Reliability &amp; Visibility)</span></div>
           <div class="card-desc">Group builder on ClickHouse for availability across SKUs, predictable data freshness SLAs, and reliable notification delivery across all SKUs.</div>
-          <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
-          <div class="signal-pill strong"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#1A7A4A"/></svg> Strong signal · Eng value prop + CS gains</div>
+          <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Speed</span></div>
+          <div class="signal-pill building"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3.5" fill="#9A5500"/></svg> Building signal · Eng value prop + timing</div>
         </div>
       </div>
 
@@ -490,7 +491,7 @@
         <div style="background:#F3EBF9;border:1px solid #D9BDF0;border-radius:10px;padding:14px 18px;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
             <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#7B35C2;">Sub-area 01</span>
-            <span style="font-size:13px;font-weight:600;color:#4A1A80;">Data Primitives</span>
+            <span style="font-size:13px;font-weight:600;color:#4A1A80;">Data Consistency &amp; Security</span>
           </div>
           <p style="font-size:12.5px;color:#5A3A78;line-height:1.65;margin:0 0 8px;">Group builder on ClickHouse to guarantee all SKU data is available in one place. The challenge: it's not clear this is actually necessary right now — current Postgres queries are still performing.</p>
           <div style="font-size:11.5px;color:#7B35C2;">Group builder on ClickHouse · Cross-SKU attribute access</div>
@@ -499,20 +500,20 @@
         <div style="background:#F3EBF9;border:1px solid #D9BDF0;border-radius:10px;padding:14px 18px;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
             <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#7B35C2;">Sub-area 02</span>
-            <span style="font-size:13px;font-weight:600;color:#4A1A80;">Reliability</span>
+            <span style="font-size:13px;font-weight:600;color:#4A1A80;">Secure Company Management</span>
+            <span style="font-family:'DM Mono',monospace;font-size:9px;background:#7B35C2;color:white;padding:2px 8px;border-radius:20px;letter-spacing:.05em;white-space:nowrap;">Q2 committed</span>
           </div>
-          <p style="font-size:12.5px;color:#5A3A78;line-height:1.65;margin:0 0 8px;">Improving the consistency and predictability of data across the platform — ClickHouse latency, SMTP delivery, and defined SLAs for data freshness. When these degrade, CS notices before we do.</p>
-          <div style="font-size:11.5px;color:#7B35C2;">ClickHouse data latency · SMTP delivery · Data freshness SLAs</div>
+          <p style="font-size:12.5px;color:#5A3A78;line-height:1.65;margin:0 0 8px;">Foundational infrastructure for safer product development — JIT access and staged rollout tooling. JIT is already committed to in Q2; the broader primitives question needs more scoping.</p>
+          <div style="font-size:11.5px;color:#7B35C2;">JIT company switching ✦ · Staged rollout tooling · Feature flag infrastructure</div>
         </div>
 
         <div style="background:#F3EBF9;border:1px solid #D9BDF0;border-radius:10px;padding:14px 18px;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
             <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#7B35C2;">Sub-area 03</span>
-            <span style="font-size:13px;font-weight:600;color:#4A1A80;">Adaptive Internal Primitives</span>
-            <span style="font-family:'DM Mono',monospace;font-size:9px;background:#7B35C2;color:white;padding:2px 8px;border-radius:20px;letter-spacing:.05em;white-space:nowrap;">Q2 committed</span>
+            <span style="font-size:13px;font-weight:600;color:#4A1A80;">Reliability</span>
           </div>
-          <p style="font-size:12.5px;color:#5A3A78;line-height:1.65;margin:0 0 8px;">Foundational infrastructure for safer product development — JIT access and staged rollout tooling. JIT is already committed to in Q2; the broader primitives question needs more scoping.</p>
-          <div style="font-size:11.5px;color:#7B35C2;">JIT company switching ✦ · Staged rollout tooling · Feature flag infrastructure</div>
+          <p style="font-size:12.5px;color:#5A3A78;line-height:1.65;margin:0 0 8px;">Improving the consistency and predictability of data across the platform — ClickHouse latency, SMTP delivery, and defined SLAs for data freshness. When these degrade, CS notices before we do.</p>
+          <div style="font-size:11.5px;color:#7B35C2;">ClickHouse data latency · SMTP delivery · Data freshness SLAs</div>
         </div>
 
       </div>
@@ -612,11 +613,11 @@
     <thead><tr><th>Activity</th><th>Status</th><th>Informs</th></tr></thead>
     <tbody>
       <tr><td>Old bet discovery review</td><td><span class="status-pill in-progress">In progress</span></td><td>All focus areas</td></tr>
-      <tr><td>Automation Survey (n=69)</td><td><span class="status-pill done">Complete</span></td><td>Automation, AI Agent</td></tr>
-      <tr><td>CS team survey</td><td><span class="status-pill in-progress">In progress</span></td><td>First 90 Days, Attributes, Automation</td></tr>
-      <tr><td>Intercom ticket taxonomy (Class A/B/C)</td><td><span class="status-pill in-progress">In progress</span></td><td>First 90 Days, ARV, Automation</td></tr>
-      <tr><td>Risk signal / integrations survey</td><td><span class="status-pill planned">Planned — March</span></td><td>Attributes & Identity, Automation</td></tr>
-      <tr><td>Email Security team conversation</td><td><span class="status-pill planned">Planned</span></td><td>ARV, Multi-tenancy</td></tr>
+      <tr><td>Automation Survey (n=69) <a href="https://docs.google.com/spreadsheets/d/1OaIA0z2UfEG43wHmpshXyMwhQtyP8mV3a0Hw9R5j7nE/edit" target="_blank" style="color:var(--accent);text-decoration:none;font-size:11px;">(Link) ↗</a></td><td><span class="status-pill done">Complete</span></td><td>Automation, AI Agent</td></tr>
+      <tr><td>CS team survey <a href="https://www.notion.so/CS-Dependency-Survey-Findings-321770d78dad808ca61dd503a259dea1" target="_blank" style="color:var(--accent);text-decoration:none;font-size:11px;">(Link) ↗</a></td><td><span class="status-pill done">Complete</span></td><td>New Admin Activation, Attributes, Automation</td></tr>
+      <tr><td>CS Tickets and Call Time (Gong) Analysis <a href="https://www.figma.com/board/WrzzVAI5xxCp5wbx04ed3O/CS-DEPENDENCY---WORKLOAD-ANALYSIS?node-id=2-274&t=88nY6DLInPzU5GtU-0" target="_blank" style="color:var(--accent);text-decoration:none;font-size:11px;">(Link) ↗</a></td><td><span class="status-pill done">Complete</span></td><td>New Admin Activation, ARV, Automation</td></tr>
+      <tr><td>Risk signal / integrations survey <a href="https://www.notion.so/March-2026-Risk-Signal-Integrations-Survey-314770d78dad80e78089f501191e3b9e" target="_blank" style="color:var(--accent);text-decoration:none;font-size:11px;">(Link) ↗</a></td><td><span class="status-pill waiting">Waiting for feedback</span></td><td>Attributes &amp; Identity, Automation</td></tr>
+      <tr><td>Email Security team conversation</td><td><span class="status-pill in-progress">Async in progress</span></td><td>ARV, Multi-tenancy</td></tr>
       <tr><td>Customer interviews — onboarding friction</td><td><span class="status-pill tbd">To be scheduled</span></td><td>First 90 Days, Attributes</td></tr>
     </tbody>
   </table>
@@ -635,7 +636,7 @@
     <div class="detail-top-row">
       <div><div class="detail-num">Focus Area 01</div><h2>New Admin Activation</h2></div>
       <div style="display:flex;align-items:flex-start;gap:10px;margin-top:28px;">
-        <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
+        <div class="card-themes"><span class="theme-tag">CS Scale</span></div>
         <a class="back-link" href="#focus-summary">↑ All areas</a>
       </div>
     </div>
@@ -646,30 +647,38 @@
       </div>
       <div class="hyp-block context">
         <div class="hyp-label">Additional context</div>
-        <p>CS call data (excluding kickoff calls) shows two distinct peaks: 41% of calls and 56% of call hours fall in the 0–30 day window post-kickoff, and a second surge at 91–180 days (22% of calls, 17% of hours). Admin creation data tells us why — 18% of admins are added 1–30 days after kickoff, and another 13% beyond 90 days. These late-added admins never got the kickoff guidance and have no self-serve path to get up to speed. The lull between peaks (31–90 days) likely reflects customers who attended the kickoff but haven't actively started using the product yet — they resurface when they're actually ready to launch. Time-to-first-campaign analysis is in progress to validate this theory.</p>
+        <p>Customer activation is the primary CS dependency problem — and left unaddressed, CS headcount will need to grow independently of the customer base to keep up. The problem isn't that we do kickoffs; it's that the kickoff alone isn't getting customers to a productive state, and the follow-on support burden lands entirely on CS.</p>
       </div>
     </div>
     <div class="detail-lower">
       <div class="detail-block">
         <h3>What it is</h3>
-        <p>Building a self-serve path for admins to get productive with Adaptive — whether they were on the kickoff call or added six months later. The kickoff call stays. The goal is a product-native onboarding layer that doesn't require a CSM to activate every new admin who joins.</p>
+        <p>Reducing the time, cycles, and CS support it takes to get a customer live after the kickoff call. The kickoff isn't going away — the goal is a better framework around it so customers arrive more prepared, leave more activated, and need less hand-holding in the 90 days that follow.</p>
       </div>
       <div class="detail-block">
-        <h3>Discovery · What we need to learn</h3>
+        <h3>Discovery · Findings</h3>
+        <p style="font-size:12px;color:var(--ink-muted);font-style:italic;margin-bottom:10px;">Signal across four sources: CS survey, Gong call analysis, Intercom tickets, and a capacity analysis.</p>
         <ul>
-          <li>CS interviews on current manual workarounds and prep burden per kickoff call</li>
-          <li>Analyze early-tenure support tickets to understand where customers actually get stuck — this is the most important input for moving signal from "building" to "strong"</li>
-          <li>Research how frequently admins are added outside of the kickoff window (30+ days post-kickoff) to validate the impact of individual-level onboarding guidance at scale</li>
-          <li>Assess POC operational cost and close rate data — the hypothesis that structured onboarding improves POC conversion is the most compelling business case and needs validation</li>
-          <li>Key questions: Is friction a product or education problem? Does the data show this is CS efficiency, POC conversion, or both?</li>
+          <li>For every 1 hour on a kickoff call, CS spends 1.75–2x more hours on troubleshooting and extra enablement — nearly all within the first 90 days after kickoff</li>
+          <li>Intercom data mirrors this: ~57% of all tickets open in the first 90 days post-kickoff</li>
+          <li>One process change already in flight: a pre-kickoff intake form lets customers share their infrastructure stack in advance, so the kickoff becomes an activation confirmation rather than a walkthrough — data confirmation still pending</li>
+          <li>No evidence that admins added after the kickoff open tickets at a higher rate than those who attended — which narrows the problem to the post-kickoff experience for everyone, not just late-added admins</li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <h3>Discovery · Open questions</h3>
+        <ul>
+          <li>Where specifically do customers get stuck in the first 90 days? Ticket taxonomy will tell us whether friction is concentrated in a few areas or spread across the product</li>
+          <li>Is this primarily a product problem or an education problem — or both?</li>
+          <li>Does structured onboarding improve POC conversion? That's the most compelling business case and still needs validation</li>
         </ul>
       </div>
       <div class="detail-block">
         <h3>How things change if we're successful</h3>
         <ul>
-          <li>Tickets per customer go down — CS scales more proportionally to the account base without needing to grow headcount at the same rate</li>
-          <li>Admins added post-kickoff don't generate their own wave of "how do I…" tickets — individual-level onboarding becomes a product motion, not a CS motion</li>
-          <li>POC conversion improves — we expect to see materially higher conversion rates on POCs that go through structured onboarding flows vs. those that don't, which becomes a repeatable lever</li>
+          <li>CS scales more proportionally to the account base — tickets per customer go down, headcount growth decouples from customer growth</li>
+          <li>Admins added post-kickoff self-serve their way to productive without generating a fresh wave of CS questions</li>
+          <li>POC conversion improves as structured onboarding replaces ad-hoc CSM prep</li>
         </ul>
       </div>
     </div>
@@ -757,47 +766,57 @@
     <p class="projects-note">Pre-discovery. Scope will be determined through problem hunting and customer conversations.</p>
   </div>
 
-  <!-- ── FA-2: ATTRIBUTES ── -->
+  <!-- ── FA-2: ATTRIBUTES & IDENTITY ── -->
   <div class="focus-detail" id="fa-2">
     <div class="detail-top-row">
-      <div><div class="detail-num">Focus Area 02</div><h2>Attributes & Identity</h2></div>
+      <div><div class="detail-num">Focus Area 02</div><h2>Attributes &amp; Identity</h2></div>
       <div style="display:flex;align-items:flex-start;gap:10px;margin-top:28px;">
-        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
+        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Speed</span></div>
         <a class="back-link" href="#focus-summary">↑ All areas</a>
       </div>
     </div>
     <div class="hyp-row">
       <div class="hyp-block hypothesis">
         <div class="hyp-label">Hypothesis</div>
-        <p>CS is spending a disproportionate amount of time managing attribute friction because our attribute layer doesn't meet customer expectations — and the gap will get more acute as attributes become foundational to autofish, new SKUs, and the Email Security integration.</p>
+        <p>CS is spending a disproportionate amount of time managing attribute friction because our attribute layer doesn't meet customer expectations — and the gap will get more acute as attributes become foundational to automation, new SKUs, and the Email Security integration.</p>
       </div>
       <div class="hyp-block context">
         <div class="hyp-label">Additional context</div>
-        <p>We've expanded custom attribute support across some integrations and via CSV — which introduced the concept — but coverage is incomplete across our integration surface and we don't support derived fields, inline editing, or remapping without eng intervention. The user profile page has accumulated these capabilities as bandaids rather than a cohesive design, and it lacks the value customers expect to get from it. Current read is that this is a significant point of friction rather than a hard blocker — customers work around it, which makes the ROI harder to quantify than a deal-stopper. The Intercom ticket data is the key input: if attribute-related tickets represent a meaningful share of CS load, the efficiency case becomes clear. The new SKU argument (Email Security, Risk) is a second vector that may prove stronger than the direct customer-facing one.</p>
+        <p>Two core problem areas. <strong>Setup friction:</strong> our integration wizard surfaces API field names that match our internal schema — not the labels admins see in their third-party UI. Simple setups often get through fine; more nuanced attribute requirements expose the gap. <strong>Attribute health and coverage:</strong> customers expect one field to map to an Adaptive value and we map a different one — or values arrive stale or missing. Custom attribute coverage is sporadic; semi-good in Okta and Google, none in Microsoft, our most-used integration source.</p>
       </div>
     </div>
     <div class="detail-lower">
       <div class="detail-block">
         <h3>What it is</h3>
-        <p>We've expanded attribute capabilities but largely put bandaids on the user profile page — it lacks the coherence and depth customers want from it. This is about closing the coverage gap across integrations, adding the primitives we're missing (derived fields, inline editing, remapping), and rebuilding the profile into something customers actually find valuable. Every downstream investment — automation, personalization, risk scoring, new SKU infrastructure — runs on this data layer.</p>
+        <p>Closing the gap between what our attribute layer promises and what admins actually experience — starting with setup friction, working through data quality and coverage, and ultimately building a reliable identity foundation that automation, personalization, and new SKUs can run on.</p>
       </div>
       <div class="detail-block">
-        <h3>Discovery · What we need to learn</h3>
+        <h3>Discovery · Findings</h3>
         <ul>
-          <li>Intercom ticket taxonomy: how much CS load is actually attributable to attribute friction? This is the primary input for determining ROI — vibes suggest it's significant, but the data needs to confirm it</li>
-          <li>Customer problem hunting: what use cases can't we support because we lack non-CSV attribute handling? E.g. zero custom attributes from Microsoft — what deals or expansions has that gap cost us?</li>
-          <li>Review Republic, Trintech CSV upload discovery for existing signal on what customers tried to do that the product couldn't support</li>
-          <li>Early conversation with Email Security team — the new SKU argument (a solid attribute foundation is required for Risk and Email) may prove a stronger case than the direct CS friction angle</li>
-          <li>Key questions: Is this primarily a CS efficiency story, a SKU enablement story, or do both hold up?</li>
+          <li>Directory / sync / integrations is the 3rd highest CS ticket category by volume across 2,531 tickets — and carries one of the highest Class C shares in the dataset, meaning CS is doing the work for customers, not just answering questions.</li>
+          <li>Skews early: 15% of first-90-day tickets vs. 13% in days 120–365, consistent with a setup and config problem more than an ongoing operational one.</li>
+          <li>53.8% of post-kickoff CS calls touch integrations or employee data — second only to training and campaign setup by call volume.</li>
+        </ul>
+        <p style="font-size:12px;color:var(--ink-faint);font-style:italic;margin-top:8px;">Source: Intercom ticket analysis (2,531 tickets) · Gong call analysis</p>
+      </div>
+      <div class="detail-block">
+        <h3>Discovery · Open questions</h3>
+        <ul>
+          <li>Integration setup modal audit — catalog every place we show API field names and identify the user-facing equivalent in each third-party UI</li>
+          <li>Attribute health scope — is the known issues list (assigned applications, Microsoft gaps) a handful of bugs or a systemic coverage problem?</li>
+          <li>Microsoft custom attribute gap — Adaptive engineering problem or a Merge limitation?</li>
+          <li>Okta SCIM app store — what's the delta vs. improving the non-app-store experience? Is there low-hanging fruit we haven't picked?</li>
+          <li>Email Security team conversation — validate whether the new SKU argument is the stronger forcing function for prioritization</li>
         </ul>
       </div>
       <div class="detail-block">
         <h3>How things change if we're successful</h3>
         <ul>
-          <li>Attribute friction disappears from CS ticket volume — admins self-serve corrections that today require CSV uploads or eng tickets</li>
-          <li>Downstream investments (automation, personalization, risk scoring) become viable because the data layer is reliable and extensible</li>
-          <li>Email Security and future SKUs bring their own attributes into a mature model instead of working around it</li>
-          <li>The profile drawer becomes the operational surface for managing an employee's full security posture</li>
+          <li>Integration setup becomes self-service for admins with complex attribute requirements — not just easy setups</li>
+          <li>Attribute-related tickets drop materially as a share of CS call volume</li>
+          <li>Data layer is reliable enough to build automation and risk scoring on top of without workarounds</li>
+          <li>Microsoft custom attribute gap closed — the most-used integration source supports what Okta and Google already do</li>
+          <li>New SKUs (Email Security, Risk) plug into a mature attribute model instead of building their own</li>
         </ul>
       </div>
     </div>
@@ -807,11 +826,21 @@
         <button class="project-trigger" onclick="toggleProject(this)">
           <div class="project-trigger-inner">
             <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="project-name">Derived / calculated fields</span>
-            <span class="project-short">Attributes computed from other data — e.g. days since last phish fail</span>
+            <span class="project-name">Integration setup modal overhaul</span>
+            <span class="project-short">Reframe setup guidance from API field specs to user-facing setup instructions</span>
           </div>
         </button>
-        <div class="project-detail"><p>Derived fields compute attribute values automatically from other data points. Example: "days since last phish fail" from simulation results, or "training completion streak" from campaign history. Enables more nuanced group targeting and automation rules without requiring customers to manually maintain data.</p></div>
+        <div class="project-detail"><p>Our setup wizard shows the technical field names our system exchanges with third-party APIs — which aren't the same labels admins see in their IdP or HRIS UI. The overhaul reframes each modal step around what the admin needs to do in their third-party tool, using the language they'll encounter there. The framework is right; the guidance needs to match the user's context, not ours.</p></div>
+      </div>
+      <div class="project-row">
+        <button class="project-trigger" onclick="toggleProject(this)">
+          <div class="project-trigger-inner">
+            <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="project-name">Attribute health</span>
+            <span class="project-short">Audit integration coverage and validate that attribute values match expectations</span>
+          </div>
+        </button>
+        <div class="project-detail"><p>A class of problems where customers expect one field to map to an Adaptive value and we map a different one — or values arrive stale, incorrect, or missing entirely. Known example: assigned applications showing as deleted even though access is still active. Attribute health work has two sub-pieces: (1) integration coverage — making sure we're surfacing the right fields from each source, and (2) value audit — confirming that what arrives in Adaptive matches what the source system actually holds. Custom attribute coverage gaps fall here too, particularly the zero-coverage gap on Microsoft (our most-used integration).</p></div>
       </div>
       <div class="project-row">
         <button class="project-trigger" onclick="toggleProject(this)">
@@ -889,14 +918,160 @@
         <button class="project-trigger" onclick="toggleProject(this)">
           <div class="project-trigger-inner">
             <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span class="project-name">Override / remapping</span>
-            <span class="project-short">Map third-party field names to Adaptive's schema without engineering</span>
+            <span class="project-name">Derived / calculated fields</span>
+            <span class="project-short">Attributes computed from other data — e.g. days since last phish fail</span>
           </div>
         </button>
-        <div class="project-detail"><p>When customers integrate with an HRIS or IdP, third-party field names often don't match Adaptive's attribute schema — today resolving this requires engineering per customer. A self-serve remapping tool lets admins define mappings directly, reducing a recurring CS escalation to a one-time admin task.</p></div>
+        <div class="project-detail"><p>Derived fields compute attribute values automatically from other data points. Example: "days since last phish fail" from simulation results, or "training completion streak" from campaign history. Enables more nuanced group targeting and automation rules without requiring customers to manually maintain data.</p></div>
+      </div>
+
+      <div class="project-row">
+        <button class="project-trigger" onclick="toggleProject(this)">
+          <div class="project-trigger-inner">
+            <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="project-name">First-class connectors <span style="font-size:10px;font-weight:400;color:var(--ink-faint);font-style:italic;">· explicitly out of scope</span></span>
+            <span class="project-short">App store listings and field remapping tooling — not prioritized in this focus area</span>
+          </div>
+        </button>
+        <div class="project-detail"><p>KnowBe4 ships a SCIM app in the Okta app store; we don't. Getting our integrations listed and building field remapping tooling would close that gap — but we're not convinced the juice is worth the squeeze before we've exhausted improvements to the non-app-store experience. Explicitly out of scope for this focus area, called out here so the decision is visible.</p></div>
+      </div>    </div>
+    <p class="projects-note">Pre-discovery. Scope will be determined through problem hunting and customer conversations.</p>
+  </div>
+
+
+  <!-- ── FA-3: ARV ── -->
+  <div class="focus-detail" id="fa-3">
+    <div class="detail-top-row">
+      <div><div class="detail-num">Focus Area 03</div><h2>ARV <span style="font-size:15px;font-family:'DM Sans',sans-serif;font-weight:300;color:var(--ink-muted);">Availability, Reliability & Visibility</span></h2></div>
+      <div style="display:flex;align-items:flex-start;gap:10px;margin-top:28px;">
+        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Speed</span></div>
+        <a class="back-link" href="#focus-summary">↑ All areas</a>
       </div>
     </div>
-    <p class="projects-note">Pre-discovery. Scope will be determined through problem hunting and customer conversations.</p>
+    <div class="hyp-row">
+      <div class="hyp-block hypothesis">
+        <div class="hyp-label">Hypothesis</div>
+        <p>Without ClickHouse as a shared, reliable data layer, we can't guarantee consistent group builder behavior across SKUs. Without defined data freshness SLAs, automation rules that depend on data timing aren't trustworthy. And without visibility into notification delivery, CS escalates to eng for answers they should be able to get themselves.</p>
+      </div>
+      <div class="hyp-block context">
+        <div class="hyp-label">Additional context</div>
+        <p>Three connected problems: (1) <strong>Availability</strong> — ClickHouse is the only place we can guarantee all SKU data will be, but the group builder doesn't run against it yet, making cross-SKU segmentation unreliable. (2) <strong>Reliability</strong> — the platform promises "immediate" data but delivers variable refresh cycles (4–5 min, trending upward) with no defined SLA and no measurement. (3) <strong>Visibility</strong> — when platform notifications (SendGrid) fail, CS has no self-serve visibility and must escalate to eng. The new SKU group condition problem is a <em>when</em>, not an <em>if</em> — reporting performance is already degrading as we grow and the trajectory is clear. Phishing notifications (Mailgun, SAT BU) are out of scope here.</p>
+      </div>
+    </div>
+    <div class="detail-lower">
+      <div class="detail-block">
+        <h3>What it is</h3>
+        <p>Establishing ClickHouse as the authoritative shared data layer for the platform, replacing implicit variable behavior with explicit, measurable commitments — and giving CS visibility into notification delivery so they can self-serve answers without engineering tickets.</p>
+      </div>
+      <div class="detail-block">
+        <h3>Discovery · What we need to learn</h3>
+        <ul>
+          <li>Email Security team conversation on ClickHouse data requirements and what needs to land there before their launch</li>
+          <li>Engineering assessment of CDC variability trajectory and cost of decoupling</li>
+          <li>CS survey on notification-related tickets — which visibility gaps drive the most escalations?</li>
+          <li>Key questions: What SLA commitment is right — not real-time, but what exactly? Which CS tools would eliminate the most notification tickets?</li>
+        </ul>
+      </div>
+      <div class="detail-block">
+        <h3>How things change if we're successful</h3>
+        <ul>
+          <li>CS can self-serve "did this notification send?" without an engineering ticket — a meaningful slice of escalation volume disappears</li>
+          <li>The platform can make and keep data freshness commitments — automation rules that depend on data timing become trustworthy</li>
+          <li>New SKUs build on ClickHouse as a shared primitive instead of standing up their own data layer</li>
+          <li>Internal account access becomes time-bounded and scoped, reducing the blast radius of a compromised account and strengthening our security posture story</li>
+        </ul>
+      </div>
+    </div>
+    <div class="section-sub-label">Illustrative Projects <span style="font-style:italic;font-family:'DM Sans',sans-serif;text-transform:none;letter-spacing:0;color:var(--ink-faint);">· ✦ includes mockup</span></div>
+    <div class="project-list">
+      <div class="project-row">
+        <button class="project-trigger" onclick="toggleProject(this)">
+          <div class="project-trigger-inner">
+            <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="project-name">Group builder on ClickHouse</span>
+            <span class="project-short">The only place we can guarantee all SKU data will be — prerequisite for reliable segmentation</span>
+          </div>
+        </button>
+        <div class="project-detail"><p>As more SKUs are added, ClickHouse is the only place we can guarantee all data will be consistently available. Moving the group builder to query ClickHouse is a prerequisite for reliable segmentation at scale and a shared primitive that multi-tenancy and automation logic can depend on. Most foundational ARV project — unlocks multiple downstream investments.</p></div>
+      </div>
+      <div class="project-row">
+        <button class="project-trigger" onclick="toggleProject(this)">
+          <div class="project-trigger-inner">
+            <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="project-name">Data SLA definition + measurement</span>
+            <span class="project-short">Replace "immediate" with a defined, measurable freshness window</span>
+          </div>
+        </button>
+        <div class="project-detail"><p>The platform promises "immediate" data availability but has no defined SLA and no measurement of whether we're meeting it. This project defines the actual freshness commitment, instruments measurement, and creates visibility for engineering and CS. A prerequisite for making credible data promises to customers and building automation rules that depend on data freshness.</p></div>
+      </div>
+      <div class="project-row">
+        <button class="project-trigger" onclick="toggleProject(this)">
+          <div class="project-trigger-inner">
+            <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="project-name">Append-only event architecture</span>
+            <span class="project-short">Decouple data freshness from CDC variability as data volume grows</span>
+          </div>
+        </button>
+        <div class="project-detail"><p>Current data freshness is coupled to CDC variability, which is getting worse as customer and data volume grows. An append-only event architecture decouples freshness from CDC, making the data layer more predictable and scalable. Foundation for the data SLA work and for reliable ClickHouse replication as new SKU data is added.</p></div>
+      </div>
+      <div class="project-row has-mockup open">
+        <button class="project-trigger" onclick="toggleProject(this)">
+          <div class="project-trigger-inner">
+            <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="project-name">SendGrid visibility tooling</span>
+            <span class="project-short">CS self-serve: did this notification send, and why not</span>
+          </div>
+        </button>
+        <div class="project-detail">
+          <p>When training notifications or system emails fail, CS currently has limited visibility — generating escalations that require engineering investigation. This project creates CS-accessible tooling that surfaces SendGrid delivery status, bounce reasons, and notification history without an eng ticket.</p>
+          <span class="mockup-label">Concept: email delivery health dashboard</span>
+          <div class="ui-mockup" style="max-width:400px;">
+            <div class="mockup-chrome"><div class="mockup-dots"><span class="mockup-dot-r"></span><span class="mockup-dot-y"></span><span class="mockup-dot-g"></span></div><span class="mockup-url">admin.adaptivesecurity.com / settings / notifications</span></div>
+            <div style="background:white;padding:16px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
+                <div>
+                  <div style="font-size:13px;font-weight:600;color:#1A1814;">Email Delivery Health</div>
+                  <div style="font-size:11px;color:#6B6760;margin-top:2px;">Platform notifications · Last 30 days</div>
+                </div>
+                <span style="background:#E8F5EE;color:#1A7A4A;font-size:10px;padding:3px 8px;border-radius:20px;font-weight:500;">Healthy</span>
+              </div>
+              <div style="display:flex;gap:8px;margin:14px 0;">
+                <div style="flex:1;padding:10px;background:#E8F5EE;border-radius:8px;text-align:center;">
+                  <div style="font-size:19px;font-weight:700;color:#1A7A4A;line-height:1.2;">98.2%</div>
+                  <div style="font-size:10px;color:#1A7A4A;margin-top:2px;">Delivered</div>
+                </div>
+                <div style="flex:1;padding:10px;background:#FFF3E8;border-radius:8px;text-align:center;">
+                  <div style="font-size:19px;font-weight:700;color:#C85A00;line-height:1.2;">1.1%</div>
+                  <div style="font-size:10px;color:#C85A00;margin-top:2px;">Bounced</div>
+                </div>
+                <div style="flex:1;padding:10px;background:#FEF2F2;border-radius:8px;text-align:center;">
+                  <div style="font-size:19px;font-weight:700;color:#DC2626;line-height:1.2;">0.7%</div>
+                  <div style="font-size:10px;color:#DC2626;margin-top:2px;">Failed</div>
+                </div>
+              </div>
+              <div style="font-size:10px;color:#6B6760;margin-bottom:6px;font-family:'DM Mono',monospace;letter-spacing:.06em;text-transform:uppercase;">Delivery rate — past 14 days</div>
+              <svg width="100%" height="36" viewBox="0 0 340 36" preserveAspectRatio="none">
+                <defs><linearGradient id="dg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1A7A4A" stop-opacity=".15"/><stop offset="100%" stop-color="#1A7A4A" stop-opacity="0"/></linearGradient></defs>
+                <path d="M0 28 C20 26 30 10 60 8 C80 7 100 10 120 8 C150 6 170 4 200 5 C230 6 250 3 280 4 C300 4 320 5 340 4 L340 36 L0 36Z" fill="url(#dg)"/>
+                <path d="M0 28 C20 26 30 10 60 8 C80 7 100 10 120 8 C150 6 170 4 200 5 C230 6 250 3 280 4 C300 4 320 5 340 4" fill="none" stroke="#1A7A4A" stroke-width="2"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-row">
+        <button class="project-trigger" onclick="toggleProject(this)">
+          <div class="project-trigger-inner">
+            <svg class="project-chevron" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span class="project-name">JIT company switching</span>
+            <span class="project-short">Convert standing SUPER_ADMIN access into time-bound, role-scoped tenant access</span>
+          </div>
+        </button>
+        <div class="project-detail">
+          <p>Today, almost all Adaptive staff have standing SUPER_ADMIN access across all customer tenants with no expiration. The blast radius of a single compromised internal account is every customer tenant. This project introduces two targeted changes to the company switcher: <strong>time-bound access</strong> (30 min – 8 hr durations, server-side enforced via JWT claim) and <strong>use-case-scoped roles</strong> — a <code>PROVISIONING</code> role limited to demo/provisioning environments and a <code>SUPPORT</code> role covering demo through active tenants. While switched in, admins see a visible countdown banner. When it expires, they're automatically returned to their home company. No approval workflows or per-tenant permissions changes in scope — this is a well-scoped, high-trust improvement that directly supports our position as a securely operated platform.</p>
+        </div>
+      </div>
+    </div><p class="projects-note">Pre-discovery. Scope will be determined through problem hunting and customer conversations.</p>
   </div>
 
   <!-- ── FA-4: MULTI-TENANCY ── -->
@@ -904,7 +1079,7 @@
     <div class="detail-top-row">
       <div><div class="detail-num">Focus Area 04</div><h2>Multi-tenancy</h2></div>
       <div style="display:flex;align-items:flex-start;gap:10px;margin-top:28px;">
-        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">SKU Scale</span></div>
+        <div class="card-themes"><span class="theme-tag">Parity</span><span class="theme-tag">SKU Speed</span></div>
         <a class="back-link" href="#focus-summary">↑ All areas</a>
       </div>
     </div>
@@ -1051,7 +1226,7 @@
     <div class="detail-top-row">
       <div><div class="detail-num">Focus Area 05</div><h2>AI Agent</h2></div>
       <div style="display:flex;align-items:flex-start;gap:10px;margin-top:28px;">
-        <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Scale</span></div>
+        <div class="card-themes"><span class="theme-tag">CS Scale</span><span class="theme-tag">SKU Speed</span></div>
         <a class="back-link" href="#focus-summary">↑ All areas</a>
       </div>
     </div>
