@@ -3,12 +3,16 @@ Disallow: /
 
 User-agent: GPTBot
 Disallow: /platform_wave2_v9.html
+Disallow: /risk-survey-march-2026-report.html
 
 User-agent: ChatGPT-User
 Disallow: /platform_wave2_v9.html
+Disallow: /risk-survey-march-2026-report.html
 
 User-agent: CCBot
 Disallow: /platform_wave2_v9.html
+Disallow: /risk-survey-march-2026-report.html
 
 User-agent: anthropic-ai
 Disallow: /platform_wave2_v9.html
+Disallow: /risk-survey-march-2026-report.html
