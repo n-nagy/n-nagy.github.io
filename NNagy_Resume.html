@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nick Nagy — Product Management Leader</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      font-size: 13px;
+      color: #222;
+      background: #fff;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: 100vh;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .sidebar {
+      background: #f7f7f7;
+      padding: 36px 20px 36px 24px;
+      border-right: 1px solid #e0e0e0;
+    }
+
+    .sidebar h1 {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+    }
+
+    .sidebar .title {
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    .sidebar .rule {
+      border: none;
+      border-top: 2px solid #333;
+      margin: 10px 0 16px;
+      width: 24px;
+    }
+
+    .sidebar-section {
+      margin-bottom: 20px;
+    }
+
+    .sidebar-section h2 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .sidebar-section h3 {
+      font-size: 11px;
+      font-style: italic;
+      font-weight: 400;
+      margin-bottom: 2px;
+      color: #444;
+    }
+
+    .sidebar-section p, .sidebar-section address {
+      font-size: 12px;
+      font-style: normal;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .sidebar-section .edu-school {
+      font-style: italic;
+      font-size: 12px;
+      color: #333;
+      margin-top: 8px;
+    }
+
+    .sidebar-section .edu-detail {
+      font-size: 12px;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .main {
+      padding: 36px 32px;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: #333;
+      margin-bottom: 28px;
+      line-height: 1.6;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 20px;
+    }
+
+    .employer {
+      margin-bottom: 24px;
+    }
+
+    .employer-header {
+      margin-bottom: 6px;
+    }
+
+    .employer-name {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .employer-dates {
+      font-size: 12px;
+      font-weight: 400;
+      color: #555;
+      margin-left: 6px;
+    }
+
+    .employer-acquired {
+      font-size: 12px;
+      font-style: italic;
+      color: #666;
+      margin-left: 4px;
+    }
+
+    .role {
+      margin-bottom: 10px;
+    }
+
+    .role-title {
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .role-dates {
+      font-size: 12px;
+      font-style: italic;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    ul.bullets {
+      list-style: disc;
+      padding-left: 18px;
+    }
+
+    ul.bullets li {
+      margin-bottom: 4px;
+      font-size: 12.5px;
+      color: #333;
+    }
+
+    .employer + .employer {
+      border-top: 1px solid #e8e8e8;
+      padding-top: 20px;
+    }
+
+    @media print {
+      body { font-size: 11px; }
+      .page { max-width: 100%; }
+      .sidebar { background: #f7f7f7; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <aside class="sidebar">
+    <h1>Nick Nagy</h1>
+    <div class="title">Product Management<br>Leader</div>
+    <hr class="rule" />
+
+    <div class="sidebar-section">
+      <h2>Contact</h2>
+      <address>
+        <a href="mailto:nagync@gmail.com">nagync@gmail.com</a><br>
+        Ardmore, PA, 19003<br>
+        724.747.4688
+      </address>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Skills &amp; Technologies</h2>
+      <h3>Technical</h3>
+      <p>SQL/PostgreSQL, terminal command line (grep, awk, vim, sed), relational data management, JavaScript tag management, Kinesis event pipelines, REST API integrations, Python scripting</p>
+      <h3 style="margin-top:10px">Tools</h3>
+      <p>Replit, Claude, Codex, Custom GPT builder, DataGrip, Figma/Figjam, Datadog, Loom, Looker, Linear, Miro, Postman, Notion, Github, Google Analytics, Atlassian (Jira, Confluence, Trello)</p>
+      <h3 style="margin-top:10px">Process</h3>
+      <p>RICE, Agile ceremonies &amp; planning, OKRs, product / UX research, roadmap prioritization, product pricing models, AB testing, Performance Improvement Plan (PIP) management</p>
+    </div>
+
+    <div class="sidebar-section">
+      <h2>Education</h2>
+      <div class="edu-school">Wharton Executive Education</div>
+      <div class="edu-detail">Business Analytics: From Data to Insights<br>Online Certificate — September 2019</div>
+      <div class="edu-school" style="margin-top:10px">University of Pittsburgh</div>
+      <div class="edu-detail">B.S. in Information Management<br>Graduated April 2011<br><em>Magna Cum Laude</em></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <p class="tagline">8+ years delivering category defining B2B2C products in eComm, data analytics, healthcare, and cybersecurity. PM with 0→1 background and company building experience looking to help companies scale their growth.</p>
+
+    <div class="employer">
+      <div class="employer-header">
+        <span class="employer-name">Adaptive Security</span>
+        <span class="employer-dates">[2024 – present]</span>
+      </div>
+      <div class="role">
+        <div class="role-title">Staff PM, Platform (2nd Product Hire)</div>
+        <ul class="bullets">
+          <li>2nd product hire responsible for design (Figma), prototyping (Replit), and product management of AI platform features for seed stage startup.</li>
+          <li>Expanded user profile data collection by increasing API integration support + defining common attribute framework, resulting in a xxx% increase in LLM model inputs and personalized content generated.</li>
+          <li>Launched 0→1 user group creation and metrics reporting framework by onboarding dedicated infrastructure and reducing data latency by xx%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="employer">
+      <div class="employer-header">
+        <span class="employer-name">Headway</span>
+        <span class="employer-dates">[2023 – 2024]</span>
+      </div>
+      <div class="role">
+        <div class="role-title">Lead Product Manager, Platform &amp; Benefits Portal</div>
+        <ul class="bullets">
+          <li>Led product strategy and development for platform products, resulting in a xx% decrease in operational costs across CX functions and a reduction in support tickets opened by patients.</li>
+          <li>Managed security and compliance products related to authentication and authorization in accordance with Payer contracts, allowing business to move headcount offshore.</li>
+          <li>Won 1st place in the “Efficiency Gains” category during the company wide hackathon for use of AI and internal tools projects.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="employer">
+      <div class="employer-header">
+        <span class="employer-name">Attentive Mobile</span>
+        <span class="employer-dates">[2018 – 2023]</span>
+      </div>
+      <div class="role">
+        <div class="role-title">Group Product Manager, Platform &amp; Partner Products</div>
+        <div class="role-dates">Dec 2021 – Oct 2023</div>
+        <ul class="bullets">
+          <li>Managed a team of 2 PMs leading platform strategy around operational efficiency, reducing cost of services, and improved platform reliability focused on scale-up towards IPO.</li>
+          <li>Worked as an IC with XFN pod to decrease latency of APIs and improve accuracy of user identification via a simplified subscriber model, leading to a 103% increase in attributable events.</li>
+          <li>Drove 21% reduction in time-to-launch by leading development of the first self-serve onboarding portal for businesses and partners.</li>
+        </ul>
+      </div>
+      <div class="role">
+        <div class="role-title">Lead Product Manager, Data Segmentation &amp; Messaging Platform</div>
+        <div class="role-dates">Mar 2019 – Dec 2021</div>
+        <ul class="bullets">
+          <li>Leveraged data from millions of marketing sends to develop the product strategy focused on segmentation and user data collection, resulting in a 23% increase in message performance (clicks) for Tier 1-3 clients.</li>
+          <li>Led messaging platform SDK development, improving gross margin +11% resulting in a multi-million dollar increase in profit over 12 months.</li>
+          <li>Mentored and trained new product managers, product marketers, engineers, and designers on Attentive products + TCPA compliance through documentation and weekly office hours.</li>
+        </ul>
+      </div>
+      <div class="role">
+        <div class="role-title">First Product Manager</div>
+        <div class="role-dates">May 2018 – Mar 2019</div>
+        <ul class="bullets">
+          <li>First product manager hired to lead 0→1 SaaS product development resulting in growth of client base from 50 to 4,000, 3,430% increase in revenue per month, and $393 million in VC funding over two years.</li>
+          <li>Expanded B2B2C product into international market, increasing TAM by 150%.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="employer">
+      <div class="employer-header">
+        <span class="employer-name">Custora</span>
+        <span class="employer-dates">[2016 – 2018]</span>
+        <span class="employer-acquired">(acquired by Amperity February 2020)</span>
+      </div>
+      <div class="role">
+        <div class="role-title">Product Manager, Data Platform</div>
+        <div class="role-dates">Nov 2017 – May 2018</div>
+        <ul class="bullets">
+          <li>Led design and requirements definition for new data integration framework reducing technical debt from legacy code, standardizing onboarding, and reducing ‘time to live’ average from 61 days to 45 days.</li>
+          <li>Shipped behavioral segmentation and multiple customer id management, leading to a 57% increase in identifiable events.</li>
+        </ul>
+      </div>
+      <div class="role">
+        <div class="role-title">Senior Data Integration Lead</div>
+        <div class="role-dates">Feb 2016 – Jan 2018</div>
+        <ul class="bullets">
+          <li>Completed 50+ implementations as the product lead for customer integrations providing solutions consulting and product support for daily operations, data refreshes, and testing / executing.</li>
+          <li>Scaled integrations team from 1 to 3 employees by standardizing documentation, implementing new project management processes, and building customer requirements tracking framework.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="employer">
+      <div class="employer-header">
+        <span class="employer-name">J.Crew</span>
+        <span class="employer-dates">[2015 – 2016]</span>
+      </div>
+      <div class="role">
+        <div class="role-title">eCommerce Program Manager</div>
+        <ul class="bullets">
+          <li>PM of cross-functional team responsible for the launch of the first responsive jcrew.com webstore built in-house to eliminate need for third party vendors + increasing onsite conversion and average order value.</li>
+          <li>Defined product specifications, prioritized development tasks, planned quality assurance automation, scheduled performance testing, and coordinating project launch logistics with other PMs across org.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="employer">
+      <div class="employer-header">
+        <span class="employer-name">Branding Brand</span>
+        <span class="employer-dates">[2013 – 2015]</span>
+      </div>
+      <div class="role">
+        <div class="role-title">Mobile eCommerce Product Manager</div>
+        <ul class="bullets">
+          <li>Managed internal project team and client stakeholders through the software development lifecycle launching 25+ personalized ecommerce mobile sites and native applications on time and on budget.</li>
+          <li>Communicated scope feedback, schedule updates, product changes, and escalated issues based on priority to stakeholders and executives.</li>
+          <li>Designed A/B tests, monitored analytics, and determined optimization tasks improving key metrics like: conversion, revenue, average order value, time on site, and reducing bounce rate.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="employer">
+      <div class="employer-header">
+        <span class="employer-name">Epic Systems</span>
+        <span class="employer-dates">[2011 – 2013]</span>
+      </div>
+      <div class="role">
+        <div class="role-title">EHR Implementation Services + Application Manager</div>
+        <ul class="bullets">
+          <li>Led customer workflow mapping, product validation, progress tracking and project / application team management for multiple implementations of Epic electronic medical record (EHR) software.</li>
+          <li>Built inpatient employee training program across 15+ application teams, leading curriculum development processes and managing multiple timelines for end user training at a multi-hospital system.</li>
+          <li>Delivered periodic status updates to executive level management, directed weekly calls, defined scope of project and managed training program for end users.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</div>
+</body>
+</html>
