@@ -51,7 +51,6 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
 
 /* Layout */
 .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
 
 /* Cards */
 .detail-block { background:#fff; border:1px solid var(--rule); border-radius:10px; padding:20px 22px; }
@@ -61,7 +60,6 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
 
 /* Focus cards */
 .focus-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-.focus-grid.thirds { grid-template-columns:repeat(3,1fr); }
 .focus-card { border-radius:12px; overflow:hidden; }
 .focus-card.c1 { background:var(--c1-bg); }
 .focus-card.c2 { background:var(--c2-bg); }
@@ -106,8 +104,9 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
 .bf-c5 { background:var(--c5); }
 .bf-c6 { background:var(--c6); }
 .bf-faint { background:var(--ink-faint); }
+.bf-muted { background:var(--ink-muted); }
 
-/* Bar charts */
+/* Interactive bar chart */
 .bar-chart { display:flex; flex-direction:column; gap:0; }
 .bar-item { border-radius:6px; overflow:hidden; margin-bottom:6px; }
 .bar-item:last-child { margin-bottom:0; }
@@ -121,6 +120,10 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
 .bar-toggle { font-family:'DM Mono',monospace; font-size:9px; color:var(--ink-faint); white-space:nowrap; flex-shrink:0; margin-left:4px; transition:color .15s; }
 .bar-row:hover .bar-toggle, .bar-row.active .bar-toggle { color:var(--c1); }
 
+/* Static bar chart (non-interactive) */
+.bar-row-static { display:flex; align-items:center; gap:10px; margin-bottom:8px; }
+.bar-row-static:last-child { margin-bottom:0; }
+
 /* Quote drawer */
 .quote-drawer { display:none; padding:12px 16px 14px; background:#fff; border:1px solid var(--rule); border-top:none; border-radius:0 0 6px 6px; margin-top:-2px; }
 .quote-drawer.open { display:block; }
@@ -129,9 +132,11 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
 .drawer-quote-text { font-size:12px; color:var(--ink-muted); line-height:1.6; font-style:italic; display:block; }
 .drawer-quote-cite { font-family:'DM Mono',monospace; font-size:9px; color:var(--ink-faint); display:block; margin-top:4px; text-transform:uppercase; letter-spacing:.08em; }
 .drawer-score { display:inline-block; font-family:'DM Mono',monospace; font-size:9px; padding:1px 6px; border-radius:3px; margin-right:6px; }
+.score-5 { background:var(--c3-bg); color:var(--c3); }
 .score-7 { background:var(--c3-bg); color:var(--c3); }
 .score-8 { background:var(--c5-bg); color:var(--c5); }
-.score-5 { background:var(--c3-bg); color:var(--c3); }
+.score-9 { background:var(--c2-bg); color:var(--c2); }
+.score-10 { background:var(--c2-bg); color:var(--c2); }
 
 /* Quotes */
 .quote-block { border-left:2px solid var(--rule); padding:10px 16px; margin:12px 0; }
@@ -162,6 +167,8 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
 .avg-callout { display:inline-flex; align-items:center; gap:10px; background:var(--c2-bg); border:1px solid rgba(26,122,74,.15); border-radius:8px; padding:10px 16px; margin-bottom:14px; }
 .avg-num { font-family:'DM Serif Display',serif; font-size:24px; color:var(--c2); }
 .avg-label { font-family:'DM Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-muted); line-height:1.5; }
+.avg-callout.blue { background:var(--c1-bg); border-color:rgba(43,79,255,.15); }
+.avg-callout.blue .avg-num { color:var(--c1); }
 
 /* Engagement cards */
 .eng-row { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
@@ -188,12 +195,9 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
 .toc-link { font-family:'DM Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-muted); text-decoration:none; }
 .toc-link:hover { color:var(--c1); }
 
-/* Quote stack */
-.quote-stack { display:flex; flex-direction:column; gap:2px; }
-
 @media(max-width:860px) {
   .container { padding:0 20px 60px; }
-  .two-col, .focus-grid, .focus-grid.thirds, .quote-contrast, .three-col, .eng-row { grid-template-columns:1fr; }
+  .two-col, .focus-grid, .quote-contrast, .eng-row { grid-template-columns:1fr; }
   .bar-label { width:140px; font-size:11px; }
 }
 </style>
@@ -205,7 +209,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
   <div class="page-header">
     <div class="header-eyebrow">Adaptive Security · Platform BU · Post-Onboarding Review</div>
     <h1 class="header-title">New Customer Onboarding Review</h1>
-    <p class="header-sub">283 customers surveyed immediately following onboarding completion. Respondents include CISOs, IT Directors, Security Engineers, and C-Suite leaders. Fielded 2024–2025.</p>
+    <p class="header-sub">283 customers surveyed immediately following onboarding completion. Respondents include CISOs, IT Directors, Security Engineers, and C-Suite leaders across industries and company sizes. Fielded 2024–2025.</p>
     <div class="source-bar">
       <span class="source-label">Source</span>
       <div class="source-links">
@@ -227,7 +231,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
       </div>
       <div class="stat-card">
         <div class="stat-value">26</div>
-        <div class="stat-label">Rated below 9 — all with specific, named reasons</div>
+        <div class="stat-label">Rated below 9 — all with specific named reasons</div>
       </div>
       <div class="stat-card">
         <div class="stat-value">283</div>
@@ -239,20 +243,22 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
   <!-- TOC -->
   <nav class="toc">
     <a class="toc-link" href="#scores">01 Score Distribution</a>
-    <a class="toc-link" href="#what-works">02 What Good Looks Like</a>
-    <a class="toc-link" href="#friction">03 Where It Falls Short</a>
-    <a class="toc-link" href="#success">04 What Success Means to Them</a>
-    <a class="toc-link" href="#help">05 What They Need From Us</a>
-    <a class="toc-link" href="#features">06 Product Gaps Surfaced in Onboarding</a>
-    <a class="toc-link" href="#sales">07 Sales Signal</a>
+    <a class="toc-link" href="#kickoff">02 The Kickoff Call</a>
+    <a class="toc-link" href="#integrations">03 Integrations and SCIM</a>
+    <a class="toc-link" href="#what-works">04 What Good Looks Like</a>
+    <a class="toc-link" href="#friction">05 Where It Falls Short</a>
+    <a class="toc-link" href="#success">06 What Success Means to Them</a>
+    <a class="toc-link" href="#help">07 What They Need From Us</a>
+    <a class="toc-link" href="#features">08 Product Gaps</a>
+    <a class="toc-link" href="#sales">09 Sales Signal</a>
   </nav>
 
-  <!-- SECTION 1: SCORES -->
+  <!-- ═══ SECTION 01: SCORES ═══ -->
   <div class="section" id="scores">
     <div class="section-header">
       <span class="section-num">01 — Onboarding Score Distribution</span>
       <h2 class="section-heading">9.6 average, with 90% rating 9 or above. Every low score has a named cause.</h2>
-      <p class="section-tagline">The signal in the lower scores is unusually clean. Customers who rated below 9 did not give vague feedback — they pointed to SCIM failures, a feeling of being left on their own post-kickoff, or AI capabilities that required Adaptive team involvement to use.</p>
+      <p class="section-tagline">The signal in the lower scores is unusually clean. Customers who rated below 9 did not give vague feedback — they pointed to SCIM failures, a feeling of being left on their own post-kickoff, or AI capabilities that required Adaptive team involvement to access.</p>
     </div>
 
     <div class="two-col">
@@ -265,7 +271,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
         <div class="rating-chart">
           <div class="rating-row"><div class="rating-num">10</div><div class="rating-track"><div class="rating-fill bf-c2" style="width:72.8%;"><span class="rating-count">198</span></div></div><span class="rating-note" style="font-weight:700;color:var(--ink);">72.8%</span></div>
           <div class="rating-row"><div class="rating-num">9</div><div class="rating-track"><div class="rating-fill bf-c2" style="width:16.9%;"><span class="rating-count">46</span></div></div><span class="rating-note">16.9%</span></div>
-          <div class="rating-row"><div class="rating-num">8</div><div class="rating-track"><div class="rating-fill bf-c6" style="width:5.5%;"><span class="rating-count" style="color:#fff;font-size:9px;">15</span></div></div><span class="rating-note">5.5%</span></div>
+          <div class="rating-row"><div class="rating-num">8</div><div class="rating-track"><div class="rating-fill bf-c6" style="width:5.5%;"><span class="rating-count" style="font-size:9px;">15</span></div></div><span class="rating-note">5.5%</span></div>
           <div class="rating-row"><div class="rating-num">7</div><div class="rating-track"><div class="rating-fill bf-c3" style="width:4.4%;"></div></div><span class="rating-note">4.4% · 12 respondents</span></div>
           <div class="rating-row"><div class="rating-num">5</div><div class="rating-track"><div class="rating-fill bf-faint" style="width:0.4%;"></div></div><span class="rating-note">0.4% · 1 respondent</span></div>
         </div>
@@ -280,18 +286,18 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
           <div class="bar-chart">
 
             <div class="bar-item">
-              <div class="bar-row" onclick="toggleDrawer('drawer-kickoff', this)">
+              <div class="bar-row" onclick="toggleDrawer('drawer-kickoff-scores', this)">
                 <div class="bar-label" style="width:200px;">"Good kickoff, then on my own"</div>
                 <div class="bar-track"><div class="bar-fill bf-c3" style="width:62%;"><span class="bar-pct">Most common</span></div></div>
                 <span class="bar-toggle">▸ quotes</span>
               </div>
-              <div class="quote-drawer" id="drawer-kickoff">
+              <div class="quote-drawer" id="drawer-kickoff-scores">
                 <div class="drawer-quote">
                   <span class="drawer-quote-text"><span class="drawer-score score-5">5/10</span>"Had an onboarding session which was good and fast, but implementation has been all on me."</span>
                   <span class="drawer-quote-cite">Sports Facilities Companies · IT Director</span>
                 </div>
                 <div class="drawer-quote">
-                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"Onboarding went well but it did feel a bit 'follow this guide, good luck.' Setting up our SSO and SCIM ingestion during the call would have been more helpful."</span>
+                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"Onboarding went well but it did feel a bit 'follow this guide, good luck.' Setting up our SSO and SCIM ingestion during the call itself would have been more helpful."</span>
                   <span class="drawer-quote-cite">Bentley University · Senior Cybersecurity Engineer</span>
                 </div>
                 <div class="drawer-quote">
@@ -304,32 +310,32 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
                 </div>
                 <div class="drawer-quote">
                   <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"Onboarding was ok. Was expecting a little more, but the product is pretty intuitive."</span>
-                  <span class="drawer-quote-cite">Oxford Global Resources · Emperor of all Network Land</span>
+                  <span class="drawer-quote-cite">Oxford Global Resources</span>
                 </div>
                 <div class="drawer-quote">
-                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"This was an extended demo but I now had administrative access to the platform. The meeting showed me around the application... I would have liked to see a more structured, hands-on onboarding."</span>
+                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"This was an extended demo but I now had administrative access to the platform. I would have liked a more structured, hands-on setup rather than a walkthrough."</span>
                   <span class="drawer-quote-cite">Legend Energy Advisors · Director of Field Services</span>
                 </div>
               </div>
             </div>
 
             <div class="bar-item">
-              <div class="bar-row" onclick="toggleDrawer('drawer-scim', this)">
+              <div class="bar-row" onclick="toggleDrawer('drawer-scim-scores', this)">
                 <div class="bar-label" style="width:200px;">SCIM / IdP integration failures</div>
                 <div class="bar-track"><div class="bar-fill bf-c3" style="width:46%;"><span class="bar-pct">Frequent</span></div></div>
                 <span class="bar-toggle">▸ quotes</span>
               </div>
-              <div class="quote-drawer" id="drawer-scim">
+              <div class="quote-drawer" id="drawer-scim-scores">
                 <div class="drawer-quote">
                   <span class="drawer-quote-text"><span class="drawer-score score-7">7/10</span>"SCIM fails to import data from Okta."</span>
                   <span class="drawer-quote-cite">Alloy · IT and Security Manager</span>
                 </div>
                 <div class="drawer-quote">
-                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"We had some issues with SCIM integration and had to wait a long time for the support team to respond. It may be because of the time difference, but we expect at least a response within 1–2 hours."</span>
+                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"We had some issues with SCIM integration and had to wait a long time for the support team to respond. We expect at least a response within 1–2 hours."</span>
                   <span class="drawer-quote-cite">FSC · Consultant</span>
                 </div>
                 <div class="drawer-quote">
-                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"Setting up our SSO and SCIM ingestion during our onboarding call would have been helpful — instead it was left as a follow-up item."</span>
+                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"Setting up our SSO and SCIM ingestion during the call would have been helpful — it was left as a follow-up item instead."</span>
                   <span class="drawer-quote-cite">Bentley University · Senior Cybersecurity Engineer</span>
                 </div>
                 <div class="drawer-quote">
@@ -340,32 +346,32 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
             </div>
 
             <div class="bar-item">
-              <div class="bar-row" onclick="toggleDrawer('drawer-ai', this)">
+              <div class="bar-row" onclick="toggleDrawer('drawer-ai-scores', this)">
                 <div class="bar-label" style="width:200px;">AI features felt team-dependent</div>
                 <div class="bar-track"><div class="bar-fill bf-c5" style="width:31%;"><span class="bar-pct">Common</span></div></div>
                 <span class="bar-toggle">▸ quotes</span>
               </div>
-              <div class="quote-drawer" id="drawer-ai">
+              <div class="quote-drawer" id="drawer-ai-scores">
                 <div class="drawer-quote">
                   <span class="drawer-quote-text"><span class="drawer-score score-7">7/10</span>"The AI-based features showcased during POV are limited at the moment. Customization of AI features in training and phishing campaigns is dependent on Adaptive's team support."</span>
                   <span class="drawer-quote-cite">Greenlight · Staff Security Engineer</span>
                 </div>
                 <div class="drawer-quote">
-                  <span class="drawer-quote-text"><span class="drawer-score score-7">7/10</span>"I did feel some areas were not covered — like where the deepfakes are used for training and how to configure them."</span>
+                  <span class="drawer-quote-text"><span class="drawer-score score-7">7/10</span>"I did feel some areas were not covered — like where deepfakes are used for training and how to configure them."</span>
                   <span class="drawer-quote-cite">Simba Sleep · Head of IT</span>
                 </div>
               </div>
             </div>
 
             <div class="bar-item">
-              <div class="bar-row" onclick="toggleDrawer('drawer-usecases', this)">
+              <div class="bar-row" onclick="toggleDrawer('drawer-usecases-scores', this)">
                 <div class="bar-label" style="width:200px;">Specific use cases not covered</div>
                 <div class="bar-track"><div class="bar-fill bf-c5" style="width:25%;"><span class="bar-pct">Several</span></div></div>
                 <span class="bar-toggle">▸ quotes</span>
               </div>
-              <div class="quote-drawer" id="drawer-usecases">
+              <div class="quote-drawer" id="drawer-usecases-scores">
                 <div class="drawer-quote">
-                  <span class="drawer-quote-text"><span class="drawer-score score-7">7/10</span>"We had some specific questions around who within Adaptive would have access to data from our HR system. This answer wasn't known right away on the call. Also the deepfake campaigns are a high priority for us — we needed more time on that."</span>
+                  <span class="drawer-quote-text"><span class="drawer-score score-7">7/10</span>"We had specific questions around who within Adaptive would have access to data from our HR system. This wasn't known right away on the call."</span>
                   <span class="drawer-quote-cite">InMoment · System Engineering Manager</span>
                 </div>
                 <div class="drawer-quote">
@@ -373,31 +379,27 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
                   <span class="drawer-quote-cite">Phantom · Security Engineer</span>
                 </div>
                 <div class="drawer-quote">
-                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"We have a few issues we are working through with training and notifications. I tried to intentionally fail an exam but it would not let me fail — I had to pick the right answer to proceed."</span>
-                  <span class="drawer-quote-cite">AVB Marketing · Cloud Systems Engineer</span>
-                </div>
-                <div class="drawer-quote">
                   <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"Some areas we will need to hash out are our integrations with various security tools — this wasn't addressed during onboarding."</span>
                   <span class="drawer-quote-cite">Proskauer · Information Security Analyst</span>
                 </div>
                 <div class="drawer-quote">
-                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"I would recommend opening the onboarding process by discussing roles and responsibilities — who does what, and what tasks I need to own after the call ends."</span>
+                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"I would recommend opening the onboarding process by discussing roles and responsibilities — who does what, and what I need to own after the call ends."</span>
                   <span class="drawer-quote-cite">Abacus Health Solutions · Systems Administrator</span>
                 </div>
                 <div class="drawer-quote">
-                  <span class="drawer-quote-text"><span class="drawer-score score-7">7/10</span>"We had some hiccups initially with odd bugs and some UI/UX choices that were unexpected. We got up to speed quickly enough, but it added friction early on."</span>
-                  <span class="drawer-quote-cite">Polygon · Security Engineer</span>
+                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"We have a few issues with training and notifications. I tried to intentionally fail an exam but it would not let me fail — I had to pick the right answer to proceed."</span>
+                  <span class="drawer-quote-cite">AVB Marketing · Cloud Systems Engineer</span>
                 </div>
               </div>
             </div>
 
             <div class="bar-item">
-              <div class="bar-row" onclick="toggleDrawer('drawer-inprog', this)">
+              <div class="bar-row" onclick="toggleDrawer('drawer-inprog-scores', this)">
                 <div class="bar-label" style="width:200px;">Still in progress at survey time</div>
                 <div class="bar-track"><div class="bar-fill bf-faint" style="width:18%;"></div></div>
                 <span class="bar-toggle">▸ quotes</span>
               </div>
-              <div class="quote-drawer" id="drawer-inprog">
+              <div class="quote-drawer" id="drawer-inprog-scores">
                 <div class="drawer-quote">
                   <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"Still onboarding and have not completed the process."</span>
                   <span class="drawer-quote-cite">Amynta · Cybersecurity Engineer</span>
@@ -420,140 +422,8 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
           </div>
         </div>
         <div class="quote-block">
-          <span class="quote-text">"Onboarding went well but it did feel a bit 'follow this guide, good luck.' Setting up SSO and SCIM ingestion during the call itself would have been better."</span>
+          <span class="quote-text">"Onboarding went well but it did feel a bit 'follow this guide, good luck.' Setting up our SSO and SCIM ingestion during the call would have been more helpful."</span>
           <span class="quote-cite">Bentley University · Senior Cybersecurity Engineer · Rated 8</span>
-        </div>
-        <div class="quote-block">
-          <span class="quote-text">"It was good but also very hurried. More time on launching the product could have helped."</span>
-          <span class="quote-cite">Easy Auto Credit · Senior IT and Cybersecurity Engineer · Rated 7</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECTION 2: WHAT GOOD LOOKS LIKE -->
-  <div class="section" id="what-works">
-    <div class="section-header">
-      <span class="section-num">02 — What Good Onboarding Looks Like</span>
-      <h2 class="section-heading">Fast, human, and technically competent. The best experiences are named experiences.</h2>
-      <p class="section-tagline">10/10 respondents describe the same pattern: a short call, a knowledgeable person who respected their time, clear documentation, and a platform that was quick to stand up on its own. Individual CSMs are credited by name dozens of times. That is both an asset and a fragility.</p>
-    </div>
-
-    <div class="two-col">
-      <div>
-        <p class="section-body">The recurring ingredients in 10/10 onboarding responses are consistent enough to treat as a framework: speed, knowledgeable CSM, clear handoff documentation, and a platform that requires minimal help to navigate after the call. When all four are present, customers score perfectly.</p>
-
-        <div class="focus-grid" style="margin-bottom:16px;">
-          <div class="focus-card c2">
-            <div class="card-body">
-              <div class="card-top"><span class="card-number">Fast time to value</span><div class="card-dot"></div></div>
-              <div class="card-desc">"Setup was a cinch so far unlike other 3rd party apps." — "The onboarding process was super fast." Speed is cited as a positive differentiator vs. previous vendors, particularly KnowBe4.</div>
-            </div>
-          </div>
-          <div class="focus-card c2">
-            <div class="card-body">
-              <div class="card-top"><span class="card-number">Knowledgeable, present CSM</span><div class="card-dot"></div></div>
-              <div class="card-desc">Robert Nelson, Zach, Jack, Kate, Soyoung, and Jason are each named multiple times in 10/10 responses. The human layer drives scores as much as the product itself.</div>
-            </div>
-          </div>
-          <div class="focus-card c2">
-            <div class="card-body">
-              <div class="card-top"><span class="card-number">Clear documentation</span><div class="card-dot"></div></div>
-              <div class="card-desc">"I like the links to setting up SAML, SCIM, DMI being provided upfront." Customers who found docs comprehensive could self-serve after the call and felt supported without needing to ask.</div>
-            </div>
-          </div>
-          <div class="focus-card c2">
-            <div class="card-body">
-              <div class="card-top"><span class="card-number">Product intuition after kickoff</span><div class="card-dot"></div></div>
-              <div class="card-desc">"Very intuitive and self-explanatory — the very best products are those where training to use them is minimal." Customers in this camp needed the kickoff call to orient, not to learn.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div>
-        <div class="quote-stack">
-          <div class="quote-block">
-            <span class="quote-text">"Brandon and Robert were great. Kept it quick, checked for feedback, were not pushy about things we decided to defer, and were very respectful of our time and decisions. Great representatives of the product and company."</span>
-            <span class="quote-cite">NetFoundry · Head of Operations and CISO · Rated 10</span>
-          </div>
-          <div class="quote-block">
-            <span class="quote-text">"You can tell a great deal of thought was put into the process."</span>
-            <span class="quote-cite">Lightspeed Venture Partners · IT Manager · Rated 10</span>
-          </div>
-          <div class="quote-block">
-            <span class="quote-text">"Zach was knowledgeable and flexible with what we wanted to accomplish from the product."</span>
-            <span class="quote-cite">Checkr · Senior Cybersecurity Analyst · Rated 10</span>
-          </div>
-          <div class="quote-block">
-            <span class="quote-text">"Going into the meeting I was prepared to learn the product, but seeing how easy it was made me excited to start using it."</span>
-            <span class="quote-cite">Cramer Multhauf · Office Manager · Rated 10</span>
-          </div>
-          <div class="quote-block">
-            <span class="quote-text">"What was really impressive was how easy it was to learn to use the platform itself apart from the onboarding support. Very intuitive interface."</span>
-            <span class="quote-cite">One Technologies · Security Engineer · Rated 10</span>
-          </div>
-          <div class="quote-block">
-            <span class="quote-text">"The easy documentation really helped us get up and running on our own. That is the best type of support."</span>
-            <span class="quote-cite">EDX Markets · CISO · Rated 8 (self-served without a call)</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="accent-block c2-border" style="margin-top:8px;">
-      <div class="block-title">The named-CSM dependency is a scale risk</div>
-      <div class="block-body">Individual CSMs appear by name in a significant share of 10/10 responses. The implication for self-serve onboarding: whatever these people do in the kickoff call — how they frame the product, what they cover first, how they handle deferred setup items — is the thing that needs to be replicated without requiring a human to show up. The formula is knowable. The question is whether it's been documented and can be systematically delivered.</div>
-    </div>
-  </div>
-
-  <!-- SECTION 3: WHERE IT FALLS SHORT -->
-  <div class="section" id="friction">
-    <div class="section-header">
-      <span class="section-num">03 — Where Onboarding Falls Short</span>
-      <h2 class="section-heading">The drop-off after the kickoff call is the main failure mode.</h2>
-      <p class="section-tagline">Lower scores cluster around a consistent experience: the kickoff call was good, but customers felt unsupported or underprepared once it ended. Technical gaps — SCIM, AI features — amplify this. Customers who hit a blocker after the call had no obvious next step.</p>
-    </div>
-
-    <div class="two-col">
-      <div>
-        <div class="accent-block c3-border">
-          <div class="block-title">Post-kickoff drop-off</div>
-          <div class="block-body">The most common pattern in 7-8/10 responses: the kickoff was described positively, but implementation afterward felt entirely self-directed. Customers used phrases like "on my own," "hurried," and "not covered." The call ends and there is no clear second step for things that didn't get resolved.</div>
-        </div>
-
-        <div class="accent-block c3-border">
-          <div class="block-title">SCIM and IdP integration failures</div>
-          <div class="block-body">Multiple customers cite SCIM as a specific blocker. Okta SCIM import failing is named directly. EntraAD SCIM not being supported causes delays. These failures happen after the call and customers don't always know who to contact or what the timeline to resolution looks like. One customer waited "a long time" for a support response and specifically called out the absence of 24/7 support.</div>
-        </div>
-
-        <div class="accent-block c3-border">
-          <div class="block-title">AI features feel gated behind the team</div>
-          <div class="block-body">Customers who were sold on deepfakes and AI capabilities discovered that using them in practice requires submitting a request to the Adaptive team. This mismatch between what was shown in the demo and what they could do on day one created friction. For a few, it downgraded the onboarding score even when everything else went smoothly.</div>
-        </div>
-      </div>
-
-      <div>
-        <div class="accent-block c3-border">
-          <div class="block-title">Use cases beyond the basics weren't covered</div>
-          <div class="block-body">Several customers noted the kickoff covered phishing and training well but didn't address their specific setup: shared mailboxes, unique IdP configurations, compliance requirements, non-standard user structures. These customers felt they had to discover gaps on their own and then find support.</div>
-        </div>
-
-        <div class="quote-block" style="margin-top:8px;">
-          <span class="quote-text">"SCIM fails to import data from Okta."</span>
-          <span class="quote-cite">Alloy · IT and Security Manager · Rated 7</span>
-        </div>
-        <div class="quote-block">
-          <span class="quote-text">"We had some issues with SCIM integration and had to wait a long time for the support team to respond. We expect at least a response within a typical business day."</span>
-          <span class="quote-cite">FSC · Consultant · Rated 8</span>
-        </div>
-        <div class="quote-block">
-          <span class="quote-text">"AI-based features showcased during POV are limited at the moment. Customization of AI features is dependent on the Adaptive team's support."</span>
-          <span class="quote-cite">Greenlight · Staff Security Engineer · Rated 7</span>
-        </div>
-        <div class="quote-block">
-          <span class="quote-text">"Covered all the basics — phishing, training. I did feel some areas were not covered around other use cases I might want to set up."</span>
-          <span class="quote-cite">Simba Sleep · Head of IT · Rated 7</span>
         </div>
         <div class="quote-block">
           <span class="quote-text">"Had an onboarding session which was good and fast, but implementation has been all on me."</span>
@@ -563,12 +433,300 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
     </div>
   </div>
 
-  <!-- SECTION 4: WHAT SUCCESS MEANS -->
+  <!-- ═══ SECTION 02: THE KICKOFF CALL ═══ -->
+  <div class="section" id="kickoff">
+    <div class="section-header">
+      <span class="section-num">02 — The Kickoff Call</span>
+      <h2 class="section-heading">Customers love the call. The ones who love it most got things done during it.</h2>
+      <p class="section-tagline">The kickoff call has near-universal approval. But not all kickoffs are equal — the responses that describe the best experiences consistently share one thing: integrations and setup happened live, not as post-call homework. Customers who just got a walkthrough rated lower than customers who left the call with the product running.</p>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <p class="section-body">Individual CSMs are named by name in a significant share of 10/10 responses — Robert Nelson, Zach, Jack LeeHoffman, Kate, Soyoung, Emily, Reegan, Vitor appear repeatedly. Customers credit the person as much as the process. That is both the strength and the fragility of the current model.</p>
+
+        <div class="accent-block c2-border">
+          <div class="block-title">"Do it together" calls score better than walkthroughs</div>
+          <div class="block-body">Summit Utilities (10/10): "walked us through integrations on the call — we were able to get employees synced and SSO set up." Copado (9/10): "able to get Okta SSO, SCIM provisioning, and API services set up in the call." MX (9/10): "during the call we were able to work on implementation, which sets us up to start working right away." The pattern is consistent: live setup during the call correlates with stronger scores and more confident post-call language.</div>
+        </div>
+
+        <div class="accent-block c3-border">
+          <div class="block-title">The expectation gap: walkthroughs vs. workshops</div>
+          <div class="block-body">Several customers expected to do integrations on the call and discovered they were just talking about them. Compass Church (9/10): "I was told to have someone available for the Microsoft 365 integration portions — we talked about it, but we never actually did any integrations. I thought we would have." Bentley University (8/10): "Setting up our SSO and SCIM ingestion during the call would have been more helpful." The call format isn't always set to the right expectation.</div>
+        </div>
+
+        <div class="accent-block" style="border-left-color:var(--c5);">
+          <div class="block-title">Self-serve capable customers still value the call</div>
+          <div class="block-body">Several customers who set up the product themselves without needing guidance still gave 10/10 and credited the call. FirstMark Capital: "I ended up setting a lot of the configurations myself since it's so intuitive — but Samantha was great and showed me things I missed." Metropolitan Family Services: "The UI is so intuitive I haven't needed help — but having someone available mattered." The call is additive even when it isn't load-bearing.</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="quote-block">
+          <span class="quote-text">"Brandon and Robert were great. Kept it quick, checked for feedback, were not pushy about things we decided to defer, and were very respectful of our time and decisions. Great representatives of the product and company."</span>
+          <span class="quote-cite">NetFoundry · Head of Operations and CISO · Rated 10</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"Vitor was very accommodating and thorough. He walked us through integrations on the call — we were able to get employees synced easily and SSO set up during the session."</span>
+          <span class="quote-cite">Summit Utilities · Director, IT Security · Rated 10</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"Emily pivoted from our kickoff discussion to get through some technical setup steps right off the bat — that was exactly right. We then did some goal-setting and got good ideas. She was super familiar with the product and best practices."</span>
+          <span class="quote-cite">N-able · GRC Program Manager · Rated 10</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"Our onboarding call walked through the key parts of the platform and during the call we were able to work on implementation, which now sets us up to start working right away."</span>
+          <span class="quote-cite">MX · Director, Security GRC · Rated 9</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"I was told to have someone available for the Microsoft 365 integration portions on the call. We talked about it, but we never did any integrations. I thought we would have done this during the kickoff."</span>
+          <span class="quote-cite">Compass Church · IT Director · Rated 9</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"Going into the meeting I was prepared to learn the product, but seeing how easy it was made me excited to start using it."</span>
+          <span class="quote-cite">Cramer Multhauf · Office Manager · Rated 10</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"The right technical folks were on the call that could answer our questions without needing to circle back with others."</span>
+          <span class="quote-cite">SECURA Insurance Companies · Manager, Information Security · Rated 10</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 03: INTEGRATIONS AND SCIM ═══ -->
+  <div class="section" id="integrations">
+    <div class="section-header">
+      <span class="section-num">03 — Integrations and SCIM</span>
+      <h2 class="section-heading">Integration failures are the most concrete blocker in the first week. They also suppress scores disproportionately.</h2>
+      <p class="section-tagline">SCIM issues and missing IdP support show up before customers have run a single campaign. When they hit a wall here, there's often no clear recovery path — they wait on support or do it manually. A small number of customers had the opposite experience: they got integrations done live on the kickoff call and gave those sessions the highest marks.</p>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="accent-block c3-border">
+          <div class="block-title">Okta SCIM failures are the most-named specific blocker</div>
+          <div class="block-body">Multiple customers cite SCIM import failing with Okta. This surfaces during setup, not later — meaning it's one of the first experiences a new customer has after the kickoff call ends. Alloy described it plainly: "SCIM fails to import data from Okta." When this breaks, there's no documented self-recovery path visible to the customer.</div>
+        </div>
+        <div class="accent-block c3-border">
+          <div class="block-title">EntraAD SCIM provisioning is a consistent gap</div>
+          <div class="block-body">Multiple respondents across different companies named EntraAD SCIM provisioning as absent or unreliable. Gonzaga University named it as the primary thing Adaptive could do to help them succeed. For Microsoft-heavy environments this is a table-stakes requirement, and the absence creates an awkward first week.</div>
+        </div>
+        <div class="accent-block c3-border">
+          <div class="block-title">Support response time amplifies the problem</div>
+          <div class="block-body">FSC (8/10): "We had SCIM integration issues and had to wait a long time for the support team to respond. We expect at least a response within 1–2 hours." When an integration breaks early in setup and there's no fast path to resolution, the customer's first days with the product are blocked. This is a compounding problem: the integration issue itself is one thing, but the wait for support is what shapes the experience.</div>
+        </div>
+        <div class="accent-block c2-border">
+          <div class="block-title">Getting integrations done on the call is a strong positive signal</div>
+          <div class="block-body">Several 10/10 respondents specifically credit live integration setup on the kickoff call. Copado: "able to get our Okta integration, SCIM provisioning, and API services all set up during the call — our IT person said the documentation was really good and easy to follow." This is the counter-pattern to the SCIM failure experience, and it suggests the integration experience is fixable within the current call model.</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="detail-block" style="margin-bottom:16px;">
+          <span class="block-label">Integration gaps named by respondents</span>
+          <div class="bar-chart">
+            <div class="bar-item">
+              <div class="bar-row" onclick="toggleDrawer('drawer-okta', this)">
+                <div class="bar-label" style="width:180px;">Okta SCIM failures</div>
+                <div class="bar-track"><div class="bar-fill bf-c3" style="width:75%;"><span class="bar-pct">Most cited</span></div></div>
+                <span class="bar-toggle">▸ quotes</span>
+              </div>
+              <div class="quote-drawer" id="drawer-okta">
+                <div class="drawer-quote">
+                  <span class="drawer-quote-text"><span class="drawer-score score-7">7/10</span>"SCIM fails to import data from Okta."</span>
+                  <span class="drawer-quote-cite">Alloy · IT and Security Manager</span>
+                </div>
+                <div class="drawer-quote">
+                  <span class="drawer-quote-text"><span class="drawer-score score-10">10/10</span>"Emily was great. We had a seamless onboarding and were able to get our Okta integration up and running easily — our IT person commented that the documentation was really good and easy to follow."</span>
+                  <span class="drawer-quote-cite">Copado · Director, GRC (positive counter-example)</span>
+                </div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-row" onclick="toggleDrawer('drawer-entra', this)">
+                <div class="bar-label" style="width:180px;">EntraAD SCIM missing</div>
+                <div class="bar-track"><div class="bar-fill bf-c3" style="width:60%;"><span class="bar-pct">Frequent</span></div></div>
+                <span class="bar-toggle">▸ quotes</span>
+              </div>
+              <div class="quote-drawer" id="drawer-entra">
+                <div class="drawer-quote">
+                  <span class="drawer-quote-text"><span class="drawer-score score-9">9/10</span>"SCIM provisioning via EntraAD — that is the main thing I need Adaptive to do to help us succeed."</span>
+                  <span class="drawer-quote-cite">Gonzaga University · Information Security Architect</span>
+                </div>
+                <div class="drawer-quote">
+                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"Setting up our SSO and SCIM ingestion during our call would have been helpful — we needed EntraAD specifically and it became a post-call task."</span>
+                  <span class="drawer-quote-cite">Bentley University · Senior Cybersecurity Engineer</span>
+                </div>
+                <div class="drawer-quote">
+                  <span class="drawer-quote-text"><span class="drawer-score score-9">9/10</span>"Smooth but need some backend technical documentation and assistance to integrate the product with our Microsoft Azure environment."</span>
+                  <span class="drawer-quote-cite">Stripes · IT Manager</span>
+                </div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-row" onclick="toggleDrawer('drawer-support-wait', this)">
+                <div class="bar-label" style="width:180px;">Slow support response on failures</div>
+                <div class="bar-track"><div class="bar-fill bf-c5" style="width:45%;"><span class="bar-pct">Notable</span></div></div>
+                <span class="bar-toggle">▸ quotes</span>
+              </div>
+              <div class="quote-drawer" id="drawer-support-wait">
+                <div class="drawer-quote">
+                  <span class="drawer-quote-text"><span class="drawer-score score-8">8/10</span>"We had SCIM integration issues and had to wait a long time for the support team to respond. It may be a time zone issue, but we expect at least a response within 1–2 hours."</span>
+                  <span class="drawer-quote-cite">FSC · Consultant</span>
+                </div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-row" onclick="toggleDrawer('drawer-missing-idp', this)">
+                <div class="bar-label" style="width:180px;">Missing IdP / HCM connectors</div>
+                <div class="bar-track"><div class="bar-fill bf-faint" style="width:30%;"></div></div>
+                <span class="bar-toggle">▸ quotes</span>
+              </div>
+              <div class="quote-drawer" id="drawer-missing-idp">
+                <div class="drawer-quote">
+                  <span class="drawer-quote-text"><span class="drawer-score score-9">9/10</span>"We use Rippling, and I wish Adaptive were integrated into Rippling. I appreciate the manual steps, but with a small team it adds friction."</span>
+                  <span class="drawer-quote-cite">Virginia Health Workforce Development Authority</span>
+                </div>
+                <div class="drawer-quote">
+                  <span class="drawer-quote-text"><span class="drawer-score score-9">9/10</span>"Standard Okta SCIM Push Groups, which do not require in-product mappings, would be ideal."</span>
+                  <span class="drawer-quote-cite">Security Engineer</span>
+                </div>
+                <div class="drawer-quote">
+                  <span class="drawer-quote-text"><span class="drawer-score score-9">9/10</span>"Compliance training completion reporting APIs for Dayforce HRIS — this is what we need to automate our reporting workflow."</span>
+                  <span class="drawer-quote-cite">Veritext Legal Solutions</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="quote-block">
+          <span class="quote-text">"Copado onboarding: we were able to get our Okta integration, SCIM provisioning, and API services all set up during the call. Our IT person said the documentation was really good."</span>
+          <span class="quote-cite">Copado · Director, GRC · Rated 10 — the counter-pattern</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 04: WHAT GOOD LOOKS LIKE ═══ -->
+  <div class="section" id="what-works">
+    <div class="section-header">
+      <span class="section-num">04 — What Good Onboarding Looks Like</span>
+      <h2 class="section-heading">Fast, human, and technically competent. The best experiences leave customers ready to run.</h2>
+      <p class="section-tagline">10/10 responses describe the same pattern: a short call, a knowledgeable CSM who respected their time, clear documentation, and a platform that was intuitive enough to navigate independently after the call. When all of these are present, customers score perfectly and describe the experience in enthusiastic terms.</p>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="focus-grid" style="margin-bottom:16px;">
+          <div class="focus-card c2">
+            <div class="card-body">
+              <div class="card-top"><span class="card-number">Fast time to value</span><div class="card-dot"></div></div>
+              <div class="card-desc">"Setup was a cinch so far, unlike other 3rd party apps." Speed is cited as a genuine differentiator, especially vs. KnowBe4. Customers feel they can be operational quickly when things work.</div>
+            </div>
+          </div>
+          <div class="focus-card c2">
+            <div class="card-body">
+              <div class="card-top"><span class="card-number">Knowledgeable, present CSM</span><div class="card-dot"></div></div>
+              <div class="card-desc">Robert Nelson, Zach, Jack, Kate, Soyoung, Emily, Reegan each named multiple times in 10/10 responses. The human layer drives scores as much as the product itself.</div>
+            </div>
+          </div>
+          <div class="focus-card c2">
+            <div class="card-body">
+              <div class="card-top"><span class="card-number">Clear, upfront documentation</span><div class="card-dot"></div></div>
+              <div class="card-desc">"I like the links to setting up SAML, SCIM, DMI being provided upfront." Customers who found docs comprehensive could self-serve after the call and felt supported without needing to ask.</div>
+            </div>
+          </div>
+          <div class="focus-card c2">
+            <div class="card-body">
+              <div class="card-top"><span class="card-number">Platform intuition after kickoff</span><div class="card-dot"></div></div>
+              <div class="card-desc">"Very intuitive — the best products are those where training to use them is minimal." Customers in this camp needed the call to orient, not to learn. The platform does the rest.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="quote-block">
+          <span class="quote-text">"There was clear communication between the Sales Rep and the Onboarding Specialist. The call was efficient and considerate of our time. They were also flexible in allowing us to test the platform before the end of the call."</span>
+          <span class="quote-cite">Baker Brothers Investments · Director of Technology · Rated 10</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"What was really impressive was how easy it was to learn to use the platform itself, apart from the onboarding support. Very intuitive interface."</span>
+          <span class="quote-cite">One Technologies · Security Engineer · Rated 10</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"One of the easiest apps I've had to onboard in my 15+ year career. The OAuth setup makes it so simple and all the documentation and implementation team were great."</span>
+          <span class="quote-cite">IVP · IT Manager · Rated 10</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"Documentation is well constructed, and the UI/UX is so intuitive that I haven't needed any help in initial setup. Bravo to the dev teams."</span>
+          <span class="quote-cite">Metropolitan Family Services · Security Administrator · Rated 10</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"The platform got introduced in a very understandable and easy way. Everything was clear and we were ready to start after the call."</span>
+          <span class="quote-cite">Maryan Beachwear Group · IT Team Leader · Rated 10</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 05: WHERE IT FALLS SHORT ═══ -->
+  <div class="section" id="friction">
+    <div class="section-header">
+      <span class="section-num">05 — Where Onboarding Falls Short</span>
+      <h2 class="section-heading">The post-kickoff cliff. Customers leave the call and hit a wall.</h2>
+      <p class="section-tagline">Lower scores cluster around a consistent experience: the kickoff call was described positively, but customers felt unsupported or underprepared once it ended. Integration blockers, uncovered use cases, and AI features that required the Adaptive team to unlock all surface in the first days after setup.</p>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="accent-block c3-border">
+          <div class="block-title">No structured path after the call ends</div>
+          <div class="block-body">The most common pattern in 7–8/10 responses: the kickoff was positive, but implementation felt self-directed with no clear second step. "Follow this guide, good luck." Customers who hit a problem — a broken SCIM sync, a use case not covered on the call, a missing integration — had no obvious escalation path. The call ends and the experience fragments.</div>
+        </div>
+        <div class="accent-block c3-border">
+          <div class="block-title">AI features feel gated behind the team</div>
+          <div class="block-body">Customers who were sold on deepfakes and AI capabilities discovered during onboarding that using them requires submitting a request to the Adaptive team. This mismatch between the demo and day-one access is a real frustration for customers who chose Adaptive specifically for those features. Several noted the gap directly, and it shapes how they rate the onboarding even when the rest of the call went well.</div>
+        </div>
+        <div class="accent-block c3-border">
+          <div class="block-title">Use cases beyond the basics weren't covered</div>
+          <div class="block-body">Several customers noted the kickoff covered phishing and training well but didn't address their specific setup: shared mailboxes, unique IdP configurations, compliance requirements, data access questions. They discovered gaps on their own and had to find their way to support. One customer recommended starting the call by discussing roles and responsibilities — who owns what after the call ends.</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="quote-block">
+          <span class="quote-text">"The AI-based features showcased during POV are limited at the moment. Customization of AI features in training and phishing campaigns is dependent on Adaptive's team support."</span>
+          <span class="quote-cite">Greenlight · Staff Security Engineer · Rated 7</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"Covered the basics — phishing, training. But I felt some areas were not covered around other use cases I might want to set up."</span>
+          <span class="quote-cite">Simba Sleep · Head of IT · Rated 7</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"I would recommend opening the onboarding process by discussing roles and responsibilities — who does what, and what tasks I need to own after the call ends."</span>
+          <span class="quote-cite">Abacus Health Solutions · Systems Administrator · Rated 8</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"Thorough walkthrough, but somewhat unsatisfying answers to some questions — though the team was willing to pass them on to product."</span>
+          <span class="quote-cite">Phantom · Security Engineer · Rated 7</span>
+        </div>
+        <div class="quote-block">
+          <span class="quote-text">"It was good but also very hurried. More time on actually launching the product could have helped."</span>
+          <span class="quote-cite">Easy Auto Credit · Senior IT and Cybersecurity Engineer · Rated 7</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 06: WHAT SUCCESS MEANS ═══ -->
   <div class="section" id="success">
     <div class="section-header">
-      <span class="section-num">04 — What Success Looks Like to Customers</span>
+      <span class="section-num">06 — What Success Looks Like to Customers</span>
       <h2 class="section-heading">Customers define success as behavioral change, not platform activation.</h2>
-      <p class="section-tagline">When asked what they need to see to consider Adaptive a success, customers overwhelmingly point to outcomes downstream of the platform: reduced phishing click rates, employees who recognize attacks and report them, and training that runs without constant admin effort. The onboarding experience needs to build a direct bridge from setup to those outcomes.</p>
+      <p class="section-tagline">When asked what they need to see to consider Adaptive a success, customers point to outcomes downstream of the platform: reduced phishing click rates, employees who recognize and report attacks, and a program that runs without constant admin effort. The onboarding experience needs to build a clear bridge from setup to those outcomes.</p>
     </div>
 
     <div class="focus-grid">
@@ -576,83 +734,71 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
         <div class="card-body">
           <div class="card-top"><span class="card-number">01</span><div class="card-dot"></div></div>
           <div class="card-title">Measurable reduction in employee risk</div>
-          <div class="card-desc">Reduced phishing click rates, improved simulation pass rates, declining "risky" user counts. Customers want to show a trend line to leadership. The most sophisticated respondents want this to tie to real-world phishing reports, not just sim performance.</div>
+          <div class="card-desc">Reduced phishing click rates, improved simulation pass rates, declining risky-user counts. Customers want a trend line they can show leadership. The most sophisticated respondents want this to tie to real-world reporting, not just sim performance.</div>
           <div class="card-themes"><span class="theme-tag">Risk reduction</span><span class="theme-tag">Click rates</span><span class="theme-tag">Reporting</span></div>
         </div>
       </div>
-
       <div class="focus-card c4">
         <div class="card-body">
           <div class="card-top"><span class="card-number">02</span><div class="card-dot"></div></div>
-          <div class="card-title">Engaged employees who don't hate the training</div>
-          <div class="card-desc">High completion rates matter, but customers frequently qualify this: completion without engagement is hollow. Several mentioned wanting training that employees actually find useful, not something they click through to clear a due date. Engagement signals — revisits, voluntary completions — came up as the real metric.</div>
+          <div class="card-title">Employees who actually engage</div>
+          <div class="card-desc">High completion rates matter, but customers qualify this: completion without engagement is hollow. Several want training employees find genuinely useful, not something clicked through to clear a due date. Engagement signals — revisits, voluntary completions — came up as the real metric.</div>
           <div class="card-themes"><span class="theme-tag">Completion</span><span class="theme-tag">Engagement</span><span class="theme-tag">End-user experience</span></div>
         </div>
       </div>
-
       <div class="focus-card c2">
         <div class="card-body">
           <div class="card-top"><span class="card-number">03</span><div class="card-dot"></div></div>
-          <div class="card-title">Automation that removes admin burden</div>
-          <div class="card-desc">"A phish testing and training program that's completely automated is the goal." Many customers — particularly those with small security teams — define success as a program that runs without constant hands-on-keyboard work. The dream is setting up a year's worth of campaigns once and walking away.</div>
+          <div class="card-title">A program that runs itself</div>
+          <div class="card-desc">"A phish testing and training program that's completely automated is the goal." Many customers — particularly those with small security teams — define success as a program that runs without constant hands-on-keyboard work. Set up a year's worth of campaigns once and walk away.</div>
           <div class="card-themes"><span class="theme-tag">Automation</span><span class="theme-tag">Campaign scheduling</span><span class="theme-tag">Low-maintenance</span></div>
         </div>
       </div>
-
       <div class="focus-card c6">
         <div class="card-body">
           <div class="card-top"><span class="card-number">04</span><div class="card-dot"></div></div>
-          <div class="card-title">Reports they can hand to a CISO or board</div>
-          <div class="card-desc">"Effective testing, teaching, and reporting of electronic communication risks." Leadership reporting is a success criterion because it validates the purchase internally. Customers who can't produce an exec-readable summary can't demonstrate ROI to the people who renewed the contract.</div>
+          <div class="card-title">Reports they can hand to leadership</div>
+          <div class="card-desc">Leadership reporting is a success criterion because it validates the purchase internally. Customers who can't produce an exec-readable summary can't demonstrate ROI to the people who control renewal. This showed up in onboarding, in concerns, and in feature requests.</div>
           <div class="card-themes"><span class="theme-tag">Exec reporting</span><span class="theme-tag">ROI narrative</span><span class="theme-tag">Dashboards</span></div>
         </div>
       </div>
     </div>
 
-    <div style="margin-top:20px;">
-      <div class="quote-contrast">
-        <div class="quote-contrast-card high">
-          <span class="qc-badge high">What success looks like</span>
-          <span class="qc-text">"A clear trend of improvement in phishing scenarios. Users actively report suspicious emails and feel empowered — not just trained."</span>
-          <span class="qc-cite">CoverTree</span>
-        </div>
-        <div class="quote-contrast-card neutral">
-          <span class="qc-badge neutral">What they're tracking</span>
-          <span class="qc-text">"A completely automated phishing and training program. Solid training and phish sim modules that engage employees and teach them about modern tech threats."</span>
-          <span class="qc-cite">One Technologies · Security Engineer</span>
-        </div>
+    <div style="margin-top:16px;">
+      <div class="quote-block">
+        <span class="quote-text">"A clear trend of improvement in phishing scenarios. Users actively report suspicious emails and feel empowered — not just trained."</span>
+        <span class="quote-cite">CoverTree</span>
       </div>
-      <div class="quote-block" style="margin-top:12px;">
+      <div class="quote-block">
         <span class="quote-text">"I'd love a feature that ties training data directly to real behaviors — showing whether employees who perform well in phishing simulations are also reporting real phishing emails."</span>
         <span class="quote-cite">Security Leader</span>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 5: WHAT THEY NEED -->
+  <!-- ═══ SECTION 07: WHAT THEY NEED ═══ -->
   <div class="section" id="help">
     <div class="section-header">
-      <span class="section-num">05 — What Customers Need From Adaptive to Succeed</span>
+      <span class="section-num">07 — What Customers Need From Adaptive to Succeed</span>
       <h2 class="section-heading">Support, check-ins, and content freshness. Not more features — more partnership.</h2>
-      <p class="section-tagline">When asked "what can Adaptive do to help you be successful," customers did not primarily ask for new capabilities. They asked for ongoing responsiveness, proactive check-ins, best practice guidance, and evidence that the content will keep up with the threat landscape. The relationship they want is partner, not vendor.</p>
+      <p class="section-tagline">When asked what Adaptive can do to help them succeed, customers did not primarily ask for new capabilities. They asked for ongoing responsiveness, proactive check-ins, best practice guidance, and evidence that the content will keep pace with the threat landscape.</p>
     </div>
 
     <div class="two-col">
       <div>
         <div class="accent-block c1-border">
-          <div class="block-title">Regular check-ins and proactive outreach</div>
-          <div class="block-body">Quarterly business reviews, bi-monthly calls, and post-launch check-ins appeared in dozens of responses. Customers are not asking for hand-holding — they are asking for a structured cadence that surfaces problems before they fester and keeps them current on new capabilities they may not know exist.</div>
+          <div class="block-title">Regular check-ins and a proactive cadence</div>
+          <div class="block-body">Quarterly reviews, bi-monthly calls, and structured post-launch check-ins appeared in dozens of responses. Customers are not asking for hand-holding — they want a cadence that surfaces problems before they fester and keeps them current on capabilities they may not know exist. Several specifically asked for this to be scheduled, not reactive.</div>
         </div>
         <div class="accent-block c1-border">
-          <div class="block-title">Best practice guidance, not just product support</div>
-          <div class="block-body">Customers want to know what the best-run programs look like. "Provide ongoing benchmark to what other organizations of our size are doing." Several asked for curated recommendations: which templates to start with, how to structure a first campaign, how to handle employees who repeatedly fail. This is a post-onboarding CSM problem as much as a product problem.</div>
+          <div class="block-title">Best practices, not just product support</div>
+          <div class="block-body">Customers want to know what a well-run program looks like. "Provide ongoing benchmarks to what other organizations our size are doing." Several asked for curated recommendations: which templates to start with, how to structure a first campaign, how to handle repeat clickers. This is as much a CSM problem as a product problem.</div>
         </div>
         <div class="accent-block c1-border">
           <div class="block-title">Content that evolves with the threat landscape</div>
-          <div class="block-body">The ask for content freshness came up in both the concerns section and the help section. Customers frame it as: they need to be able to tell employees "this is what attackers are doing right now." Content that feels dated undermines the program internally. Several asked for an explicit cadence or a newsletter-style feed of what's new.</div>
+          <div class="block-body">Content freshness came up in both concerns and in this section. Customers need to tell employees "this is what attackers are doing right now." Content that feels dated undermines the program internally. Several asked for an explicit new-content cadence or a newsletter-style feed of what's been added.</div>
         </div>
       </div>
-
       <div>
         <div class="quote-block">
           <span class="quote-text">"Quarterly check-ins to make sure we're using the platform to its full potential would be great."</span>
@@ -663,29 +809,25 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
           <span class="quote-cite">Mt San Rafael</span>
         </div>
         <div class="quote-block">
-          <span class="quote-text">"Ask business-related questions that help guide us to using the product the best for our unique situation."</span>
-          <span class="quote-cite">Lynch Incorporated</span>
-        </div>
-        <div class="quote-block">
           <span class="quote-text">"Provide ongoing benchmarks to what other organizations of our size are doing and how Adaptive helped them address compliance requirements and change behaviors."</span>
           <span class="quote-cite">Tegria · HR Director</span>
         </div>
         <div class="quote-block">
-          <span class="quote-text">"VirtualSystems: Continue with the regular check-ins that Jack already booked to keep us up to date on latest features and how other customers are benefiting from the platform."</span>
+          <span class="quote-text">"Continue with the regular check-ins that Jack already booked — to keep up to date on latest features and how other customers are benefiting from the platform."</span>
           <span class="quote-cite">VirtualSystems Limited</span>
         </div>
         <div class="quote-block">
-          <span class="quote-text">"Keep me informed of new offerings and product changes. More generic vendor templates — Dunkin Donuts, Target, etc. — things users actually see in the wild."</span>
-          <span class="quote-cite">FirstMark Capital</span>
+          <span class="quote-text">"Ask business-related questions that help guide us to using the product best for our unique situation."</span>
+          <span class="quote-cite">Lynch Incorporated</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SECTION 6: PRODUCT GAPS -->
+  <!-- ═══ SECTION 08: PRODUCT GAPS ═══ -->
   <div class="section" id="features">
     <div class="section-header">
-      <span class="section-num">06 — Product Gaps That Surface During Onboarding</span>
+      <span class="section-num">08 — Product Gaps That Surface During Onboarding</span>
       <h2 class="section-heading">Self-serve deepfakes, SCIM gaps, and reporting all show up before customers have run a single campaign.</h2>
       <p class="section-tagline">These are not distant product requests — they are things customers discover within the first days of setup. The top ask is the ability to create deepfake content without involving the Adaptive team. The second is SCIM reliability. Both directly suppress onboarding scores when absent.</p>
     </div>
@@ -695,34 +837,31 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
         <div class="card-body">
           <div class="card-top"><span class="card-number">01</span><div class="card-dot"></div></div>
           <div class="card-title">Self-Service Deepfake Creation</div>
-          <div class="card-desc">The most frequently requested capability, and the clearest onboarding gap. Customers are sold on deepfakes, then discover they need to submit a request to Adaptive to actually create one. Several felt they were still dependent on the team for the flagship feature. The ask is full self-service: upload materials, generate a video, launch the sim.</div>
-          <div class="card-themes"><span class="theme-tag">Deepfakes</span><span class="theme-tag">Self-serve</span><span class="theme-tag">Day-1 blocker</span></div>
+          <div class="card-desc">The most frequently requested capability, and the clearest onboarding gap. Customers are sold on deepfakes, then discover they need to submit a request to Adaptive to actually create one. Several felt dependent on the team for the flagship feature. The ask: upload materials, generate a video, launch the sim — all without leaving the platform.</div>
+          <div class="card-themes"><span class="theme-tag">Deepfakes</span><span class="theme-tag">Self-serve</span><span class="theme-tag">Day-1 gap</span></div>
         </div>
       </div>
-
       <div class="focus-card c3">
         <div class="card-body">
           <div class="card-top"><span class="card-number">02</span><div class="card-dot"></div></div>
           <div class="card-title">SCIM and Integration Reliability</div>
-          <div class="card-desc">Okta SCIM failures and missing EntraAD support are the most-named technical blockers. These appear during setup, not later. JumpCloud, Rippling, and Dayforce also show up as missing integrations. Customers who hit these walls during onboarding either wait on support or do manual workarounds — both of which depress scores and erode early trust.</div>
+          <div class="card-desc">Okta SCIM failures and missing EntraAD support are the most-named technical blockers. These appear during setup, not later. JumpCloud, Rippling, and Dayforce also surface as missing. Customers who hit these walls either wait on support or do manual workarounds — both erode early trust.</div>
           <div class="card-themes"><span class="theme-tag">SCIM</span><span class="theme-tag">EntraAD</span><span class="theme-tag">Setup blocker</span></div>
         </div>
       </div>
-
       <div class="focus-card c5">
         <div class="card-body">
           <div class="card-top"><span class="card-number">03</span><div class="card-dot"></div></div>
           <div class="card-title">Exec-Ready Reporting Out of the Box</div>
-          <div class="card-desc">Customers who onboard and then try to show results to leadership hit the reporting gap almost immediately. CSV exports require manual work before they're presentable. The ask is specific: PDF summaries, an email-ready report, or an API to pull completion data into existing workflows. This is also a retention risk — customers who can't demonstrate ROI are harder to renew.</div>
+          <div class="card-desc">Customers who onboard and then try to show results to leadership hit the reporting gap almost immediately. CSV exports require manual work before they're presentable. The ask is specific: PDF summaries, automated email reports, or an API to pull data into existing workflows. Also a retention risk — customers who can't show ROI are harder to renew.</div>
           <div class="card-themes"><span class="theme-tag">Reporting</span><span class="theme-tag">PDF export</span><span class="theme-tag">API</span></div>
         </div>
       </div>
-
       <div class="focus-card c4">
         <div class="card-body">
           <div class="card-top"><span class="card-number">04</span><div class="card-dot"></div></div>
           <div class="card-title">More Phishing Templates at Launch</div>
-          <div class="card-desc">Customers coming from KnowBe4 — who cited "7,000+" templates — feel the library is thin at onboarding. The immediate effect: they can't launch a campaign that feels meaningfully different from their last vendor. The ask is for breadth (more templates) and freshness (seasonal, industry-specific, emerging threat-based).</div>
+          <div class="card-desc">Customers coming from KnowBe4 — who cited "7,000+" templates — feel the library is thin at onboarding. The immediate effect: they can't launch a campaign that feels meaningfully different from their last vendor. The ask is breadth and freshness: seasonal, industry-specific, emerging threat-based templates.</div>
           <div class="card-themes"><span class="theme-tag">Templates</span><span class="theme-tag">Phishing library</span><span class="theme-tag">Custom domains</span></div>
         </div>
       </div>
@@ -735,14 +874,14 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
           <span class="quote-cite">IT Director</span>
         </div>
         <div class="quote-block">
-          <span class="quote-text">"SCIM provisioning via EntraAD — that is the main thing I need Adaptive to do."</span>
-          <span class="quote-cite">Gonzaga University · Information Security Architect</span>
+          <span class="quote-text">"Reporting APIs. The ability to programmatically pull users who haven't completed training in X days and power downstream automation opens up a world of possibilities."</span>
+          <span class="quote-cite">CISO</span>
         </div>
       </div>
       <div>
         <div class="quote-block">
-          <span class="quote-text">"Reporting API access will give us lots of flexibility to drive up adoption through custom messaging. We believe this unlocks the program."</span>
-          <span class="quote-cite">Dutchie · Senior Security Engineer</span>
+          <span class="quote-text">"SCIM provisioning via EntraAD — that is the main thing I need Adaptive to do to help us succeed."</span>
+          <span class="quote-cite">Gonzaga University · Information Security Architect</span>
         </div>
         <div class="quote-block">
           <span class="quote-text">"An executive summary dashboard would be fantastic. Right now, reporting requires too much manual work before I can share it upward."</span>
@@ -752,13 +891,13 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
     </div>
   </div>
 
-  <!-- DIVIDER: SECONDARY SIGNAL -->
+  <!-- DIVIDER -->
   <hr class="section-divider">
 
-  <!-- SECTION 7: SALES SIGNAL -->
+  <!-- ═══ SECTION 09: SALES SIGNAL ═══ -->
   <div class="section" id="sales">
     <div class="section-header">
-      <span class="section-num">07 — Sales Experience and Customer Advocacy Signal</span>
+      <span class="section-num">09 — Sales Experience and Customer Advocacy Signal</span>
       <h2 class="section-heading">Sales scores mirror onboarding. The advocacy rates are high enough to be a pipeline asset.</h2>
       <p class="section-tagline">Sales experience averaged 9.6/10, tracking closely with onboarding. 85% of customers are open to referring Adaptive. 67% will participate in a case study. These numbers tend to be much lower in the industry — they represent untapped pipeline if the CS team acts on them systematically.</p>
     </div>
@@ -766,9 +905,9 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
     <div class="two-col" style="margin-bottom:20px;">
       <div class="detail-block">
         <span class="block-label">Sales Experience Score — n=250</span>
-        <div style="display:inline-flex;align-items:center;gap:10px;background:var(--c1-bg);border:1px solid rgba(43,79,255,.15);border-radius:8px;padding:10px 16px;margin-bottom:14px;">
-          <div style="font-family:'DM Serif Display',serif;font-size:24px;color:var(--c1);">9.6</div>
-          <div style="font-family:'DM Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-muted);line-height:1.5;">Average score<br>90% rated 9 or 10</div>
+        <div class="avg-callout blue" style="margin-bottom:14px;">
+          <div class="avg-num">9.6</div>
+          <div class="avg-label">Average score<br>90% rated 9 or 10</div>
         </div>
         <div class="rating-chart">
           <div class="rating-row"><div class="rating-num">10</div><div class="rating-track"><div class="rating-fill bf-c1" style="width:72.8%;"><span class="rating-count">182</span></div></div><span class="rating-note" style="font-weight:700;color:var(--ink);">72.8%</span></div>
@@ -778,9 +917,8 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
           <div class="rating-row"><div class="rating-num">5</div><div class="rating-track"><div class="rating-fill bf-faint" style="width:0.4%;"></div></div><span class="rating-note">0.4%</span></div>
         </div>
       </div>
-
       <div>
-        <div class="eng-row" style="grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+        <div class="eng-row" style="grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
           <div class="eng-card">
             <div class="eng-value">85%</div>
             <div class="eng-label">Open to referring<br>Adaptive to peers</div>
@@ -806,7 +944,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--ink);
       </div>
       <div class="accent-block c4-border">
         <div class="block-title">141 customers want to help build the product</div>
-        <div class="block-body">The product feedback group response rate is high, and the quality of customers who opted in — CISOs, senior security engineers, technically sophisticated buyers — suggests a genuine advisory cohort, not a vanity list. The deepfake self-service ask, the reporting API request, and the SCIM gap all came from exactly this profile of respondent.</div>
+        <div class="block-body">The product feedback group response rate is high, and the quality of respondents — CISOs, senior security engineers, technically sophisticated buyers — suggests a genuine advisory cohort. The deepfake self-service ask, the reporting API request, and the SCIM gap all came from exactly this profile of respondent.</div>
       </div>
     </div>
   </div>
@@ -826,12 +964,10 @@ function toggleDrawer(id, rowEl) {
   var isOpen = drawer.classList.contains('open');
   var toggle = rowEl.querySelector('.bar-toggle');
 
-  // Close all drawers
   document.querySelectorAll('.quote-drawer').forEach(function(d) { d.classList.remove('open'); });
   document.querySelectorAll('.bar-row').forEach(function(r) { r.classList.remove('active'); });
   document.querySelectorAll('.bar-toggle').forEach(function(t) { t.textContent = '▸ quotes'; });
 
-  // Open this one if it was closed
   if (!isOpen) {
     drawer.classList.add('open');
     rowEl.classList.add('active');
