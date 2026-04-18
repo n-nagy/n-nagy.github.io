@@ -1,0 +1,743 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Skills in Cowork — What They Are, How to Use Them, How to Build Them</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="33e770d7-8dad-8120-bd9c-e458e58ab955" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🛠️</span></div><h1 class="page-title" dir="auto">Skills in Cowork — What They Are, How to Use Them, How to Build Them</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><p id="0113c246-ae52-4f08-9d4c-41d99beb7d5d" class="">This is the practical guide to skills in Claude Cowork. If you&#x27;re wondering &quot;I&#x27;ve heard about skills — what do I actually do with them?&quot; — this is the doc.</p></div><div style="display:contents" dir="auto"><p id="1fcdf6d0-9f36-49bb-b857-aa4ad51646a8" class="">For the conceptual framing on how to <em>think</em> about what makes a good skill, read <a href="https://www.notion.so/Building-your-first-skill-or-automation-337770d78dad80b9ab47fa187710c886?pvs=21">Building your first skill or automation</a> first. This doc picks up from there and walks through the mechanics.</p></div><div style="display:contents" dir="auto"><hr id="4a4ed485-8fa7-42f0-bdcf-1003049b2fec"/></div><div style="display:contents" dir="auto"><h1 id="ab003e05-43c6-49ff-aeb7-27d7764b01e3" class="">What is a skill?</h1></div><div style="display:contents" dir="auto"><p id="8101a667-16ce-427d-b5eb-ff5e53d4073f" class="">A skill is a set of instructions that tells Claude how to do a specific task. Think of it like a really good Standard Operating Procedure (SOP) — except instead of handing it to a new hire, you&#x27;re handing it to Claude.</p></div><div style="display:contents" dir="auto"><p id="d15656a6-3f5d-415e-932b-763e9feb801b" class="">When you open Cowork and ask Claude to do something that matches a skill, Claude follows those instructions instead of improvising. That&#x27;s it. Skills make Claude more reliable, more consistent, and better at the specific things your team actually does.</p></div><div style="display:contents" dir="auto"><p id="394f8867-a7bc-4dcd-8164-4660692290f4" class="">Skills live as files inside your Cowork setup. They&#x27;re not magic. They&#x27;re just well-written instructions with context about what tools to use, what to look at, and what the output should look like.</p></div><div style="display:contents" dir="auto"><hr id="b205ee07-2048-4363-aeb4-4757bc731702"/></div><div style="display:contents" dir="auto"><h1 id="4b2264d9-6673-49c2-9da2-4f1d02db2f44" class="">How do I use a skill?</h1></div><div style="display:contents" dir="auto"><p id="acb8b821-b782-4651-bac6-1f1ce435d64c" class="">You don&#x27;t need to do anything special. If a skill is installed in your Cowork environment, Claude will automatically use it when your request matches what the skill is designed to do.</p></div><div style="display:contents" dir="auto"><p id="7c9a13f1-96c8-4602-bb22-d86d6a220302" class="">For example, if you have a &quot;weekly program review&quot; skill installed and you say &quot;write this week&#x27;s program review,&quot; Claude recognizes that it has a skill for that and follows the instructions.</p></div><div style="display:contents" dir="auto"><p id="7932f05e-8095-40fe-b5d6-c22239272758" class="">You can also trigger a skill explicitly by typing <code>/</code> followed by the skill name — like <code>/skill-name</code>. This is useful when you want to make sure Claude uses a specific skill rather than its general knowledge.</p></div><div style="display:contents" dir="auto"><p id="6fed65e7-d947-46f0-943a-4ed5e5327b83" class=""><strong>Where to find your installed skills:</strong> Open Cowork and go to Customize → Skills. You&#x27;ll see a list of what&#x27;s available. Each skill has a name and a short description of what it does.</p></div><div style="display:contents" dir="ltr"><figure id="33e770d7-8dad-8055-9424-c55e2276dce0" class="image"><a href="Skills%20in%20Cowork%20%E2%80%94%20What%20They%20Are,%20How%20to%20Use%20Them,/image.png"><img style="width:480px" src="Skills%20in%20Cowork%20%E2%80%94%20What%20They%20Are,%20How%20to%20Use%20Them,/image.png"/></a></figure></div><div style="display:contents" dir="auto"><hr id="30b19de1-87fe-49f5-9ea2-b52c8030f521"/></div><div style="display:contents" dir="auto"><h1 id="6a3eadfa-4733-44aa-a685-1c84c38afb0b" class="">How do I build a skill?</h1></div><div style="display:contents" dir="auto"><p id="7354686d-a9e9-4e5a-ac55-f24f565da2a3" class="">Building a skill is more accessible than you might think. You don&#x27;t need to write code. You need to write clear instructions.</p></div><div style="display:contents" dir="auto"><h2 id="8e6ee8ee-e437-44b7-8f1b-d14332d1f307" class="">The quick version</h2></div><div style="display:contents" dir="auto"><ol type="1" id="2982637a-8adf-451e-a4b6-ee683bec774c" class="numbered-list" start="1"><li><strong>Start a Cowork session</strong> and tell Claude: &quot;I want to create a new skill.&quot;</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="37326d99-9baa-4d8d-ab58-355edb1600a4" class="numbered-list" start="2"><li>Claude will walk you through it using the <strong>skill creator</strong> — it&#x27;ll ask you what the skill should do, what tools it needs, and what good output looks like.</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="9718e9f8-9941-438d-ad54-a9faeb60e76e" class="numbered-list" start="3"><li>You describe the task in plain language. Be specific: what inputs does the skill need? What should it look at? What should the output look like? What are the edge cases?</li></ol></div><div style="display:contents" dir="auto"><ol type="1" id="72724cb5-2ddd-49fb-872f-740e8dd5647f" class="numbered-list" start="4"><li>Claude generates the skill file for you. You can test it, iterate on it, and refine it until it works the way you want.</li></ol></div><div style="display:contents" dir="auto"><h2 id="2e827004-f635-4827-9bec-c38dfcfbaa76" class="">What makes a good skill</h2></div><div style="display:contents" dir="auto"><ul id="4811e1b5-65bd-4e8d-bcab-881f288827e6" class="bulleted-list"><li style="list-style-type:disc"><strong>Specificity over generality.</strong> A skill that does one thing well beats a skill that tries to do five things. &quot;Draft a follow-up email for an AE after a Gong call&quot; is better than &quot;help with sales emails.&quot;</li></ul></div><div style="display:contents" dir="auto"><ul id="945e5376-fe5c-4263-b8d6-fa36ae015026" class="bulleted-list"><li style="list-style-type:disc"><strong>Clear decision logic.</strong> Claude needs to know how to make judgment calls. Don&#x27;t just say &quot;prioritize the important ones&quot; — say what makes something important in your context.</li></ul></div><div style="display:contents" dir="auto"><ul id="f48f300a-409f-40d1-9085-924ab2375943" class="bulleted-list"><li style="list-style-type:disc"><strong>Real examples.</strong> Include before/after examples of what good output looks like. This is the single most effective thing you can do to improve a skill.</li></ul></div><div style="display:contents" dir="auto"><ul id="4b6da5c5-08fc-49a4-b69a-3571c541006a" class="bulleted-list"><li style="list-style-type:disc"><strong>Specify the tools.</strong> If the skill needs to pull from Salesforce, search Slack, or write to Notion — say so explicitly. Claude has connectors to these tools but needs to know when to use them.</li></ul></div><div style="display:contents" dir="auto"><h2 id="1afbc725-c5ed-4786-90b1-c744b5e3952d" class="">Tips from experience</h2></div><div style="display:contents" dir="auto"><ul id="3efecc07-ce05-4032-8452-08f8c054eeea" class="bulleted-list"><li style="list-style-type:disc"><strong>Start small.</strong> Get the basic loop working before adding complexity. You can always add edge case handling later.</li></ul></div><div style="display:contents" dir="auto"><ul id="9f64f6c0-70da-46ee-a6c9-a7c7076cc766" class="bulleted-list"><li style="list-style-type:disc"><strong>Test with real data.</strong> Don&#x27;t just test with a toy example — run it against actual work and see if the output is something you&#x27;d actually use.</li></ul></div><div style="display:contents" dir="auto"><ul id="b60556dc-941f-4812-b2f4-472bf22db50e" class="bulleted-list"><li style="list-style-type:disc"><strong>Iterate with Claude.</strong> If the output isn&#x27;t right, tell Claude what&#x27;s wrong. &quot;The tone is too formal&quot; or &quot;you&#x27;re missing the deal stage from Salesforce&quot; — Claude can update the skill in the same session.</li></ul></div><div style="display:contents" dir="auto"><ul id="3d22b65f-5a22-4d19-84d5-5656b37b76c2" class="bulleted-list"><li style="list-style-type:disc"><strong>Use the skill creator.</strong> Seriously. It handles the file structure and formatting for you so you can focus on the content. Just say &quot;I want to create a skill&quot; or type <code>/skill-creator</code>.</li></ul></div><div style="display:contents" dir="auto"><hr id="1b6cfdfc-53d5-4dd6-93b2-45fb0c2959b0"/></div><div style="display:contents" dir="auto"><h1 id="82c89494-c72e-4524-b25c-8e20b2ee11f1" class="">How do I share a skill?</h1></div><div style="display:contents" dir="auto"><p id="c3879925-f555-4caa-8463-e79f373d5119" class="">This is where it gets fun. Skills aren&#x27;t useful if they live in one person&#x27;s Cowork setup — the whole point is that good workflows spread.</p></div><div style="display:contents" dir="auto"><h2 id="c28603fe-e648-4d0c-b341-6aad7094ba48" class="">Share with your team</h2></div><div style="display:contents" dir="auto"><p id="7f191f23-2912-45b0-bb71-09ca9bccf1c1" class="">The simplest way: export your skill and share the file with teammates who can install it in their own Cowork environment. Your DRI can help coordinate this for your department.</p></div><div style="display:contents" dir="auto"><h2 id="2d3b0824-0d52-44d9-8dbe-5fd83b2f400d" class="">Share with the company</h2></div><div style="display:contents" dir="ltr"><figure id="33e770d7-8dad-80cd-98d2-f5fe1af94b70" class="image"><a href="Skills%20in%20Cowork%20%E2%80%94%20What%20They%20Are,%20How%20to%20Use%20Them,/image%201.png"><img style="width:336px" src="Skills%20in%20Cowork%20%E2%80%94%20What%20They%20Are,%20How%20to%20Use%20Them,/image%201.png"/></a></figure></div><div style="display:contents" dir="auto"><p id="a112d29e-b6bd-4d13-b837-7314b8909653" class="">Next to your skill, there’s a Share button where you can share it to the entire company. We highly encourage doing this! This will make it available for others to install under “Shared Skills”. Then, post it in <strong>#adaptive-uses-ai</strong> — this is the channel for sharing wins, workflows, and skills across Adaptive. When you share, describe what it does, who it’s useful for, and an example of the output. This helps other people figure out if it&#x27;s relevant to them without having to install it first.</p></div><div style="display:contents" dir="auto"><h2 id="edef3362-266a-477c-b4c0-7d932e677288" class="">Request it be added to the org plugin</h2></div><div style="display:contents" dir="auto"><p id="db1c4856-9b07-479d-9344-c1109d5f6642" class="">If you&#x27;ve built a skill that works well and would be useful to auto-install for a specific team, ping the AI Enablement team or drop a note in <strong>#bet-ai-enablement</strong>. We can add it to the right org plugin so it&#x27;s available to by default.</p></div><div style="display:contents" dir="auto"><hr id="385847d0-bdae-4173-a943-70ba530d07f7"/></div><div style="display:contents" dir="auto"><h1 id="acac54b1-7eb9-4b4c-96bd-9c4f2d956ca0" class="">FAQ</h1></div><div style="display:contents" dir="auto"><p id="e00bdf93-0157-46e7-a2ab-44d69c8af91d" class=""><strong>Do I need to be technical to build a skill?</strong></p></div><div style="display:contents" dir="auto"><p id="aa768129-3130-4244-bf89-8c921d35e4e3" class="">No. If you can describe a workflow clearly enough to explain it to a new teammate, you can build a skill. The skill creator handles the technical parts.</p></div><div style="display:contents" dir="auto"><p id="a65d264e-c11b-4175-adb8-1376997d670f" class=""><strong>Can a skill break anything?</strong></p></div><div style="display:contents" dir="auto"><p id="fa41b0ba-a13f-442b-b4f1-c8fd9b9111a1" class="">Skills can read from and write to your connected tools (Slack, Notion, etc.), so use the same judgment you&#x27;d use with any automation — start with read-only actions and add write actions once you&#x27;re confident in the output.</p></div><div style="display:contents" dir="auto"><p id="5b811ef8-90b3-49d8-a633-74467db27c61" class=""><strong>What if my skill isn&#x27;t working right?</strong></p></div><div style="display:contents" dir="auto"><p id="4d2571f7-7ed5-45da-b91e-d35b0cf70c91" class="">Iterate on it in a Cowork session. Tell Claude what&#x27;s wrong and it&#x27;ll update the instructions. If you&#x27;re stuck, bring it to office hours (Wednesdays 2-3pm ET) or ask in #bet-ai-enablement.</p></div><div style="display:contents" dir="auto"><p id="de817344-87ee-4687-9922-06399b4a6e1f" class=""><strong>What&#x27;s the difference between a skill and a scheduled task?</strong></p></div><div style="display:contents" dir="auto"><p id="16ac714e-afe5-4f3a-8b2e-149d7812b23c" class="">A skill runs when you (or someone) triggers it. A scheduled task is a skill that runs automatically on a schedule — every morning, every Friday, every hour. If there&#x27;s a predictable moment when the skill should run, set it up as a scheduled task.</p></div><div style="display:contents" dir="auto"><hr id="5b3d2c28-c548-43a6-acbb-615728c363a2"/></div><div style="display:contents" dir="auto"><p id="955e78a6-ce49-4664-aad4-6a8b739838ec" class=""><strong>Related resources:</strong></p></div><div style="display:contents" dir="auto"><ul id="5076f2c0-80ee-4e87-8f3f-853666b2881c" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.notion.so/Building-your-first-skill-or-automation-337770d78dad80b9ab47fa187710c886?pvs=21">Building your first skill or automation</a> — the conceptual guide to spotting skill opportunities</li></ul></div><div style="display:contents" dir="auto"><ul id="3b21bd71-d945-45b2-b4a2-b0b13ca3717b" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.notion.so/AI-Enablement-Hub-312770d78dad80098cefc5b9d7943029?pvs=21">AI Enablement Hub</a> — the home base for all AI Enablement resources</li></ul></div><div style="display:contents" dir="auto"><ul id="00b6b82a-0743-48f1-926a-402c13722ecc" class="bulleted-list"><li style="list-style-type:disc"><strong>#adaptive-uses-ai</strong> — Slack channel for sharing skills, wins, and workflows</li></ul></div><div style="display:contents" dir="auto"><ul id="7a672f60-9434-420a-809c-2e25c7a5256d" class="bulleted-list"><li style="list-style-type:disc"><strong>#bet-ai-enablement</strong> — Slack channel for questions, requests, and support</li></ul></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
