@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reporting Engineering Effort</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f4f5f7; color: #1a1a2e; font-size: 14px; line-height: 1.6; }
+
+  header { background: #000; color: #fff; padding: 40px 48px 32px; }
+  header .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #94a3b8; margin-bottom: 10px; }
+  header h1 { font-size: 26px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+  header .meta { font-size: 13px; color: #64748b; margin-bottom: 20px; }
+  header .context { max-width: 780px; font-size: 14px; color: #cbd5e1; line-height: 1.7; }
+
+  .step-nav { background: #1e293b; display: flex; gap: 0; padding: 0 48px; border-bottom: 1px solid #0f172a; overflow-x: auto; }
+  .step-nav a { color: #94a3b8; text-decoration: none; font-size: 13px; font-weight: 500; padding: 14px 20px; border-bottom: 2px solid transparent; transition: color 0.15s, border-color 0.15s; white-space: nowrap; cursor: pointer; }
+  .step-nav a:hover { color: #e2e8f0; border-bottom-color: #475569; }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 40px 48px 80px; }
+
+  .section-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; margin-top: 48px; }
+  .section-header:first-child { margin-top: 0; }
+  .step-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #64748b; white-space: nowrap; }
+  .section-header h2 { font-size: 20px; font-weight: 700; color: #0f172a; }
+  .section-desc { font-size: 14px; color: #475569; max-width: 720px; margin-bottom: 28px; line-height: 1.7; }
+
+  /* Option cards */
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 16px; }
+  .info-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; }
+  .info-card .card-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 6px; }
+  .info-card h3 { font-size: 15px; font-weight: 600; color: #0f172a; margin-bottom: 10px; }
+  .info-card .time { font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 2px; }
+  .info-card .conf { font-size: 12px; font-weight: 600; margin-bottom: 12px; }
+  .conf-high { color: #15803d; }
+  .conf-medium-high { color: #1d4ed8; }
+  .conf-medium { color: #b45309; }
+  .info-card p { font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 10px; }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 11px; background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; border-radius: 4px; padding: 2px 8px; }
+
+  /* Cost cards */
+  .cost-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 8px; }
+  .cost-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; }
+  .cost-card .option-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 8px; }
+  .cost-card .cost-amount { font-size: 22px; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
+  .cost-card .cost-note { font-size: 13px; color: #475569; line-height: 1.55; }
+
+  /* Assumptions */
+  .assumptions-box { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px 20px; margin-bottom: 20px; }
+  .assumptions-box .box-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 8px; }
+  .assumptions-box ul { padding-left: 18px; }
+  .assumptions-box li { font-size: 13px; color: #374151; line-height: 1.65; margin-bottom: 3px; }
+
+  /* Summary table */
+  .base-table { width: 100%; border-collapse: collapse; }
+  .base-table th { background: #f8fafc; text-align: left; padding: 10px 14px; color: #475569; font-size: 12px; font-weight: 600; border-bottom: 2px solid #e2e8f0; }
+  .base-table td { padding: 10px 14px; border-bottom: 1px solid #f1f5f9; font-size: 13px; color: #374151; vertical-align: top; }
+  .base-table tr:last-child td { border-bottom: none; }
+  .base-table td:first-child { font-weight: 600; color: #0f172a; }
+  .cell-yes { color: #15803d; font-weight: 600; }
+  .cell-no { color: #b91c1c; font-weight: 600; }
+  .cell-warn { color: #b45309; font-weight: 600; }
+
+  .callout { background: #fefce8; border-left: 3px solid #eab308; border-radius: 0 8px 8px 0; padding: 14px 18px; font-size: 13px; color: #713f12; margin: 16px 0; line-height: 1.65; }
+
+  hr { border: none; border-top: 1px solid #e2e8f0; margin: 40px 0; }
+
+  @media (max-width: 768px) {
+    header, main { padding-left: 20px; padding-right: 20px; }
+    .step-nav { padding: 0 20px; }
+    .cards-grid, .cost-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Platform BU · April 2026</div>
+  <h1>Reporting Engineering Effort</h1>
+  <p class="meta">Internal technical analysis</p>
+  <p class="context">A comparison of three infrastructure approaches for building a reporting layer — evaluating build time, engineering confidence, infrastructure cost, and long-term flexibility.</p>
+</header>
+
+<nav class="step-nav">
+  <a onclick="document.getElementById('effort').scrollIntoView({behavior:'smooth'})">Engineering Effort</a>
+  <a onclick="document.getElementById('cost').scrollIntoView({behavior:'smooth'})">Infrastructure Cost</a>
+  <a onclick="document.getElementById('summary').scrollIntoView({behavior:'smooth'})">Summary Recommendation</a>
+</nav>
+
+<main>
+
+  <!-- Engineering Effort -->
+  <div class="section-header" id="effort" style="margin-top:36px;">
+    <span class="step-label">Section 1</span>
+    <h2>Engineering Effort by Option</h2>
+  </div>
+  <p class="section-desc">Estimated build time and confidence level reflect the complexity of each option's setup, integration work, and ongoing maintenance burden.</p>
+
+  <div class="cards-grid">
+
+    <div class="info-card">
+      <div class="card-label">Option A</div>
+      <h3>Postgres Flattened Tables</h3>
+      <div class="time">4–6 weeks</div>
+      <div class="conf conf-high">High confidence</div>
+      <p>Add new flattened tables; stream or batch ETL from Kafka or raw tables into a denormalized schema optimized for reporting queries.</p>
+      <div class="tag-list">
+        <span class="tag">Building & maintaining ETL</span>
+        <span class="tag">Easy with Kafka</span>
+        <span class="tag">Schema evolution</span>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="card-label">Option B</div>
+      <h3>ClickHouse</h3>
+      <div class="time">5–7 weeks</div>
+      <div class="conf conf-medium-high">Medium-High confidence</div>
+      <p>Deploy ClickHouse, stream Kafka to flattened tables, schema setup, build analytics layer with materialized views.</p>
+      <div class="tag-list">
+        <span class="tag">Initial Kafka–CH wiring</span>
+        <span class="tag">Materialized views</span>
+        <span class="tag">Ops / tuning</span>
+        <span class="tag">Observability</span>
+      </div>
+    </div>
+
+    <div class="info-card">
+      <div class="card-label">Option C</div>
+      <h3>Redshift (w/ Kafka or ETL)</h3>
+      <div class="time">6–8 weeks</div>
+      <div class="conf conf-medium">Medium confidence</div>
+      <p>Deploy Redshift, write Kinesis/Kafka ETL or use AWS Glue jobs, build data modeling layer and tune queries for analytics workloads.</p>
+      <div class="tag-list">
+        <span class="tag">Slower iteration</span>
+        <span class="tag">AWS service sprawl</span>
+        <span class="tag">Bulk load / debug cycle</span>
+        <span class="tag">Permissions</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="callout">
+    Redshift development will take longer due to AWS service dependencies and slower test cycles.
+  </div>
+
+  <hr>
+
+  <!-- Infrastructure Cost -->
+  <div class="section-header" id="cost">
+    <span class="step-label">Section 2</span>
+    <h2>Infrastructure Cost (Monthly)</h2>
+  </div>
+
+  <div class="assumptions-box">
+    <div class="box-label">Base Assumptions</div>
+    <ul>
+      <li>Queries align well across all three systems</li>
+      <li>Streaming from Kafka for fresh, low-latency data</li>
+      <li>ClickHouse and Redshift costs modeled at medium-heavy workloads</li>
+    </ul>
+  </div>
+
+  <div class="cost-grid">
+
+    <div class="cost-card">
+      <div class="option-name">Postgres (Flattened)</div>
+      <div class="cost-amount">$0 extra</div>
+      <div class="cost-note">+ $750/mo for read replica (optional). Best if current <code style="font-size:11px;background:#f1f5f9;padding:1px 4px;border-radius:3px;font-family:monospace;">db.r5.2xlarge</code> infra can absorb the reporting load.</div>
+    </div>
+
+    <div class="cost-card">
+      <div class="option-name">ClickHouse</div>
+      <div class="cost-amount">$1,200–$1,500</div>
+      <div class="cost-note">Self-hosted on r6a.8xlarge. $2,000–$2,500 on ClickHouse Cloud. Pay-per-use pricing scales smoothly; Cloud option saves operational overhead.</div>
+    </div>
+
+    <div class="cost-card">
+      <div class="option-name">Redshift (ra3.xlplus)</div>
+      <div class="cost-amount">$1,700–$2,200</div>
+      <div class="cost-note">For 2–3 nodes + ~$400 for AWS Glue/Kinesis ETL (optional). Could reach $7K/month if scaled. More expensive per-core and for usage spikes.</div>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <!-- Summary -->
+  <div class="section-header" id="summary">
+    <span class="step-label">Section 3</span>
+    <h2>Summary Recommendation</h2>
+  </div>
+  <p class="section-desc">At-a-glance comparison across the four dimensions that matter most for this decision.</p>
+
+  <div style="background:#fff;border:1px solid #e2e8f0;border-radius:10px;overflow:hidden;margin-bottom:8px;">
+    <table class="base-table">
+      <thead>
+        <tr>
+          <th>Option</th>
+          <th>Fastest Win</th>
+          <th>Lowest Cost</th>
+          <th>Best at Scale</th>
+          <th>Future Flexibility</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Postgres (Flattened)</td>
+          <td><span class="cell-yes">✓ Yes</span></td>
+          <td><span class="cell-yes">✓ Yes</span></td>
+          <td><span class="cell-no">✗ No — limited scale</span></td>
+          <td><span class="cell-warn">⚠ Rigid, gets complex with joins</span></td>
+        </tr>
+        <tr>
+          <td>ClickHouse</td>
+          <td><span class="cell-warn">⚠ Slightly longer</span></td>
+          <td><span class="cell-warn">⚠ Medium</span></td>
+          <td><span class="cell-yes">✓ Yes</span></td>
+          <td><span class="cell-yes">✓ Great for real-time analytics</span></td>
+        </tr>
+        <tr>
+          <td>Redshift</td>
+          <td><span class="cell-no">✗ Slowest</span></td>
+          <td><span class="cell-no">✗ Most expensive</span></td>
+          <td><span class="cell-warn">⚠ Good scale, less flexible</span></td>
+          <td><span class="cell-warn">⚠ Slower dev cycle, not as promising</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>
+
+</body>
+</html>
