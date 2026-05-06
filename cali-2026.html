@@ -1,0 +1,257 @@
+
+<style>
+  .report { font-family: var(--font-sans); color: var(--color-text-primary); max-width: 700px; padding: 1.5rem 0; }
+  h1 { font-size: 20px; font-weight: 500; margin-bottom: 0.5rem; }
+  h2 { font-size: 17px; font-weight: 500; margin: 2rem 0 0.75rem; border-bottom: 0.5px solid var(--color-border-tertiary); padding-bottom: 0.4rem; }
+  h3 { font-size: 15px; font-weight: 500; margin: 1.5rem 0 0.5rem; }
+  p { font-size: 14px; line-height: 1.7; margin: 0.5rem 0; }
+  .tldr { background: var(--color-background-secondary); border-left: 3px solid var(--color-border-primary); border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; padding: 1rem 1.25rem; margin-bottom: 1.5rem; }
+  .tldr h2 { margin: 0 0 0.75rem; border: none; padding: 0; font-size: 15px; }
+  .tldr-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 0.75rem; }
+  .tldr-option { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; font-size: 13px; line-height: 1.6; }
+  .tldr-option strong { font-size: 13px; display: block; margin-bottom: 4px; }
+  .winner { background: #E1F5EE; border: 0.5px solid #9FE1CB; border-radius: var(--border-radius-md); padding: 0.75rem 1rem; font-size: 13px; line-height: 1.6; color: #085041; }
+  .winner strong { font-weight: 500; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0.75rem 0 1.25rem; }
+  th { text-align: left; font-weight: 500; font-size: 12px; color: var(--color-text-secondary); border-bottom: 0.5px solid var(--color-border-primary); padding: 6px 8px; }
+  td { padding: 7px 8px; border-bottom: 0.5px solid var(--color-border-tertiary); vertical-align: top; line-height: 1.5; font-size: 13px; }
+  tr:last-child td { border-bottom: none; }
+  .total-row td { font-weight: 500; background: var(--color-background-secondary); }
+  .warn { background: #FAEEDA; border: 0.5px solid #FAC775; border-radius: var(--border-radius-md); padding: 0.6rem 0.9rem; font-size: 13px; color: #633806; margin: 0.75rem 0; }
+  .note { background: var(--color-background-secondary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 0.6rem 0.9rem; font-size: 13px; color: var(--color-text-secondary); margin: 0.75rem 0; }
+  .disqualified { color: var(--color-text-tertiary); text-decoration: line-through; }
+  ul { font-size: 14px; line-height: 1.8; padding-left: 1.25rem; margin: 0.5rem 0; }
+  li { margin-bottom: 0.15rem; }
+  strong { font-weight: 500; }
+  .pick { font-size: 13px; color: var(--color-text-secondary); margin: 0.25rem 0; }
+  .pick strong { color: var(--color-text-primary); }
+  hr { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 1.5rem 0; }
+  .opt1 { color: #534AB7; }
+  .opt2 { color: #0F6E56; }
+  .opt3 { color: #993C1D; }
+  .day-block { margin-bottom: 1.25rem; }
+  .day-row { display: flex; gap: 12px; margin-bottom: 0.4rem; align-items: flex-start; }
+  .day-label { font-size: 11px; font-weight: 500; color: var(--color-text-secondary); min-width: 80px; padding-top: 2px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .day-content { font-size: 13px; line-height: 1.6; color: var(--color-text-primary); }
+  .day-content .sub { font-size: 12px; color: var(--color-text-secondary); }
+  .tag-travel { display: inline-block; font-size: 10px; background: var(--color-background-secondary); border: 0.5px solid var(--color-border-secondary); border-radius: 4px; padding: 1px 6px; color: var(--color-text-tertiary); margin-left: 6px; }
+  .tag-optional { display: inline-block; font-size: 10px; background: #FAEEDA; border: 0.5px solid #FAC775; border-radius: 4px; padding: 1px 6px; color: #633806; margin-left: 6px; }
+  .option-section { border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1.25rem; }
+  .option-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 1rem; }
+  .option-title { font-size: 16px; font-weight: 500; }
+  .option-meta { font-size: 12px; color: var(--color-text-secondary); }
+</style>
+
+<div class="report">
+  <h1>Carmel wedding trip: three options compared</h1>
+
+  <div class="tldr">
+    <h2>TL;DR</h2>
+    <p style="font-size:13px;margin:0 0 0.75rem;">Nick and Shannon traveling from Philly for a wedding in Carmel-by-the-Sea on Saturday Sept 12, 2026. All options depart Thursday — the key variable is how many days of PTO and how to use them. All return flights leave SFO before 10am (nonstop options only exist in the morning or as late-night redeyes).</p>
+    <div class="tldr-grid">
+      <div class="tldr-option">
+        <strong class="opt1">Option 1 — 3 days PTO</strong>
+        Thu–Mon<br>
+        1 real pre-wedding day<br>
+        Big Sur Friday<br>
+        Optional Big Basin Sunday<br><br>
+        ~$2,180/couple
+      </div>
+      <div class="tldr-option">
+        <strong class="opt2">Option 2 — 4 days PTO</strong>
+        Wed–Mon<br>
+        2 real pre-wedding days<br>
+        Wine/explore Thu, Big Sur Fri<br>
+        Optional Big Basin Sunday<br><br>
+        ~$2,450/couple
+      </div>
+      <div class="tldr-option">
+        <strong class="opt3">Option 3 — 4 days PTO</strong>
+        Thu–Tue<br>
+        1 real pre-wedding day<br>
+        Big Sur Friday<br>
+        Big Basin Monday (dedicated)<br><br>
+        ~$2,450/couple
+      </div>
+    </div>
+    <div class="winner">
+      <strong>The core tradeoff:</strong> Option 1 is the budget/PTO-efficient choice — solid trip, one main exploring day, Big Basin is a bonus if you feel up to it Sunday. Options 2 and 3 both add a 4th PTO day but spend it differently: Option 2 front-loads it with more pre-wedding time in Monterey, Option 3 back-loads it with a dedicated Big Basin day. If Shannon's PTO is tight, Option 1 is the right call. If you can swing 4 days, Option 2 is the better trip — two real days before the wedding feels more relaxed than one.
+    </div>
+  </div>
+
+  <h2>Day-by-day itineraries</h2>
+
+  <div class="option-section">
+    <div class="option-header">
+      <span class="option-title opt1">Option 1</span>
+      <span class="option-meta">3 days PTO (both) · Thu Sept 10 → Mon Sept 14 · ~$2,180/couple</span>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Thu Sept 10 <span class="tag-travel">travel</span></div>
+      <div class="day-content">Fly PHL → SFO 9:25am, land 12:28pm. Pick up rental car. Drive ~2hrs to Monterey, arrive ~3–4pm. Check in, walk Cannery Row, dinner out. <span class="sub">Hotel: Monterey (1 of 2 nights)</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Fri Sept 11</div>
+      <div class="day-content">Full day Big Sur — Bixby Bridge, Pfeiffer Beach, McWay Falls. Back to Monterey for welcome drinks if confirmed. <span class="sub">Hotel: Monterey (2 of 2 nights)</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Sat Sept 12</div>
+      <div class="day-content">Morning in Monterey/Carmel village. Check into Carmel midday. Wedding. <span class="sub">Hotel: Carmel</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Sun Sept 13</div>
+      <div class="day-content">Check out Carmel. Drive north — optional Big Basin detour if feeling up to it <span class="tag-optional">optional</span>. Arrive Santa Cruz or Half Moon Bay, dinner, early night. <span class="sub">Hotel: Santa Cruz or Half Moon Bay</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Mon Sept 14</div>
+      <div class="day-content">Early departure ~6:30am to SFO. United 8:50am → PHL 5:30pm. Back to work Tuesday.</div>
+    </div>
+  </div>
+
+  <div class="option-section">
+    <div class="option-header">
+      <span class="option-title opt2">Option 2</span>
+      <span class="option-meta">4 days PTO (both) · Wed Sept 9 → Mon Sept 14 · ~$2,450/couple</span>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Wed Sept 9 <span class="tag-travel">travel</span></div>
+      <div class="day-content">Fly PHL → SFO ~8–9am, land noon. Pick up rental car. Drive ~2hrs to Monterey, arrive ~3–4pm. Check in, dinner — this is a travel day, not an activity day. <span class="sub">Hotel: Monterey (1 of 3 nights)</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Thu Sept 10</div>
+      <div class="day-content">First real day. 17-Mile Drive, Pebble Beach, Carmel village explore. Carmel Valley wine tasting afternoon (Bernardus, Joyce, Chesebro). <span class="sub">Hotel: Monterey (2 of 3 nights)</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Fri Sept 11</div>
+      <div class="day-content">Big Sur — Bixby Bridge, Pfeiffer Beach, McWay Falls. Back for welcome drinks if confirmed. <span class="sub">Hotel: Monterey (3 of 3 nights)</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Sat Sept 12</div>
+      <div class="day-content">Morning in Carmel village. Check in midday. Wedding. <span class="sub">Hotel: Carmel</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Sun Sept 13</div>
+      <div class="day-content">Check out Carmel. Drive north — optional Big Basin detour <span class="tag-optional">optional</span>. Arrive Santa Cruz or Half Moon Bay, low-key evening. <span class="sub">Hotel: Santa Cruz or Half Moon Bay</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Mon Sept 14</div>
+      <div class="day-content">Early departure ~6:30am to SFO. United 8:50am → PHL 5:30pm. Back to work Tuesday.</div>
+    </div>
+  </div>
+
+  <div class="option-section">
+    <div class="option-header">
+      <span class="option-title opt3">Option 3</span>
+      <span class="option-meta">4 days PTO (both) · Thu Sept 10 → Tue Sept 15 · ~$2,450/couple</span>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Thu Sept 10 <span class="tag-travel">travel</span></div>
+      <div class="day-content">Fly PHL → SFO 9:25am, land 12:28pm. Pick up rental car. Drive ~2hrs to Monterey, arrive ~3–4pm. Check in, dinner. <span class="sub">Hotel: Monterey (1 of 2 nights)</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Fri Sept 11</div>
+      <div class="day-content">Full day Big Sur — Bixby Bridge, Pfeiffer Beach, McWay Falls. Welcome drinks if confirmed. <span class="sub">Hotel: Monterey (2 of 2 nights)</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Sat Sept 12</div>
+      <div class="day-content">Morning in Carmel village. Check in midday. Wedding. <span class="sub">Hotel: Carmel</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Sun Sept 13</div>
+      <div class="day-content">Check out Carmel. Easy coastal drive north to Santa Cruz. Chill day — beach, good food, recovery. <span class="sub">Hotel: Santa Cruz or Half Moon Bay</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Mon Sept 14</div>
+      <div class="day-content">Big Basin Redwoods — dedicated full day hike. Back to Santa Cruz/Half Moon Bay for the night. <span class="sub">Hotel: Santa Cruz or Half Moon Bay</span></div>
+    </div>
+    <div class="day-row">
+      <div class="day-label">Tue Sept 15</div>
+      <div class="day-content">Early departure to SFO. Morning nonstop → PHL. Back to work Wednesday.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <h2>Flight options</h2>
+  <div class="note">On all days (Mon and Tue), nonstop SFO→PHL flights only exist before 10am or after 11pm. Plan accordingly.</div>
+  <table>
+    <tr><th>Option</th><th>Outbound</th><th>Return</th><th>Price/person</th></tr>
+    <tr><td><strong class="opt1">Option 1</strong></td><td>Thu Sept 10 — United 9:25am PHL→SFO</td><td>Mon Sept 14 — United 8:50am SFO→PHL</td><td>$484</td></tr>
+    <tr><td><strong class="opt2">Option 2</strong></td><td>Wed Sept 9 — American 8:20am PHL→SFO</td><td>Mon Sept 14 — United 8:50am SFO→PHL</td><td>~$498–520 est.</td></tr>
+    <tr><td><strong class="opt3">Option 3</strong></td><td>Thu Sept 10 — United 9:25am PHL→SFO</td><td>Tue Sept 15 — TBD, similar pricing</td><td>~$484–510 est.</td></tr>
+  </table>
+
+  <hr>
+
+  <h2>Hotels by city</h2>
+  <div class="note">All rates are best-estimate ranges — ±10–15% variance likely. Excludes ~10–13% lodging tax and parking (~$30–90/night additional).</div>
+
+  <h3>Monterey</h3>
+  <table>
+    <tr><th>Hotel</th><th>Style</th><th>Wednesday</th><th>Thu/Fri</th><th>Notes</th></tr>
+    <tr><td><strong>Hotel Abrego</strong></td><td>Boutique</td><td>~$170–220</td><td>~$180–290</td><td>Breakfast + parking included, 20% summer promo through Sept 28</td></tr>
+    <tr><td><strong>Casa Munras Garden Hotel</strong></td><td>Boutique hacienda</td><td>~$180–230</td><td>~$190–310</td><td>1824-origin property, gardens, Estéban restaurant, spa</td></tr>
+    <tr><td><strong>Hotel Pacific</strong></td><td>Boutique suites</td><td>~$200–250</td><td>~$220–340</td><td>All-suite with fireplaces, breakfast included</td></tr>
+    <tr><td><strong>Spindrift Inn</strong></td><td>Boutique waterfront</td><td>~$300–370</td><td>~$320–485</td><td>Cannery Row beachfront — excellent but premium</td></tr>
+  </table>
+  <p class="pick"><strong>Best value:</strong> Hotel Abrego &nbsp;|&nbsp; <strong>Best character:</strong> Casa Munras</p>
+
+  <h3>Carmel (Saturday night — all options)</h3>
+  <div class="warn">⚠️ Book this first. Saturday peak-season inventory sells out 2–4 months out. Most properties require a 2-night minimum — options below confirmed for single-night stays.</div>
+  <table>
+    <tr><th>Hotel</th><th>Est. Saturday rate</th><th>Notes</th></tr>
+    <tr><td><strong>Hofsas House</strong></td><td>~$330–406</td><td>2 blocks from Ocean Ave, free breakfast + parking — best value</td></tr>
+    <tr><td><strong>Tally Ho Inn</strong></td><td>~$289–400</td><td>Half-block from Ocean Ave, ocean-view balconies — best location/price</td></tr>
+    <tr><td><strong>Cypress Inn</strong></td><td>~$374–420</td><td>Iconic, heart of village — likely hits $450 with tax</td></tr>
+    <tr><td><strong>Briarwood Inn</strong></td><td>~$300–399</td><td>12-room B&B with fireplaces</td></tr>
+    <tr><td><strong>Pine Inn</strong></td><td>~$400–500</td><td>On Ocean Avenue, borderline on budget</td></tr>
+    <tr><td><span class="disqualified">L'Auberge Carmel</span></td><td>~$522–887</td><td>Over budget</td></tr>
+  </table>
+  <p class="pick"><strong>Best value:</strong> Hofsas House &nbsp;|&nbsp; <strong>Best location:</strong> Tally Ho Inn</p>
+
+  <h3>Santa Cruz or Half Moon Bay (Sunday night, Mon night for Option 3)</h3>
+  <table>
+    <tr><th>Hotel</th><th>Location</th><th>Sunday est.</th><th>Notes</th></tr>
+    <tr><td><strong>Pacific Blue Inn</strong></td><td>Santa Cruz</td><td>~$170–210</td><td>Boutique B&B, character pick at value price</td></tr>
+    <tr><td><strong>Hyatt Place</strong></td><td>Santa Cruz</td><td>~$160–200</td><td>Reliable, breakfast included</td></tr>
+    <tr><td><strong>Sea & Sand Inn</strong></td><td>Santa Cruz</td><td>~$240–300</td><td>#1 TripAdvisor SC, oceanfront, breakfast + wine hour</td></tr>
+    <tr><td><strong>Oceano Hotel</strong></td><td>Half Moon Bay</td><td>~$250–350</td><td>Closer to SFO, upscale coastal vibe, good alternative to Santa Cruz</td></tr>
+  </table>
+  <p class="pick"><strong>Best value:</strong> Pacific Blue Inn &nbsp;|&nbsp; <strong>Closest to SFO:</strong> Half Moon Bay (~45 min vs 1.5 hrs)</p>
+
+  <hr>
+
+  <h2>Total cost comparison</h2>
+  <p>Using value-pick hotels (Hotel Abrego in Monterey, Hofsas House in Carmel, Pacific Blue Inn for final night).</p>
+  <table>
+    <tr><th>Cost component</th><th class="opt1">Option 1</th><th class="opt2">Option 2</th><th class="opt3">Option 3</th></tr>
+    <tr><td>Flights (2 passengers)</td><td>$968</td><td>~$996–1,040</td><td>~$968–1,020</td></tr>
+    <tr><td>Monterey hotel</td><td>~$490 (2 nights)</td><td>~$640 (3 nights)</td><td>~$490 (2 nights)</td></tr>
+    <tr><td>Carmel hotel</td><td>~$370</td><td>~$370</td><td>~$370</td></tr>
+    <tr><td>Final night hotel</td><td>~$185 (1 night)</td><td>~$185 (1 night)</td><td>~$370 (2 nights)</td></tr>
+    <tr><td>Est. taxes + parking</td><td>~$170</td><td>~$210</td><td>~$210</td></tr>
+    <tr class="total-row"><td>Estimated total / couple</td><td>~$2,180</td><td>~$2,400</td><td>~$2,410</td></tr>
+    <tr class="total-row"><td>PTO — Nick</td><td>3 days</td><td>4 days</td><td>4 days</td></tr>
+    <tr class="total-row"><td>PTO — Shannon</td><td>3 days</td><td>4 days</td><td>4 days</td></tr>
+  </table>
+
+  <hr>
+
+  <h2>Booking order (all options)</h2>
+  <ul>
+    <li><strong>1. Carmel Saturday hotel immediately</strong> — Hofsas House, Tally Ho Inn, or Cypress Inn. Don't wait on this.</li>
+    <li><strong>2. Decide Option 1 vs 2 vs 3</strong> — drives the outbound flight date and number of Monterey nights.</li>
+    <li><strong>3. Flights</strong> — lock in once option is chosen.</li>
+    <li><strong>4. Remaining hotels</strong> — Monterey and final night can wait a few weeks. Book direct for best rates.</li>
+  </ul>
+
+  <h2>Key caveats</h2>
+  <ul>
+    <li>Confirm whether there's a welcome event Friday night — affects how much of Big Sur you can do that day</li>
+    <li>Ask wedding couple about a Carmel room block before booking independently</li>
+    <li>Big Basin is optional Sunday in Options 1 and 2 — easy to skip if post-wedding recovery takes priority</li>
+    <li>Half Moon Bay is a legit alternative to Santa Cruz for the final night — closer to SFO, quieter, slightly more upscale</li>
+    <li>All hotel rates are historical estimates — confirm live pricing before booking</li>
+    <li>Car rental: ~$60–80/day + gas. Non-negotiable for this trip.</li>
+  </ul>
+</div>
