@@ -781,6 +781,15 @@
         color: #3c4858;
       }
 
+      .summary-box li {
+        margin-bottom: 14px;
+        line-height: 1.65;
+      }
+
+      .summary-box li:last-child {
+        margin-bottom: 0;
+      }
+
       .prompt-stack {
         display: grid;
         gap: 14px;
@@ -1966,36 +1975,6 @@
             </div>
             <div style="margin-top:16px;"><a class="infra-link" href="https://docs.google.com/presentation/d/1KggjcPo8M3Au5qm15D0yj6VHOOfqE6SUvF0FojSkZyo/edit?slide=id.g3a8921cff42_0_15#slide=id.g3a8921cff42_0_15" target="_blank" rel="noreferrer">View Workflows Slide</a></div>
 
-            <div class="ai-detail-grid"<div class="ai-detail-grid" aria-label="AI implementation details">
-              <article class="ai-card">
-                <h3>What backs the model call</h3>
-                <ul class="plain-list">
-                  <li>Provider: ChatGPT Responses.</li>
-                  <li>Model: GPT-5.4.</li>
-                  <li>Workflow: <code>ReportBoardSummary</code>.</li>
-                  <li>Output: markdown summary plus structured completion metadata.</li>
-                </ul>
-              </article>
-              <article class="ai-card">
-                <h3>What the shared prompt enforces</h3>
-                <ul class="plain-list">
-                  <li>Act like a security reporting analyst.</li>
-                  <li>Use the available report tools for evidence.</li>
-                  <li>Prioritize meaningful deltas and risks.</li>
-                  <li>Write in a concise executive style.</li>
-                </ul>
-              </article>
-              <article class="ai-card">
-                <h3>What the UI needs to handle</h3>
-                <ul class="plain-list">
-                  <li>Show generating state on the summary tile.</li>
-                  <li>Poll the Board until status changes.</li>
-                  <li>Let users regenerate after report or date changes.</li>
-                  <li>Keep the saved summary available for export.</li>
-                </ul>
-              </article>
-            </div>
-
             <div class="ai-lifecycle">
               <article class="ai-card highlight">
                 <div class="summary-box">
@@ -2422,7 +2401,7 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
             </div>
 
             <!-- 1 · Page visits & discovery -->
-            <div class="pl-subsection">
+            <div class="pl-subsection" style="margin-top: 32px;">
               <p class="pl-subsection-label">1 · Page visits &amp; discovery</p><p><a class="infra-link" href="https://us5.datadoghq.com/dashboard/vpa-yrz-by6/report-boards-adoption--engagement?fromUser=false&refresh_mode=paused&from_ts=1776162513927&to_ts=1778033672000&live=false" target="_blank" rel="noreferrer">View Datadog Dashboard</a></p>
               <p class="section-intro" style="margin-bottom:16px;">RUM signals (Apr 21 – May 19) &nbsp;·&nbsp; Template views from DB (more complete)</p>
 
