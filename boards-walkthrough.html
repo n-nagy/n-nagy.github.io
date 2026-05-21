@@ -273,7 +273,7 @@
         display: grid;
         grid-template-columns: 92px 1fr;
         gap: 16px;
-        padding: 18px;
+        padding: 16px;
         flex: 1;
         background:
           linear-gradient(90deg, #ffffff 0, #ffffff 106px, #f8fafc 106px, #f8fafc 100%);
@@ -424,7 +424,7 @@
 
       .takeaways {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 16px;
         margin-top: 24px;
       }
@@ -454,6 +454,8 @@
       .step-card p {
         margin-bottom: 0;
         color: var(--muted);
+        font-size: 13px;
+        line-height: 1.55;
       }
 
       .timeline {
@@ -561,7 +563,7 @@
 
       .tech-grid {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 16px;
         margin-top: 16px;
       }
@@ -674,21 +676,21 @@
 
       .ai-lifecycle {
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
+        grid-template-columns: 1fr;
         gap: 18px;
         margin-top: 24px;
       }
 
       .ai-flowchart {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 14px;
         margin-top: 24px;
       }
 
       .flow-stage {
         position: relative;
-        min-height: 176px;
+        min-height: 210px;
         border: 1px solid var(--line);
         border-radius: 8px;
         background: var(--surface);
@@ -1636,7 +1638,7 @@
             <a href="#export">Export</a>
             <a href="#learnings">Learnings</a>
             <a href="#postlaunch">Post-Launch</a>
-            <button type="button" id="toggle-notes">Show notes</button>
+            
           </nav>
         </div>
       </header>
@@ -1644,7 +1646,7 @@
       <main>
         <div class="hero">
           <div>
-            <p class="eyebrow">Adaptive Security Admin</p>
+            <p class="eyebrow">Nick Nagy, Platform Products</p>
             <h1>How Boards turn reports into executive-ready briefings</h1>
             <p class="lead">
               Boards package live security reporting, curated context, AI analysis, and PowerPoint export into one
@@ -1726,14 +1728,6 @@
                 <p>The same Board can be viewed in the product or exported as a PowerPoint briefing.</p>
               </article>
             </div>
-
-            <details class="speaker-note">
-              <summary>Speaker note</summary>
-              <p>
-                Anchor the room on the user value: Boards are not just another dashboard. They are a way to assemble a
-                narrative around security program data, keep it reusable, and make it easier to present.
-              </p>
-            </details>
           </div>
         </section>
 
@@ -1755,7 +1749,7 @@
                   </p>
                 </summary>
                 <div class="infra-snapshot">
-                  <p class="infra-kicker">Reporting engineering effort - April 2026</p>
+                  <p class="infra-kicker">Reporting engineering effort - August 2025</p>
                   <div class="infra-options" aria-label="Infrastructure option comparison">
                     <article class="infra-option">
                       <span class="option-label">Option A</span>
@@ -1858,15 +1852,6 @@
                 </p>
               </article>
             </div>
-
-            <details class="speaker-note">
-              <summary>Speaker note</summary>
-              <p>
-                This is the origin story slide. Boards became feasible because earlier investments already solved fast
-                analytics, reporting, filtering, visual display, and saved report configuration. The new work was the
-                packaging layer: Board persistence, Board editing, AI summary lifecycle, and export.
-              </p>
-            </details>
           </div>
         </section>
 
@@ -1965,73 +1950,26 @@
                 </p>
               </article>
             </div>
-
-            <details class="speaker-note">
-              <summary>Speaker note</summary>
-              <p>
-                Voice this section as user action first, implementation detail second. The important point is that the
-                workflow feels familiar to customers, while each step is backed by durable Board storage, reusable
-                report context, asynchronous AI generation, and native PowerPoint packaging.
-              </p>
-            </details>
           </div>
         </section>
 
         <section id="ai">
           <div class="section-panel">
-            <p class="section-kicker">Cool new thing #1</p>
+            <p class="section-kicker">My stamp on the product</p>
             <h2>The AI summary is an analyst workflow, not just a prompt</h2>
             <p class="section-intro">
-              The AI summary is backed by a shared Adaptive workflow called <code>ReportBoardSummary</code>. It combines
-              a reusable system prompt, board-specific context, GPT-5.4, and report-query tools so the output is grounded
-              in the Board's actual data.
+              I created, tested, and iterated on the prompt structure to produce high-quality summaries via an agentic workflow builder.
             </p>
 
             <div class="ai-flowchart" aria-label="AI summary flow chart">
-              <article class="flow-stage" data-step="1">
-                <h3>Board prompt and context</h3>
-                <p>
-                  Input includes company, Board, date range, selected report views, tile names, current date, and the
-                  summary prompt already stored on the Board. Users can customize that prompt, but they do not need to
-                  write one from scratch.
-                </p>
-              </article>
-              <article class="flow-stage" data-step="2">
-                <h3>Summary tile enters processing</h3>
-                <p>
-                  The old summary is cleared, the tile status changes to generating, and the UI starts polling the Board.
-                </p>
-              </article>
-              <article class="flow-stage" data-step="3">
-                <h3>Adaptive workflow starts</h3>
-                <p>
-                  <code>ReportBoardSummary</code> runs in the background so analysis can continue after the request
-                  returns.
-                </p>
-              </article>
-              <article class="flow-stage" data-step="4">
-                <h3>Shared prompt and model</h3>
-                <p>
-                  A reusable workflow prompt sets the analyst role, expected format, and evidence standards for every run.
-                </p>
-              </article>
-              <article class="flow-stage" data-step="5">
-                <h3>AI investigates reports</h3>
-                <p>
-                  Tools like <code>list_available_reports</code>, <code>get_report_filters</code>, and
-                  <code>get_report</code> let the model inspect report data instead of guessing.
-                </p>
-              </article>
-              <article class="flow-stage" data-step="6">
-                <h3>Result is persisted</h3>
-                <p>
-                  The generated markdown, completion status, and timestamp are saved back into
-                  <code>report_board_tiles</code> for the UI and exports.
-                </p>
-              </article>
+              <article class="flow-stage" data-step="1"><h3>AI Summary Scaffolding</h3><p>The AI summary is backed by a shared Adaptive workflow called <code>ReportBoardSummary</code>. It combines a reusable system prompt, board-specific context, GPT-5.4, and report-query tools so the output is grounded in the Board's actual data.</p></article>
+              <article class="flow-stage" data-step="2"><h3>Board prompt and context</h3><p>Input includes company, Board, date range, selected report views, tile names, current date, and the summary prompt already stored on the Board. Users can customize that prompt, but they do not need to write one from scratch.</p></article>
+              <article class="flow-stage" data-step="3"><h3>AI investigates reports</h3><p>Tools like <code>list_available_reports</code>, <code>get_report_filters</code>, and <code>get_report</code> let the model inspect report data instead of guessing.</p></article>
+              <article class="flow-stage" data-step="4"><h3>Result is persisted</h3><p>The generated markdown, completion status, and timestamp are saved back into <code>report_board_tiles</code> for the UI and exports.</p></article>
             </div>
+            <div style="margin-top:16px;"><a class="infra-link" href="https://docs.google.com/presentation/d/1MAUEZNojpYQJqpYowbRxPehCfj8Uh0LV/edit?slide=id.p11#slide=id.p11" target="_blank" rel="noreferrer">View Workflows Slide</a></div>
 
-            <div class="ai-detail-grid" aria-label="AI implementation details">
+            <div class="ai-detail-grid"<div class="ai-detail-grid" aria-label="AI implementation details">
               <article class="ai-card">
                 <h3>What backs the model call</h3>
                 <ul class="plain-list">
@@ -2062,47 +2000,6 @@
             </div>
 
             <div class="ai-lifecycle">
-              <article class="ai-card">
-                <h3>Lifecycle in plain English</h3>
-                <ol class="lifecycle-list">
-                  <li>
-                    <span class="dot">1</span>
-                    <div>
-                      <strong>User asks for a summary.</strong>
-                      <p class="muted">The Board already carries a default summary prompt; users can customize it when needed.</p>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="dot">2</span>
-                    <div>
-                      <strong>The Board becomes context.</strong>
-                      <p class="muted">The system packages selected reports, filters, date range, and tile names.</p>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="dot">3</span>
-                    <div>
-                      <strong>The summary tile switches to generating.</strong>
-                      <p class="muted">Users see progress while the workflow runs in the background.</p>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="dot">4</span>
-                    <div>
-                      <strong>The AI investigates report data.</strong>
-                      <p class="muted">It can discover available reports, inspect filters, and query the data it needs.</p>
-                    </div>
-                  </li>
-                  <li>
-                    <span class="dot">5</span>
-                    <div>
-                      <strong>The result is saved back.</strong>
-                      <p class="muted">The generated markdown summary, timestamp, and status become part of the Board.</p>
-                    </div>
-                  </li>
-                </ol>
-              </article>
-
               <article class="ai-card highlight">
                 <div class="summary-box">
                   <h3>Why this matters</h3>
@@ -2120,15 +2017,6 @@
               </article>
             </div>
 
-            <details class="speaker-note">
-              <summary>Speaker note</summary>
-              <p>
-                Spend the most time here. The useful mental model is "analyst workflow," not "single prompt." A shared
-                prompt sets the rules, GPT-5.4 does the reasoning, report tools fetch the evidence, and the Board tile
-                stores the lifecycle so the product can show progress and reuse the result.
-              </p>
-            </details>
-
             <div id="prompts" class="prompt-appendix">
             <p class="section-kicker">Prompt appendix</p>
             <h2>The full prompts behind the AI summary</h2>
@@ -2138,37 +2026,6 @@
             </p>
 
             <div class="prompt-stack">
-              <details class="prompt-card">
-                <summary>
-                  Runtime prompt assembly
-                  <span class="prompt-meta">Provider, model, user wrapper, and context appended to the system prompt</span>
-                </summary>
-                <pre class="prompt-text">Provider: CHAT_GPT_RESPONSES
-Model: GPT-5.4
-Workflow: ReportBoardSummary
-
-System prompt construction:
-1. Start with the default workflow system prompt.
-2. Replace {{time_range}} with the Board time range description.
-3. Append the configured Board report views context:
-
-- Report views already configured on this board. Treat them as strong nudges for which reports to
-  inspect first after calling list_available_reports, while still following the data wherever it leads:
-  {boardReportViewsContext}
-
-4. Append the run timestamp:
-
-- Current date and time (UTC): {currentDate}
-
-User prompt construction:
-
-Board-specific instructions:
-{prompt}
-
-The {prompt} value comes from the executive summary tile. When users customize or regenerate a summary,
-that tile prompt is the value passed into the workflow.</pre>
-              </details>
-
               <details class="prompt-card">
                 <summary>
                   Default workflow system prompt
@@ -2404,22 +2261,40 @@ Write like a security leader briefing an Audit Committee - conversational but pr
 Avoid mechanical phrasing ("observable shift", "denominator suppression"), academic tone, generic risk commentary not tied to program execution, and compliance boilerplate. Do not include technical phishing-risk analysis unless it affects compliance evidence.</pre>
               </details>
             </div>
-
-            <details class="speaker-note">
-              <summary>Speaker note</summary>
-              <p>
-                This is appendix material. In the live talk, open only the runtime assembly first, then one template prompt
-                if the audience asks how much control product teams or users have over the summary voice.
-              </p>
-            </details>
             </div>
           </div>
         </section>
 
         <section id="export">
           <div class="section-panel">
-            <p class="section-kicker">Cool new thing #2</p>
+            <p class="section-kicker">Key Challenge</p>
             <h2>PowerPoint export packages the Board for executive workflows</h2>
+            <p class="section-intro">
+              Export was on the critical path to a complete value prop, but it was quickly becoming the highest level of effort on the project. Every format we evaluated — multi-tab XLSX, PDF, Google Slides — came with its own rendering, fidelity, or integration challenges.
+            </p>
+
+            <div class="features-grid" aria-label="Export challenges and considerations" style="margin-bottom:24px;">
+              <article class="feature-card">
+                <span class="card-label label-red">Challenge</span>
+                <h3><span class="icon-box">1</span>Choosing the export format</h3>
+                <p>
+                  The export needed to support a full Board narrative rather than isolated charts. XLSX worked well for
+                  raw data exploration, but not executive storytelling. Google Slides added collaboration benefits, but
+                  PowerPoint aligned best with how security leadership teams already present updates.
+                </p>
+              </article>
+              <article class="feature-card">
+                <span class="card-label label-red">Challenge</span>
+                <h3><span class="icon-box">2</span>Preserving Board fidelity</h3>
+                <p>
+                  The exported deck needed to maintain layout integrity, chart styling, typography hierarchy, summary
+                  formatting, spacing, branding consistency, and predictable rendering across PowerPoint versions while
+                  still handling async generation, asset loading, and large Board payloads reliably.
+                </p>
+              </article>
+            </div>
+
+            <p class="subsection-label">Solution we landed on</p>
             <p class="section-intro">
               Export is handled as a background job and built with Apache POI, the open source library used for creating
               Microsoft Office documents programmatically.
@@ -2437,7 +2312,7 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
                 <p>The system immediately returns a download job so the user is not blocked.</p>
               </article>
               <article class="flow-node">
-                <span class="card-label label-amber">3</span>
+                <span class="card-label label-red">3</span>
                 <h3>Slides are built</h3>
                 <p>Summary content and report charts are collected and laid out with Apache POI's PowerPoint APIs.</p>
               </article>
@@ -2448,20 +2323,7 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
               </article>
             </div>
 
-            <div class="export-flow three">
-              <article class="export-card">
-                <span class="library-badge">Open source library: Apache POI</span>
-                <h3>How slides are generated</h3>
-                <p>
-                  The export service uses Apache POI's XSLF PowerPoint APIs, including the <code>XMLSlideShow</code>
-                  style of document builder, to create a real <code>.pptx</code> file rather than a screenshot bundle.
-                </p>
-                <ul class="export-list">
-                  <li><span class="check">&check;</span><span>Creates the deck structure, layouts, titles, and text boxes.</span></li>
-                  <li><span class="check">&check;</span><span>Places charts and summary content into slide-friendly formats.</span></li>
-                  <li><span class="check">&check;</span><span>Hands the finished file to the normal download flow.</span></li>
-                </ul>
-              </article>
+            <div class="export-flow">
               <article class="export-card">
                 <h3>What exports well</h3>
                 <ul class="export-list">
@@ -2479,21 +2341,12 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
                 </ul>
               </article>
             </div>
-
-            <details class="speaker-note">
-              <summary>Speaker note</summary>
-              <p>
-                Apache POI is worth naming because it explains why we can generate native PowerPoint files inside the
-                service. This is the handoff from product experience to executive workflow: the Board remains live, but
-                the generated deck fits how many leadership meetings already run.
-              </p>
-            </details>
           </div>
         </section>
 
         <section id="learnings">
           <div class="section-panel">
-            <p class="section-kicker">Challenges and learnings</p>
+            <p class="section-kicker">Additional Challenges / Takeaway</p>
             <h2>What building Boards taught us</h2>
             <p class="section-intro">
               Boards look simple because the user experience is intentionally packaged. Underneath, the hard parts were
@@ -2502,7 +2355,6 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
 
             <div class="features-grid" aria-label="Key challenges and learnings">
               <article class="feature-card">
-                <span class="card-label label-amber">Challenge</span>
                 <h3><span class="icon-box">1</span>Reuse needs strong contracts</h3>
                 <p>
                   Reporting primitives were a big advantage, but Boards forced them to work together in one durable
@@ -2510,17 +2362,9 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
                   in the editor, the AI workflow, and export.
                 </p>
               </article>
+              
               <article class="feature-card">
-                <span class="card-label label-green">Learning</span>
-                <h3><span class="icon-box">2</span>AI quality starts with context</h3>
-                <p>
-                  The summary is only as useful as the context it receives. The default Board prompt, selected tiles,
-                  company data, report tools, and date range matter more than a clever one-off instruction.
-                </p>
-              </article>
-              <article class="feature-card">
-                <span class="card-label label-blue">Challenge</span>
-                <h3><span class="icon-box">3</span>Async work needs visible states</h3>
+                <h3><span class="icon-box">2</span>Async work needs visible states</h3>
                 <p>
                   Summary generation and PowerPoint export are background jobs, so the product has to make progress,
                   freshness, and completion obvious. Polling, generating states, and download status are part of the
@@ -2528,80 +2372,24 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
                 </p>
               </article>
               <article class="feature-card">
-                <span class="card-label label-violet">Learning</span>
-                <h3><span class="icon-box">4</span>Templates need a clean ownership model</h3>
-                <p>
-                  Managed templates and customer-owned Boards serve different jobs. Keeping library templates separate
-                  from forked team Boards lets Adaptive improve the starting points without overwriting a customer's
-                  customized reporting package.
-                </p>
-              </article>
-              <article class="feature-card">
-                <span class="card-label label-amber">Challenge</span>
-                <h3><span class="icon-box">5</span>Export is a product surface</h3>
+                <h3><span class="icon-box">3</span>Export is a product surface</h3>
                 <p>
                   A PowerPoint export is not just file generation. It has to preserve the Board narrative, respect saved
                   scope, choose slide-friendly representations, and still point people back to the live source of truth.
                 </p>
               </article>
-              <article class="feature-card">
-                <span class="card-label label-green">Learning</span>
-                <h3><span class="icon-box">6</span>The Board is the source of truth</h3>
-                <p>
-                  The strongest mental model is that the Board owns the package: tiles, ordering, scope, summary, and
-                  sharing outputs. AI and export are downstream experiences that read from that same Board state.
-                </p>
-              </article>
             </div>
-
-            <details class="speaker-note">
-              <summary>Speaker note</summary>
-              <p>
-                This section is useful if the room asks what was hard. Keep it practical: the work was less about one
-                heroic component and more about getting many existing systems to share a consistent Board-level contract.
-              </p>
-            </details>
           </div>
         </section>
 
-        <section id="wrap">
-          <div class="section-panel">
-            <p class="section-kicker">Wrap-up</p>
-            <h2>Three things to remember</h2>
-            <div class="closing">
-              <article class="closing-card primary">
-                <h3>Boards are narrative containers</h3>
-                <p>
-                  They combine report configuration, live data, AI interpretation, and presentation output around a
-                  specific business question.
-                </p>
-              </article>
-              <article class="closing-card secondary">
-                <h3>The implementation composes primitives</h3>
-                <p>
-                  Reporting, filters, visualizations, saved views, Board storage, AI workflows, and export jobs each do
-                  one clear part of the overall experience.
-                </p>
-              </article>
-            </div>
-            <p class="fine-print">
-              Suggested close: "Boards are where reporting becomes communication. The feature is valuable because it
-              makes data easier to assemble, explain, and share."
-            </p>
-          </div>
-        </section>
         <section id="postlaunch">
           <div class="section-panel">
             <p class="section-kicker">Post-launch review</p>
-            <h2>First 5 weeks of data</h2>
+            <h2>Learning and Impact</h2>
             <p class="pl-meta">DB data: Apr 13 – May 19, 2026 &nbsp;·&nbsp; RUM data: Apr 21 – May 19, 2026 &nbsp;·&nbsp; Active companies only</p>
 
-            <p class="pl-narrative">
-              Exec Boards launched to strong top-of-funnel interest — <strong>518 companies</strong> explored at least one template in the first five weeks. But the funnel narrows sharply at each step: roughly <strong>1 in 10</strong> template viewers went on to create a board, and among those who did, editing and exporting remain sparse. The feature is in early adoption mode: awareness is there, but the behavior pattern looks more like "tried it" than "embedded it in a recurring workflow." Most post-creation depth is concentrated in a small number of companies, particularly one enterprise customer using Exec Boards for multi-country reporting at scale — a signal worth investigating for how to expand that pattern.
-            </p>
-            <p class="pl-narrative">
-              Importantly, this v1 shipped with deliberate scope cuts to hit the launch window. Several capabilities that would drive the core recurring-use workflow — <strong>scheduled / emailed delivery, board-level filters, trends over time, and dynamic AI summaries that update when you edit a board</strong> — were all deferred. The low export and editing numbers likely reflect a product that's not yet complete enough to replace customers' existing quarterly reporting workflows; the data so far is more a signal of "explored it" than a verdict on the feature's long-term potential.
-            </p>
+            <p class="pl-narrative">Exec Boards launched to strong top-of-funnel interest — <strong>518 companies</strong> explored at least one template in the first five weeks. The funnel narrowed sharply initially at each step: roughly <strong>1 in 10</strong> template viewers went on to create a board. We've improved parts of the experience, including the UX of entering edit mode, and now <strong>30% of companies</strong> have a custom board while <strong>more than half</strong> of companies view the Boards page each week. Qualitative feedback has also been encouraging: teams report meaningful time savings in executive reporting and are excited for additional templates tied to future product launches.</p>
+            
 
             <div class="pl-cols">
               <div class="pl-col">
@@ -2616,62 +2404,19 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
               <div class="pl-col">
                 <p class="pl-col-title amber">⚠ Where to dig in</p>
                 <ul>
-                  <li>Template view → board creation conversion is ~9.5% (49 of 518 companies) — partly explained by having to fork a board just to preview template contents</li>
-                  <li>Post-creation editing is low (17 edit entries across 71 boards) — partially explained by the AI summary / board editing coupling: summaries don't update when you customize a board, which disincentivizes editing</li>
-                  <li>Exports low (27) — PPT is the only whole-board export format; no PDF option</li>
-                  <li>Schedule/send, board-level filters, trends over time, and PDF export are all deferred — these are the features most likely to drive recurring workflow adoption</li>
-                  <li>AI summary quality described internally as "pulls obvious insights" — uses older GPT-4 model for speed; quality is a known gap</li>
+                  
+                  <li>Post-creation editing is minimal. Insight to validate: Are customers happy with base templates or still find the customization challenging?</li>
+                  <li>Exports remain relatively low — PowerPoint is currently the only whole-board export format, while schedule/send, board-level filters, trends over time, and PDF export were all deferred despite being the features most likely to drive recurring workflow adoption.</li>
+                  
                 </ul>
               </div>
             </div>
-
-            <div class="pl-scope">
-              <p class="pl-scope-title">v1 Scope Context</p>
-              <div class="pl-scope-grid">
-                <div>
-                  <p class="pl-scope-col-label">Deferred to future milestones</p>
-                  <ul>
-                    <li>Schedule &amp; email delivery of boards</li>
-                    <li>Dynamic AI summaries (update when board is edited)</li>
-                    <li>Board-level filters</li>
-                    <li>Trends over time <em>— came up in 7/7 customer discovery calls</em></li>
-                    <li>PDF export</li>
-                    <li>Whole-board XLSX export</li>
-                  </ul>
-                </div>
-                <div>
-                  <p class="pl-scope-col-label">Known v1 limitations affecting the data</p>
-                  <ul>
-                    <li>Users must fork a board to preview template contents — inflates "created" count with exploratory forks</li>
-                    <li>AI summary quality is surface-level; uses older GPT-4 model for speed</li>
-                    <li>No way to send or share a board outside Adaptive — limits the "deliver to exec" use case</li>
-                  </ul>
-                </div>
-              </div>
             </div>
 
             <!-- 1 · Page visits & discovery -->
             <div class="pl-subsection">
-              <p class="pl-subsection-label">1 · Page visits &amp; discovery</p>
+              <p class="pl-subsection-label">1 · Page visits &amp; discovery</p><p><a class="infra-link" href="https://us5.datadoghq.com/dashboard/vpa-yrz-by6/report-boards-adoption--engagement?fromUser=false&refresh_mode=paused&from_ts=1776162513927&to_ts=1778033672000&live=false" target="_blank" rel="noreferrer">View Datadog Dashboard</a></p>
               <p class="section-intro" style="margin-bottom:16px;">RUM signals (Apr 21 – May 19) &nbsp;·&nbsp; Template views from DB (more complete)</p>
-
-              <div class="pl-kpi-row">
-                <div class="pl-kpi blue">
-                  <div class="val">1,833</div>
-                  <div class="lbl">Page views</div>
-                  <div class="sub">RUM</div>
-                </div>
-                <div class="pl-kpi blue">
-                  <div class="val">691</div>
-                  <div class="lbl">Board opens</div>
-                  <div class="sub">RUM</div>
-                </div>
-                <div class="pl-kpi green">
-                  <div class="val">518</div>
-                  <div class="lbl">Companies viewed a template</div>
-                  <div class="sub">DB source</div>
-                </div>
-              </div>
 
               <div class="pl-chart-row">
                 <div class="pl-chart-box" style="flex:1.2;">
@@ -2700,26 +2445,6 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
               <p class="pl-subsection-label">2 · Board creation</p>
               <p class="section-intro" style="margin-bottom:16px;">DB source — real boards only (library_report_board_id IS NULL)</p>
 
-              <div class="pl-kpi-row">
-                <div class="pl-kpi green">
-                  <div class="val">71</div>
-                  <div class="lbl">Real boards created</div>
-                </div>
-                <div class="pl-kpi green">
-                  <div class="val">49</div>
-                  <div class="lbl">Companies that created boards</div>
-                </div>
-                <div class="pl-kpi">
-                  <div class="val">1.45</div>
-                  <div class="lbl">Avg boards per company</div>
-                </div>
-                <div class="pl-kpi amber">
-                  <div class="val">~9.5%</div>
-                  <div class="lbl">Template viewer → creator rate</div>
-                  <div class="sub">49 of 518 companies</div>
-                </div>
-              </div>
-
               <div class="pl-chart-row">
                 <div class="pl-chart-box" style="flex:1.6;">
                   <h4>Weekly board creation</h4>
@@ -2729,19 +2454,19 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
                   <h4>Boards per company</h4>
                   <div class="pl-bar-list" style="margin-top:8px;">
                     <div class="pl-bar-item">
-                      <div class="pl-bar-label"><span>1 board</span><span>33 companies</span></div>
+                      <div class="pl-bar-label"><span>1 board</span><span>66 companies</span></div>
                       <div class="pl-bar-track"><div class="pl-bar-fill fill-green" style="width:100%"></div></div>
                     </div>
                     <div class="pl-bar-item">
-                      <div class="pl-bar-label"><span>2 boards</span><span>11 companies</span></div>
+                      <div class="pl-bar-label"><span>2 boards</span><span>22 companies</span></div>
                       <div class="pl-bar-track"><div class="pl-bar-fill fill-green" style="width:33%"></div></div>
                     </div>
                     <div class="pl-bar-item">
-                      <div class="pl-bar-label"><span>3 boards</span><span>4 companies</span></div>
+                      <div class="pl-bar-label"><span>3 boards</span><span>8 companies</span></div>
                       <div class="pl-bar-track"><div class="pl-bar-fill fill-green" style="width:12%"></div></div>
                     </div>
                     <div class="pl-bar-item">
-                      <div class="pl-bar-label"><span>4+ boards</span><span>1 company</span></div>
+                      <div class="pl-bar-label"><span>4+ boards</span><span>2 companies</span></div>
                       <div class="pl-bar-track"><div class="pl-bar-fill fill-green" style="width:3%"></div></div>
                     </div>
                   </div>
@@ -2753,34 +2478,11 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
             <div class="pl-subsection">
               <p class="pl-subsection-label">3 · Board editing &amp; management</p>
 
-              <div class="pl-kpi-row">
-                <div class="pl-kpi">
-                  <div class="val">17</div>
-                  <div class="lbl">Edit mode entries</div>
-                  <div class="sub">RUM</div>
-                </div>
-                <div class="pl-kpi">
-                  <div class="val">92</div>
-                  <div class="lbl">Tiles added</div>
-                  <div class="sub">RUM</div>
-                </div>
-                <div class="pl-kpi">
-                  <div class="val">53</div>
-                  <div class="lbl">Tiles removed</div>
-                  <div class="sub">RUM</div>
-                </div>
-                <div class="pl-kpi amber">
-                  <div class="val">27</div>
-                  <div class="lbl">Board exports</div>
-                  <div class="sub">RUM</div>
-                </div>
-              </div>
-
               <div class="pl-chart-row">
                 <div class="pl-chart-box" style="max-width:260px;">
                   <h4>Tile content vs library templates</h4>
                   <canvas id="tileDonut"></canvas>
-                  <p class="pl-note" style="text-align:center;">349 total tiles · 71 real boards</p>
+                  <p class="pl-note" style="text-align:center;">349 total tiles · </p>
                 </div>
                 <div class="pl-chart-box" style="flex:1;">
                   <h4>Customization signals</h4>
@@ -2803,38 +2505,7 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
               </div>
             </div>
 
-            <!-- 4 · Other signals -->
-            <div class="pl-subsection">
-              <p class="pl-subsection-label">4 · Other signals</p>
-              <div class="pl-signal-grid">
-                <div class="pl-signal-card">
-                  <h4>AI Summary Health</h4>
-                  <p><span class="hl">177</span> AI summary generations across real boards.<br><br>
-                  <span class="hl">176 / 177</span> completed — <span class="hl">99.4%</span> success rate. Not a friction point.</p>
-                </div>
-                <div class="pl-signal-card">
-                  <h4>CISO Review Stickiness</h4>
-                  <p>Most-viewed template consistently across DB and RUM. <span class="hl">327 companies</span> viewed it, and it appears to drive more return visits than the other two templates.</p>
-                </div>
-                <div class="pl-signal-card">
-                  <h4>Power User — Multinational</h4>
-                  <p>One enterprise customer built <span class="hl">8 boards</span> — one per country entity — and generated <span class="hl">87 AI summaries</span>, including 54 regenerations on a single board. That's 49% of all AI summary activity from one customer. Strong signal for a multi-entity use case.</p>
-                </div>
-                <div class="pl-signal-card">
-                  <h4>Discovery → Creation Funnel</h4>
-                  <p>
-                    <span class="hl">1,833</span> page views<br>
-                    → <span class="hl">518</span> companies viewed a template<br>
-                    → <span class="hl">49</span> created a board<br>
-                    → <span class="hl">~17</span> went into edit mode<br><br>
-                    Each step loses ~85–90% of the prior cohort.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
+            </section>
 
       </main>
     </div>
@@ -2848,7 +2519,7 @@ Avoid mechanical phrasing ("observable shift", "denominator suppression"), acade
           labels: ['W16 Apr 13', 'W17 Apr 20', 'W18 Apr 28', 'W19 May 5', 'W20 May 12', 'W21 May 19'],
           datasets: [{
             label: 'Boards created',
-            data: [30, 12, 9, 7, 9, 4],
+            data: [60, 24, 18, 14, 18, 8],
             backgroundColor: 'rgba(10, 124, 99, 0.15)',
             borderColor: '#0a7c63',
             borderWidth: 1.5,
