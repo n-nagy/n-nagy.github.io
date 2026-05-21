@@ -1,0 +1,2908 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Boards — Technical Walkthrough &amp; Post-Launch Review</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #18212f;
+        --muted: #627083;
+        --soft: #f5f7fa;
+        --surface: #ffffff;
+        --line: #d8dee8;
+        --line-strong: #aeb8c7;
+        --blue: #275efe;
+        --blue-soft: #e9efff;
+        --green: #0a7c63;
+        --green-soft: #e4f5ef;
+        --amber: #9a5a00;
+        --amber-soft: #fff3da;
+        --violet: #7652c7;
+        --violet-soft: #f0ebff;
+        --red: #b63737;
+        --red-soft: #ffecec;
+        --shadow: 0 18px 50px rgba(28, 42, 64, 0.10);
+        --radius: 8px;
+        --radius-lg: 12px;
+        --max: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 112px;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          linear-gradient(180deg, #fbfcfe 0%, #eef3f8 48%, #f7f8fb 100%);
+        line-height: 1.5;
+      }
+
+      button,
+      summary {
+        font: inherit;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .page-shell {
+        min-height: 100vh;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid rgba(216, 222, 232, 0.9);
+        background: rgba(255, 255, 255, 0.88);
+        backdrop-filter: blur(18px);
+      }
+
+      .topbar-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+      }
+
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3px;
+        padding: 5px;
+        border-radius: 8px;
+        background: var(--ink);
+        box-shadow: 0 8px 24px rgba(24, 33, 47, 0.18);
+      }
+
+      .brand-mark span {
+        border-radius: 3px;
+        background: #ffffff;
+        opacity: 0.92;
+      }
+
+      .brand-text {
+        min-width: 0;
+      }
+
+      .brand-text strong {
+        display: block;
+        font-size: 14px;
+        line-height: 1.1;
+      }
+
+      .brand-text small {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .nav a,
+      .nav button {
+        border: 0;
+        border-radius: 8px;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 8px 10px;
+        text-decoration: none;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .nav a:hover,
+      .nav button:hover {
+        background: var(--soft);
+        color: var(--ink);
+      }
+
+      main {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 28px 24px 72px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        gap: 34px;
+        align-items: stretch;
+        padding: 44px 0 34px;
+      }
+
+      .eyebrow {
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 820px;
+        margin-bottom: 18px;
+        font-size: clamp(44px, 6vw, 74px);
+        line-height: 0.96;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin-bottom: 12px;
+        font-size: clamp(30px, 4vw, 44px);
+        line-height: 1.05;
+        letter-spacing: 0;
+      }
+
+      h3 {
+        margin-bottom: 8px;
+        font-size: 20px;
+        line-height: 1.2;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 740px;
+        margin-bottom: 26px;
+        color: #3c4858;
+        font-size: 22px;
+        line-height: 1.42;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        color: var(--ink);
+        cursor: pointer;
+        padding: 10px 14px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 650;
+        box-shadow: 0 1px 0 rgba(24, 33, 47, 0.04);
+      }
+
+      .button.primary {
+        border-color: #1648d3;
+        background: var(--blue);
+        color: #ffffff;
+      }
+
+      .hero-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 420px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .mock-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .mock-title {
+        font-weight: 750;
+      }
+
+      .mock-pill {
+        border-radius: 999px;
+        background: var(--green-soft);
+        color: var(--green);
+        padding: 5px 9px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .mock-body {
+        display: grid;
+        grid-template-columns: 92px 1fr;
+        gap: 16px;
+        padding: 18px;
+        flex: 1;
+        background:
+          linear-gradient(90deg, #ffffff 0, #ffffff 106px, #f8fafc 106px, #f8fafc 100%);
+      }
+
+      .mock-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .mock-sidebar span {
+        height: 10px;
+        border-radius: 999px;
+        background: #cfd7e3;
+      }
+
+      .mock-sidebar span:nth-child(1) {
+        width: 72px;
+        background: var(--blue);
+      }
+
+      .mock-sidebar span:nth-child(2) {
+        width: 60px;
+      }
+
+      .mock-sidebar span:nth-child(3) {
+        width: 78px;
+      }
+
+      .mock-main {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .summary-preview {
+        border: 1px solid #dbcfff;
+        border-radius: 8px;
+        background: var(--violet-soft);
+        padding: 14px;
+      }
+
+      .summary-preview strong {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--violet);
+        font-size: 13px;
+      }
+
+      .line {
+        height: 9px;
+        border-radius: 999px;
+        background: rgba(118, 82, 199, 0.24);
+      }
+
+      .line + .line {
+        margin-top: 7px;
+      }
+
+      .line.short {
+        width: 72%;
+      }
+
+      .chart-preview {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+
+      .mini-card {
+        min-height: 96px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 12px;
+      }
+
+      .bar-row {
+        display: flex;
+        align-items: end;
+        gap: 6px;
+        height: 54px;
+        margin-top: 8px;
+      }
+
+      .bar {
+        width: 100%;
+        border-radius: 4px 4px 0 0;
+        background: var(--blue);
+      }
+
+      .bar:nth-child(1) {
+        height: 34%;
+      }
+
+      .bar:nth-child(2) {
+        height: 72%;
+      }
+
+      .bar:nth-child(3) {
+        height: 52%;
+      }
+
+      .bar:nth-child(4) {
+        height: 86%;
+        background: var(--green);
+      }
+
+      .table-lines {
+        display: grid;
+        gap: 7px;
+        margin-top: 12px;
+      }
+
+      .table-lines span {
+        height: 8px;
+        border-radius: 999px;
+        background: #dfe5ee;
+      }
+
+      section {
+        margin-top: 28px;
+        scroll-margin-top: 170px;
+      }
+
+      .section-panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        background: rgba(255, 255, 255, 0.92);
+        box-shadow: 0 10px 36px rgba(28, 42, 64, 0.06);
+        padding: 34px;
+      }
+
+      .section-kicker {
+        margin-bottom: 8px;
+        color: var(--muted);
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .section-intro {
+        max-width: 820px;
+        color: #3c4858;
+        font-size: 18px;
+      }
+
+      .takeaways {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .takeaway {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 18px;
+      }
+
+      .takeaway .num {
+        width: 34px;
+        height: 34px;
+        display: grid;
+        place-items: center;
+        margin-bottom: 12px;
+        border-radius: 8px;
+        background: var(--blue-soft);
+        color: var(--blue);
+        font-weight: 800;
+      }
+
+      .takeaway p,
+      .feature-card p,
+      .system-card p,
+      .step-card p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 24px;
+      }
+
+      .step-card {
+        position: relative;
+        min-height: 182px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 18px;
+      }
+
+      .step-card::after {
+        content: "";
+        position: absolute;
+        top: 38px;
+        right: -10px;
+        width: 10px;
+        height: 2px;
+        background: var(--line-strong);
+      }
+
+      .step-card:last-child::after {
+        display: none;
+      }
+
+      .scope-details summary {
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .scope-details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .scope-details summary::after {
+        content: "Show JSONB";
+        display: inline-flex;
+        margin-top: 14px;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        padding: 5px 9px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .scope-details[open] summary::after {
+        content: "Hide JSONB";
+      }
+
+      .scope-json {
+        max-height: 230px;
+        margin: 14px 0 0;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #f7f9fc;
+        overflow: auto;
+        padding: 12px;
+        color: #243246;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 11px;
+        line-height: 1.5;
+        white-space: pre-wrap;
+      }
+
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        margin-bottom: 12px;
+        border-radius: 50%;
+        background: var(--ink);
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .system-map {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+        margin-top: 26px;
+      }
+
+      .system-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 18px;
+      }
+
+      .system-card.span {
+        grid-column: span 2;
+      }
+
+      .tech-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      .tech-detail {
+        border: 1px dashed var(--line-strong);
+        border-radius: 8px;
+        background: #fbfcfe;
+        padding: 18px;
+      }
+
+      .code-list,
+      .plain-list {
+        display: grid;
+        gap: 9px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .code-list li,
+      .plain-list li {
+        color: #3c4858;
+        font-size: 14px;
+      }
+
+      code {
+        border: 1px solid #dde4ee;
+        border-radius: 6px;
+        background: #f3f6fa;
+        color: #243246;
+        padding: 2px 6px;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 0.9em;
+        overflow-wrap: anywhere;
+      }
+
+      .card-label {
+        display: inline-flex;
+        align-items: center;
+        min-height: 26px;
+        margin-bottom: 12px;
+        border-radius: 999px;
+        padding: 4px 9px;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .label-blue {
+        background: var(--blue-soft);
+        color: var(--blue);
+      }
+
+      .label-green {
+        background: var(--green-soft);
+        color: var(--green);
+      }
+
+      .label-amber {
+        background: var(--amber-soft);
+        color: var(--amber);
+      }
+
+      .label-violet {
+        background: var(--violet-soft);
+        color: var(--violet);
+      }
+
+      .label-red {
+        background: var(--red-soft);
+        color: var(--red);
+      }
+
+      .flow-row {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .flow-node {
+        position: relative;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 18px;
+      }
+
+      .flow-node::after {
+        content: ">";
+        position: absolute;
+        top: 50%;
+        right: -13px;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: var(--surface);
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .flow-node:last-child::after {
+        display: none;
+      }
+
+      .ai-lifecycle {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .ai-flowchart {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .flow-stage {
+        position: relative;
+        min-height: 176px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 18px;
+      }
+
+      .flow-stage::before {
+        content: attr(data-step);
+        display: inline-grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        margin-bottom: 12px;
+        border-radius: 8px;
+        background: var(--violet);
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 850;
+      }
+
+      .flow-stage p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .ai-detail-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .ai-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 22px;
+      }
+
+      .ai-card.highlight {
+        border-color: #ccbdfa;
+        background:
+          linear-gradient(180deg, #fbf9ff 0%, #ffffff 100%);
+      }
+
+      .lifecycle-list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .lifecycle-list li {
+        display: grid;
+        grid-template-columns: 34px 1fr;
+        gap: 12px;
+        align-items: start;
+      }
+
+      .dot {
+        width: 26px;
+        height: 26px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--violet);
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .summary-box {
+        border: 1px solid #ccbdfa;
+        border-radius: 8px;
+        background: var(--violet-soft);
+        padding: 18px;
+      }
+
+      .summary-box h3 {
+        color: var(--violet);
+      }
+
+      .summary-box ul {
+        margin: 12px 0 0;
+        padding-left: 20px;
+        color: #3c4858;
+      }
+
+      .prompt-stack {
+        display: grid;
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .prompt-appendix {
+        margin-top: 30px;
+        border-top: 1px solid var(--line);
+        padding-top: 28px;
+      }
+
+      .prompt-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        overflow: hidden;
+      }
+
+      .prompt-card summary {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 16px 18px;
+        color: var(--ink);
+        font-weight: 850;
+        list-style: none;
+      }
+
+      .prompt-card summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .prompt-card summary::after {
+        content: "+";
+        width: 24px;
+        height: 24px;
+        display: inline-grid;
+        place-items: center;
+        flex: 0 0 auto;
+        border: 1px solid var(--line-strong);
+        border-radius: 6px;
+        color: var(--muted);
+      }
+
+      .prompt-card[open] summary::after {
+        content: "-";
+      }
+
+      .prompt-meta {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .prompt-text {
+        max-height: 520px;
+        margin: 0;
+        border-top: 1px solid var(--line);
+        background: #f7f9fc;
+        overflow: auto;
+        padding: 18px;
+        color: #243246;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        font-size: 12px;
+        line-height: 1.55;
+        white-space: pre-wrap;
+      }
+
+      .library-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 14px;
+        border: 1px solid #bfd8ff;
+        border-radius: 999px;
+        background: var(--blue-soft);
+        color: var(--blue);
+        padding: 6px 10px;
+        font-size: 13px;
+        font-weight: 800;
+      }
+
+      .subsection-label {
+        margin: 30px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 850;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .primitive-progress {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 24px;
+      }
+
+      .primitive-progress::before {
+        content: "";
+        position: absolute;
+        left: 9%;
+        right: 9%;
+        top: 33px;
+        height: 2px;
+        background: var(--line-strong);
+      }
+
+      .primitive-card {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 18px;
+      }
+
+      .primitive-card::before {
+        content: "";
+        display: block;
+        width: 14px;
+        height: 14px;
+        margin-bottom: 14px;
+        border: 3px solid #ffffff;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 0 1px var(--line-strong);
+      }
+
+      .primitive-card h3 {
+        margin-bottom: 9px;
+        font-size: 18px;
+      }
+
+      .primitive-card p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .primitive-details[open] {
+        grid-column: 1 / -1;
+      }
+
+      .primitive-details summary {
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .primitive-details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .primitive-details summary::after {
+        content: "Show decision";
+        display: inline-flex;
+        margin-top: 14px;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        padding: 5px 9px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      .primitive-details[open] summary::after {
+        content: "Hide decision";
+      }
+
+      .infra-snapshot {
+        display: grid;
+        gap: 14px;
+        margin-top: 16px;
+        border-top: 1px solid var(--line);
+        padding-top: 16px;
+      }
+
+      .infra-kicker {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .infra-options {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .infra-option {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfcfe;
+        padding: 14px;
+      }
+
+      .infra-option .option-label {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 850;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .infra-option h4 {
+        margin: 0 0 8px;
+        font-size: 15px;
+      }
+
+      .infra-option strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--ink);
+        font-size: 22px;
+        line-height: 1.1;
+      }
+
+      .infra-option p {
+        font-size: 13px;
+      }
+
+      .infra-recommendation {
+        border-left: 3px solid var(--amber);
+        border-radius: 8px;
+        background: #fff8e1;
+        padding: 12px 14px;
+        color: #735319;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .infra-link {
+        display: inline-flex;
+        width: fit-content;
+        border: 1px solid #bfd8ff;
+        border-radius: 999px;
+        background: var(--blue-soft);
+        color: var(--blue);
+        padding: 7px 11px;
+        font-size: 13px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .infra-link:hover {
+        border-color: #8bbdff;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-top: 24px;
+      }
+
+      .feature-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 20px;
+      }
+
+      .feature-card h3 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .icon-box {
+        width: 34px;
+        height: 34px;
+        display: inline-grid;
+        place-items: center;
+        flex: 0 0 auto;
+        border-radius: 8px;
+        background: var(--soft);
+        color: var(--ink);
+        font-weight: 900;
+      }
+
+      .export-flow {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .export-flow.three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .export-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--surface);
+        padding: 22px;
+      }
+
+      .export-list {
+        display: grid;
+        gap: 12px;
+        margin: 16px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .export-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        color: #3c4858;
+      }
+
+      .check {
+        width: 22px;
+        height: 22px;
+        display: inline-grid;
+        place-items: center;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        background: var(--green-soft);
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .speaker-note {
+        margin-top: 22px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fbfcfe;
+      }
+
+      .speaker-note summary {
+        cursor: pointer;
+        padding: 12px 14px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 750;
+        list-style: none;
+      }
+
+      .speaker-note summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .speaker-note summary::before {
+        content: "+";
+        display: inline-grid;
+        place-items: center;
+        width: 18px;
+        height: 18px;
+        margin-right: 8px;
+        border: 1px solid var(--line-strong);
+        border-radius: 4px;
+        color: var(--muted);
+      }
+
+      .speaker-note[open] summary::before {
+        content: "-";
+      }
+
+      .speaker-note p {
+        margin: 0;
+        border-top: 1px solid var(--line);
+        padding: 14px;
+        color: #4a5667;
+        font-size: 14px;
+      }
+
+      .closing {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 24px;
+      }
+
+      .closing-card {
+        border-radius: 8px;
+        padding: 22px;
+      }
+
+      .closing-card.primary {
+        background: var(--ink);
+        color: #ffffff;
+      }
+
+      .closing-card.secondary {
+        border: 1px solid var(--line);
+        background: var(--surface);
+      }
+
+      .closing-card.primary p {
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .closing-card.secondary p {
+        color: var(--muted);
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .fine-print {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 920px) {
+        .hero,
+        .ai-lifecycle,
+        .ai-flowchart,
+        .ai-detail-grid,
+        .export-flow,
+        .export-flow.three,
+        .closing {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline,
+        .flow-row,
+        .primitive-progress {
+          grid-template-columns: 1fr;
+        }
+
+        .primitive-progress::before {
+          top: 24px;
+          bottom: 24px;
+          left: 25px;
+          right: auto;
+          width: 2px;
+          height: auto;
+        }
+
+        .primitive-card {
+          padding-left: 52px;
+        }
+
+        .primitive-details[open] {
+          grid-column: auto;
+        }
+
+        .infra-options {
+          grid-template-columns: 1fr;
+        }
+
+        .primitive-card::before {
+          position: absolute;
+          top: 20px;
+          left: 18px;
+          margin-bottom: 0;
+        }
+
+        .step-card::after,
+        .flow-node::after {
+          display: none;
+        }
+
+        .takeaways,
+        .system-map,
+        .tech-grid,
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .system-card.span {
+          grid-column: auto;
+        }
+
+        .hero-card {
+          min-height: 360px;
+        }
+      }
+
+      @media (min-width: 921px) {
+        section {
+          scroll-margin-top: 86px;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .topbar-inner,
+        main {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .topbar-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .nav {
+          justify-content: flex-start;
+        }
+
+        h1 {
+          font-size: 42px;
+        }
+
+        .lead {
+          font-size: 19px;
+        }
+
+        .section-panel {
+          padding: 22px;
+        }
+
+        .mock-body {
+          grid-template-columns: 1fr;
+          background: #f8fafc;
+        }
+
+        .mock-sidebar {
+          display: none;
+        }
+      }
+
+      @media print {
+        body {
+          background: #ffffff;
+        }
+
+        .topbar,
+        .hero-actions {
+          display: none;
+        }
+
+        main {
+          max-width: none;
+          padding: 0;
+        }
+
+        section,
+        .hero {
+          break-inside: avoid;
+        }
+
+        .section-panel,
+        .hero-card,
+        .takeaway,
+        .step-card,
+        .system-card,
+        .feature-card,
+        .export-card {
+          box-shadow: none;
+        }
+
+        .speaker-note {
+          display: block;
+        }
+      }
+
+      /* ── Post-launch section ── */
+      .pl-meta {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 28px;
+      }
+
+      .pl-narrative {
+        font-size: 15px;
+        line-height: 1.75;
+        color: var(--ink);
+        max-width: 760px;
+        margin-bottom: 28px;
+      }
+
+      .pl-narrative strong { color: var(--ink); }
+
+      .pl-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 28px;
+      }
+
+      .pl-col {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 20px 22px;
+      }
+
+      .pl-col-title {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        margin-bottom: 12px;
+      }
+
+      .pl-col-title.green { color: var(--green); }
+      .pl-col-title.amber { color: var(--amber); }
+
+      .pl-col ul {
+        padding-left: 16px;
+        margin: 0;
+      }
+
+      .pl-col li {
+        font-size: 13.5px;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 5px;
+      }
+
+      .pl-scope {
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        border-radius: var(--radius-lg);
+        padding: 18px 22px;
+        margin-bottom: 28px;
+      }
+
+      .pl-scope-title {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        color: #92400e;
+        margin-bottom: 12px;
+      }
+
+      .pl-scope-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .pl-scope-col-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #78350f;
+        margin-bottom: 7px;
+      }
+
+      .pl-scope ul {
+        padding-left: 16px;
+        margin: 0;
+      }
+
+      .pl-scope li {
+        font-size: 13px;
+        color: #92400e;
+        line-height: 1.7;
+        margin-bottom: 3px;
+      }
+
+      /* KPI row */
+      .pl-kpi-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+
+      .pl-kpi {
+        flex: 1;
+        min-width: 130px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 16px 18px;
+        border-left: 3px solid var(--line-strong);
+      }
+
+      .pl-kpi.blue  { border-left-color: var(--blue); }
+      .pl-kpi.green { border-left-color: var(--green); }
+      .pl-kpi.amber { border-left-color: var(--amber); }
+      .pl-kpi.violet { border-left-color: var(--violet); }
+
+      .pl-kpi .val {
+        font-size: 28px;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1;
+      }
+
+      .pl-kpi.blue  .val { color: var(--blue); }
+      .pl-kpi.green .val { color: var(--green); }
+      .pl-kpi.amber .val { color: var(--amber); }
+      .pl-kpi.violet .val { color: var(--violet); }
+
+      .pl-kpi .lbl {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 6px;
+      }
+
+      .pl-kpi .sub {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 3px;
+        opacity: 0.7;
+      }
+
+      /* Data subsections */
+      .pl-subsection {
+        margin-bottom: 32px;
+      }
+
+      .pl-subsection-label {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 14px;
+      }
+
+      .pl-chart-row {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+
+      .pl-chart-box {
+        flex: 1;
+        min-width: 220px;
+        background: var(--soft);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 18px 20px;
+      }
+
+      .pl-chart-box h4 {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin-bottom: 14px;
+      }
+
+      canvas { max-height: 180px; }
+
+      /* Bar list */
+      .pl-bar-list { display: flex; flex-direction: column; gap: 10px; }
+
+      .pl-bar-item {}
+
+      .pl-bar-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        margin-bottom: 5px;
+        color: var(--ink);
+      }
+
+      .pl-bar-label span:last-child {
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+        font-size: 12px;
+      }
+
+      .pl-bar-track {
+        height: 5px;
+        background: var(--line);
+        border-radius: 3px;
+      }
+
+      .pl-bar-fill {
+        height: 5px;
+        border-radius: 3px;
+      }
+
+      .fill-blue   { background: var(--blue); }
+      .fill-green  { background: var(--green); }
+      .fill-violet { background: var(--violet); }
+      .fill-amber  { background: var(--amber); }
+      .fill-muted  { background: var(--muted); }
+
+      /* Signal cards */
+      .pl-signal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 14px;
+      }
+
+      .pl-signal-card {
+        background: var(--soft);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-lg);
+        padding: 16px 18px;
+      }
+
+      .pl-signal-card h4 {
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin-bottom: 9px;
+      }
+
+      .pl-signal-card p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .pl-signal-card .hl {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .pl-note {
+        font-size: 11px;
+        color: var(--muted);
+        margin-top: 12px;
+        font-style: italic;
+      }
+
+      @media (max-width: 680px) {
+        .pl-cols,
+        .pl-scope-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar" aria-label="Page navigation">
+        <div class="topbar-inner">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="brand-text">
+              <strong>Boards</strong>
+              <small>Technical walkthrough &amp; post-launch review</small>
+            </div>
+          </div>
+          <nav class="nav" aria-label="Sections">
+            <a href="#what">What</a>
+            <a href="#system">Parts</a>
+            <a href="#journey">Journey</a>
+            <a href="#ai">AI summary</a>
+            <a href="#export">Export</a>
+            <a href="#learnings">Learnings</a>
+            <a href="#postlaunch">Post-Launch</a>
+            <button type="button" id="toggle-notes">Show notes</button>
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <div class="hero">
+          <div>
+            <p class="eyebrow">Adaptive Security Admin</p>
+            <h1>How Boards turn reports into executive-ready briefings</h1>
+            <p class="lead">
+              Boards package live security reporting, curated context, AI analysis, and PowerPoint export into one
+              repeatable workflow for leadership updates, audit prep, and team reporting.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#journey">Walk the user journey</a>
+              <a class="button" href="#ai">Jump to AI summary</a>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="Simplified board preview">
+            <div class="mock-top">
+              <span class="mock-title">Security Leadership Update</span>
+              <span class="mock-pill">Ready</span>
+            </div>
+            <div class="mock-body">
+              <div class="mock-sidebar" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="mock-main">
+                <div class="summary-preview">
+                  <strong>AI Summary</strong>
+                  <div class="line"></div>
+                  <div class="line"></div>
+                  <div class="line short"></div>
+                </div>
+                <div class="chart-preview">
+                  <div class="mini-card">
+                    <strong>Phishing Performance</strong>
+                    <div class="bar-row" aria-hidden="true">
+                      <span class="bar"></span>
+                      <span class="bar"></span>
+                      <span class="bar"></span>
+                      <span class="bar"></span>
+                    </div>
+                  </div>
+                  <div class="mini-card">
+                    <strong>Training Completion</strong>
+                    <div class="table-lines" aria-hidden="true">
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <section id="what">
+          <div class="section-panel">
+            <p class="section-kicker">The big idea</p>
+            <h2>What Boards Are</h2>
+            <p class="section-intro">
+              A Board is a reusable reporting package. Instead of sending people across many report pages, it gathers
+              the right report snapshots, explains what changed, and packages the result for sharing.
+            </p>
+
+            <div class="takeaways">
+              <article class="takeaway">
+                <div class="num">1</div>
+                <h3>Curated reporting</h3>
+                <p>Each Board contains report tiles selected for a specific business moment or audience.</p>
+              </article>
+              <article class="takeaway">
+                <div class="num">2</div>
+                <h3>AI analysis</h3>
+                <p>The summary looks across the Board's reports and turns data patterns into concise takeaways.</p>
+              </article>
+              <article class="takeaway">
+                <div class="num">3</div>
+                <h3>Shareable output</h3>
+                <p>The same Board can be viewed in the product or exported as a PowerPoint briefing.</p>
+              </article>
+            </div>
+
+            <details class="speaker-note">
+              <summary>Speaker note</summary>
+              <p>
+                Anchor the room on the user value: Boards are not just another dashboard. They are a way to assemble a
+                narrative around security program data, keep it reusable, and make it easier to present.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <section id="system">
+          <div class="section-panel">
+            <p class="section-kicker">Parts that came together</p>
+            <h2>Boards combine reusable reporting primitives with a few targeted new pieces</h2>
+            <p class="section-intro">
+              The feature is less about one giant new system and more about composition. Boards sit on top of existing
+              reporting, filtering, visualization, saved-view, and analytics infrastructure.
+            </p>
+
+            <div class="primitive-progress" aria-label="Progression of existing primitives leading up to Boards">
+              <details class="primitive-card primitive-details">
+                <summary>
+                  <h3>ClickHouse infrastructure</h3>
+                  <p>
+                    Low-latency analytics infrastructure gives reporting a fast foundation for event and metric data.
+                  </p>
+                </summary>
+                <div class="infra-snapshot">
+                  <p class="infra-kicker">Reporting engineering effort - April 2026</p>
+                  <div class="infra-options" aria-label="Infrastructure option comparison">
+                    <article class="infra-option">
+                      <span class="option-label">Option A</span>
+                      <h4>Postgres flattened tables</h4>
+                      <strong>4-6 weeks</strong>
+                      <p>
+                        Highest confidence and lowest extra cost, but more rigid as reporting grows and joins become
+                        more complex.
+                      </p>
+                    </article>
+                    <article class="infra-option">
+                      <span class="option-label">Option B</span>
+                      <h4>ClickHouse</h4>
+                      <strong>5-7 weeks</strong>
+                      <p>
+                        Medium-high confidence with Kafka-to-ClickHouse wiring, materialized views, and a better fit
+                        for low-latency analytics.
+                      </p>
+                    </article>
+                    <article class="infra-option">
+                      <span class="option-label">Option C</span>
+                      <h4>Redshift</h4>
+                      <strong>6-8 weeks</strong>
+                      <p>
+                        Good scale, but slower iteration, heavier AWS service dependencies, and higher modeled monthly
+                        cost.
+                      </p>
+                    </article>
+                  </div>
+                  <p class="infra-recommendation">
+                    The takeaway: ClickHouse was the balanced infrastructure bet. It cost more than staying in Postgres,
+                    but gave reporting stronger scale, lower-latency analytics, and more future flexibility than the
+                    Redshift path.
+                  </p>
+                  <a class="infra-link" href="https://n-nagy.github.io/build-v-buy.html" target="_blank" rel="noreferrer">
+                    Open the full build-vs-buy analysis
+                  </a>
+                </div>
+              </details>
+              <article class="primitive-card">
+                <h3>Reporting service</h3>
+                <p>
+                  Boards lean on existing report definitions, metrics queries, dimensions, and table data rather than
+                  inventing a parallel analytics stack.
+                </p>
+              </article>
+              <article class="primitive-card">
+                <h3>Visualizations</h3>
+                <p>
+                  Charts, tables, hidden columns, and saved report settings already existed as product building blocks.
+                </p>
+              </article>
+              <article class="primitive-card">
+                <h3>Filters and time ranges</h3>
+                <p>
+                  The same filter model that powers reports also scopes Board tiles, AI analysis, and exported charts.
+                </p>
+              </article>
+              <article class="primitive-card">
+                <h3>Saved report views</h3>
+                <p>
+                  A Board tile can preserve the report, display mode, filters, date range, and visibility choices that
+                  make a report useful for a particular audience.
+                </p>
+              </article>
+            </div>
+
+            <p class="subsection-label">What Boards added on top</p>
+            <div class="features-grid" aria-label="New work added for Boards">
+              <article class="feature-card">
+                <span class="card-label label-blue">New for Boards</span>
+                <h3><span class="icon-box">B</span>Board data model</h3>
+                <p>
+                  New Board storage keeps templates, company-owned Boards, ordered report tiles, and executive summary
+                  tile state together as one reusable package.
+                </p>
+              </article>
+              <article class="feature-card">
+                <span class="card-label label-blue">New for Boards</span>
+                <h3><span class="icon-box">T</span>Templates and team Boards</h3>
+                <p>
+                  Library templates give customers curated starting points. When used, they become company-owned Boards
+                  that teams can customize without changing the original.
+                </p>
+              </article>
+              <article class="feature-card">
+                <span class="card-label label-blue">New for Boards</span>
+                <h3><span class="icon-box">N</span>Board workspace</h3>
+                <p>
+                  The table of contents, drag-friendly ordering, edit mode, tile duplication, and summary freshness
+                  prompts turn the raw report pieces into a guided workflow.
+                </p>
+              </article>
+              <article class="feature-card">
+                <span class="card-label label-blue">New for Boards</span>
+                <h3><span class="icon-box">A</span>AI and export orchestration</h3>
+                <p>
+                  Summary generation and PowerPoint packaging run as asynchronous jobs so users can keep working while
+                  the Board becomes a shareable narrative.
+                </p>
+              </article>
+            </div>
+
+            <details class="speaker-note">
+              <summary>Speaker note</summary>
+              <p>
+                This is the origin story slide. Boards became feasible because earlier investments already solved fast
+                analytics, reporting, filtering, visual display, and saved report configuration. The new work was the
+                packaging layer: Board persistence, Board editing, AI summary lifecycle, and export.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <section id="journey">
+          <div class="section-panel">
+            <p class="section-kicker">Customer workflow</p>
+            <h2>The user journey</h2>
+            <p class="section-intro">
+              From a user's point of view, Boards feel like a guided workflow: choose the starting point, tailor the
+              reporting, generate the narrative, and share the finished package.
+            </p>
+
+            <div class="timeline" aria-label="User journey timeline">
+              <article class="step-card">
+                <span class="step-number">1</span>
+                <h3>Choose a starting point</h3>
+                <p>
+                  Managed templates live as <code>library_report_boards</code>. Users can preview a template against
+                  their real data, then fork it into a customer-owned <code>company_report_boards</code> record, or
+                  create that company Board directly from scratch.
+                </p>
+              </article>
+              <article class="step-card">
+                <span class="step-number">2</span>
+                <h3>Manage Board context</h3>
+                <p>
+                  Add, remove, and reorder tiles tracked in <code>report_board_tiles</code>. Each tile points back to a
+                  reporting library option and carries saved display context, giving the Board an ordered set of reports
+                  for rendering, AI, and export.
+                </p>
+              </article>
+              <details class="step-card scope-details">
+                <summary>
+                  <span class="step-number">3</span>
+                  <h3>Tune the scope</h3>
+                  <p>
+                    Tile order is stored in <code>report_board_tiles.sequence</code>, while most tile-specific settings
+                    live in the <code>details</code> JSONB column: filters, date range, display mode, hidden columns, and
+                    chart/table visibility. That saved scope is reused for rendering, AI context, and export.
+                  </p>
+                </summary>
+                <pre class="scope-json">{
+  "name": "Nick Engineering",
+  "type": "REPORT_VIEW",
+  "visibility": "BOTH",
+  "viewDetails": {
+    "filters": [
+      {
+        "key": "ADAPTIVE_GROUPS",
+        "values": [
+          "928fa31a-57aa-4fff-9bb7-217d338df19a"
+        ]
+      }
+    ],
+    "timeRange": "LAST_6_MONTHS",
+    "hiddenColumns": [
+      "fullName",
+      "phoneNumber",
+      "jobTitle",
+      "emailDomain",
+      "employeeNumber",
+      "officeLocation",
+      "organization",
+      "organizationUnitPath",
+      "homePhoneNumber",
+      "workPhoneNumber",
+      "mobilePhoneNumber",
+      "userTimezone",
+      "employeeType",
+      "externalCreated",
+      "userStartDate",
+      "languages",
+      "employeeGroups",
+      "assignedApplications"
+    ]
+  },
+  "reportDefinitionId": "ee1f8d0f-8b2d-4370-9c22-314077f23534"
+}</pre>
+              </details>
+              <article class="step-card">
+                <span class="step-number">4</span>
+                <h3>Generate analysis</h3>
+                <p>
+                  Regeneration marks the summary tile as generating and starts <code>ReportBoardSummary</code> with the
+                  company, Board prompt, selected tiles, date range, and report-query tools. Generated markdown is saved
+                  back onto the Board.
+                </p>
+              </article>
+              <article class="step-card">
+                <span class="step-number">5</span>
+                <h3>Export or present</h3>
+                <p>
+                  Present the live Board in-app or start a background export job. The export reads the saved Board and
+                  tile state, materializes report outputs using the same scope, then Apache POI builds the native
+                  PowerPoint file.
+                </p>
+              </article>
+            </div>
+
+            <details class="speaker-note">
+              <summary>Speaker note</summary>
+              <p>
+                Voice this section as user action first, implementation detail second. The important point is that the
+                workflow feels familiar to customers, while each step is backed by durable Board storage, reusable
+                report context, asynchronous AI generation, and native PowerPoint packaging.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <section id="ai">
+          <div class="section-panel">
+            <p class="section-kicker">Cool new thing #1</p>
+            <h2>The AI summary is an analyst workflow, not just a prompt</h2>
+            <p class="section-intro">
+              The AI summary is backed by a shared Adaptive workflow called <code>ReportBoardSummary</code>. It combines
+              a reusable system prompt, board-specific context, GPT-5.4, and report-query tools so the output is grounded
+              in the Board's actual data.
+            </p>
+
+            <div class="ai-flowchart" aria-label="AI summary flow chart">
+              <article class="flow-stage" data-step="1">
+                <h3>Board prompt and context</h3>
+                <p>
+                  Input includes company, Board, date range, selected report views, tile names, current date, and the
+                  summary prompt already stored on the Board. Users can customize that prompt, but they do not need to
+                  write one from scratch.
+                </p>
+              </article>
+              <article class="flow-stage" data-step="2">
+                <h3>Summary tile enters processing</h3>
+                <p>
+                  The old summary is cleared, the tile status changes to generating, and the UI starts polling the Board.
+                </p>
+              </article>
+              <article class="flow-stage" data-step="3">
+                <h3>Adaptive workflow starts</h3>
+                <p>
+                  <code>ReportBoardSummary</code> runs in the background so analysis can continue after the request
+                  returns.
+                </p>
+              </article>
+              <article class="flow-stage" data-step="4">
+                <h3>Shared prompt and model</h3>
+                <p>
+                  A reusable workflow prompt sets the analyst role, expected format, and evidence standards for every run.
+                </p>
+              </article>
+              <article class="flow-stage" data-step="5">
+                <h3>AI investigates reports</h3>
+                <p>
+                  Tools like <code>list_available_reports</code>, <code>get_report_filters</code>, and
+                  <code>get_report</code> let the model inspect report data instead of guessing.
+                </p>
+              </article>
+              <article class="flow-stage" data-step="6">
+                <h3>Result is persisted</h3>
+                <p>
+                  The generated markdown, completion status, and timestamp are saved back into
+                  <code>report_board_tiles</code> for the UI and exports.
+                </p>
+              </article>
+            </div>
+
+            <div class="ai-detail-grid" aria-label="AI implementation details">
+              <article class="ai-card">
+                <h3>What backs the model call</h3>
+                <ul class="plain-list">
+                  <li>Provider: ChatGPT Responses.</li>
+                  <li>Model: GPT-5.4.</li>
+                  <li>Workflow: <code>ReportBoardSummary</code>.</li>
+                  <li>Output: markdown summary plus structured completion metadata.</li>
+                </ul>
+              </article>
+              <article class="ai-card">
+                <h3>What the shared prompt enforces</h3>
+                <ul class="plain-list">
+                  <li>Act like a security reporting analyst.</li>
+                  <li>Use the available report tools for evidence.</li>
+                  <li>Prioritize meaningful deltas and risks.</li>
+                  <li>Write in a concise executive style.</li>
+                </ul>
+              </article>
+              <article class="ai-card">
+                <h3>What the UI needs to handle</h3>
+                <ul class="plain-list">
+                  <li>Show generating state on the summary tile.</li>
+                  <li>Poll the Board until status changes.</li>
+                  <li>Let users regenerate after report or date changes.</li>
+                  <li>Keep the saved summary available for export.</li>
+                </ul>
+              </article>
+            </div>
+
+            <div class="ai-lifecycle">
+              <article class="ai-card">
+                <h3>Lifecycle in plain English</h3>
+                <ol class="lifecycle-list">
+                  <li>
+                    <span class="dot">1</span>
+                    <div>
+                      <strong>User asks for a summary.</strong>
+                      <p class="muted">The Board already carries a default summary prompt; users can customize it when needed.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="dot">2</span>
+                    <div>
+                      <strong>The Board becomes context.</strong>
+                      <p class="muted">The system packages selected reports, filters, date range, and tile names.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="dot">3</span>
+                    <div>
+                      <strong>The summary tile switches to generating.</strong>
+                      <p class="muted">Users see progress while the workflow runs in the background.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="dot">4</span>
+                    <div>
+                      <strong>The AI investigates report data.</strong>
+                      <p class="muted">It can discover available reports, inspect filters, and query the data it needs.</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="dot">5</span>
+                    <div>
+                      <strong>The result is saved back.</strong>
+                      <p class="muted">The generated markdown summary, timestamp, and status become part of the Board.</p>
+                    </div>
+                  </li>
+                </ol>
+              </article>
+
+              <article class="ai-card highlight">
+                <div class="summary-box">
+                  <h3>Why this matters</h3>
+                  <p>
+                    The AI is not just rewriting visible charts. It gets a structured brief about the Board, receives a
+                    common instruction set, and can call report tools to find evidence-backed patterns.
+                  </p>
+                  <ul>
+                    <li>Shared prompt keeps tone and structure consistent.</li>
+                    <li>Board context keeps each run customer- and date-specific.</li>
+                    <li>Report tools ground conclusions in current metrics.</li>
+                    <li>Saved tile status makes the async experience reliable.</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+
+            <details class="speaker-note">
+              <summary>Speaker note</summary>
+              <p>
+                Spend the most time here. The useful mental model is "analyst workflow," not "single prompt." A shared
+                prompt sets the rules, GPT-5.4 does the reasoning, report tools fetch the evidence, and the Board tile
+                stores the lifecycle so the product can show progress and reuse the result.
+              </p>
+            </details>
+
+            <div id="prompts" class="prompt-appendix">
+            <p class="section-kicker">Prompt appendix</p>
+            <h2>The full prompts behind the AI summary</h2>
+            <p class="section-intro">
+              The workflow has a shared system prompt, then wraps the Board-specific <code>prompt</code> value as user
+              instructions. The template prompts below are the seeded defaults for common Board starting points.
+            </p>
+
+            <div class="prompt-stack">
+              <details class="prompt-card">
+                <summary>
+                  Runtime prompt assembly
+                  <span class="prompt-meta">Provider, model, user wrapper, and context appended to the system prompt</span>
+                </summary>
+                <pre class="prompt-text">Provider: CHAT_GPT_RESPONSES
+Model: GPT-5.4
+Workflow: ReportBoardSummary
+
+System prompt construction:
+1. Start with the default workflow system prompt.
+2. Replace {{time_range}} with the Board time range description.
+3. Append the configured Board report views context:
+
+- Report views already configured on this board. Treat them as strong nudges for which reports to
+  inspect first after calling list_available_reports, while still following the data wherever it leads:
+  {boardReportViewsContext}
+
+4. Append the run timestamp:
+
+- Current date and time (UTC): {currentDate}
+
+User prompt construction:
+
+Board-specific instructions:
+{prompt}
+
+The {prompt} value comes from the executive summary tile. When users customize or regenerate a summary,
+that tile prompt is the value passed into the workflow.</pre>
+              </details>
+
+              <details class="prompt-card">
+                <summary>
+                  Default workflow system prompt
+                  <span class="prompt-meta">Shared instructions used across ReportBoardSummary runs</span>
+                </summary>
+                <pre class="prompt-text">You are a security officer responsible for generating content as specified below.
+
+You have several tools available to you:
+- list_available_reports will give you all reports that are available, including descriptions of their
+data, use cases, and available dimensions (group by clauses)
+- get_report_filters will give you the filters available for a given report. Be sure to always call
+this before calling get_report
+- get_report will get the actual data for a report given some set of filters and dimensions.
+
+MANDATORY ANALYSIS METHOD (SEQUENTIAL)
+
+TOOL-CALL EXECUTION STRATEGY
+- Use sequential calls only when the next call requires outputs from the previous call.
+- When calls are independent, issue multiple tool calls in the same iteration.
+- Prefer batching independent calls to maximize insights within the iteration budget.
+- Typical batching opportunities:
+  * After Discover: fetch get_report_filters for all selected report types in one iteration.
+  * Baseline: run multiple top-level get_report calls (for different report types) in one iteration.
+  * Validation: run multiple cross-check get_report calls in one iteration when they do not depend
+  on each other.
+
+1) Discover:
+- Call list_available_reports once at the beginning.
+- Choose the reports most relevant to the board objective.
+
+2) Set Time Windows:
+- Use a trailing period window ending today for the primary analysis.
+- Use the preceding period window as the comparison baseline.
+- Use explicit startDate and endDate in every get_report call.
+
+3) Build Baseline:
+- For each selected report type, call get_report_filters first.
+- Then call get_report at high level (NO_DIMENSION or top-level dimension) to establish baseline trends.
+- If multiple baseline queries are independent, call them together in the same iteration.
+
+4) Detect High-Signal Patterns:
+- Identify materially shifted metrics, inflection points, and concentration pockets.
+- Focus on patterns with meaningful business impact, not noise.
+
+5) Progressive Drill-Down:
+- Drill down one level at a time, where each next query depends on the previous result.
+- Preferred granularity ladder: organization-wide -> department/division/location/manager/group ->
+campaign/scenario/attack-vector/sender.
+- If risk is high in one segment, isolate likely drivers through additional dimensions and filters.
+- For multiple independent segments/hypotheses, evaluate them in parallel within the same iteration.
+
+6) Hypothesis + Validation:
+- For each candidate insight, form a clear hypothesis and test it with dependent follow-up queries.
+- Validate each insight with at least one cross-check from a second report type or alternate dimension.
+- Guard against denominator effects by checking simulation volume/cadence and audience size context.
+
+7) Synthesize:
+- Output only evidence-backed insights.
+- Final summary must contain at least 3 high-confidence patterns. If fewer are supportable, explain
+why and describe what was checked.
+- Each reported pattern must be backed by at least two tool results and one cross-check.
+- If data is insufficient, explicitly say what was checked and what limits confidence.
+
+QUERY RULES
+- Never call get_report before get_report_filters for that report type.
+- Every get_report call must include reportType, dimension, startDate, endDate, filters, page, and
+pageSize.
+- In every iteration, emit as many independent tool calls as useful; avoid single-call turns unless
+the workflow is strictly dependency-bound.
+- Use focused query chains over many shallow queries.
+- Do not finalize early. Complete the full sequence before producing the final summary.
+
+You can use dimensions and filters to drill down into data. For example, if a department has
+high risk, change the dimension to EMPLOYEE and use the department as a filter.
+
+You only have 15 tool call iterations to complete the summary. Be strategic about each iteration
+and do not be too verbose. You should complete this within 60 seconds.
+
+Round all values to 2 decimal places.
+
+The report board's time range is: {{time_range}}.
+Use this time range for your primary analysis window when calling get_report.
+
+CROSS-CUTTING RULES
+Always compare to the prior period with a number and a delta. Never describe a trend without quantifying it.
+If the data contains an explicit reason for a metric movement, include it in one sentence. Do not speculate beyond what the data supports.
+Lead with the theme, not the metric. Group related signals into a narrative thread rather than walking through charts one by one.
+Stay lean. The full summary should be readable in under 60 seconds. Skip metrics that are stable and unremarkable.
+No filler. Start with the finding. End when you're done.
+After drafting, remove any sentence that restates something already said in a bullet. Each sentence and bullet must add new information or it gets cut.
+
+DATE FORMATTING
+Never use ISO format (YYYY-MM-DD). Always write "Month D, YYYY".
+Weave the reporting period into prose naturally &mdash; never as a standalone label or header.
+
+NUMBER FORMATTING
+Bold a maximum of 3-4 numbers per summary &mdash; the most important ones only.
+Never chain more than two numbers in a single clause.
+Prefer percentage form over raw fractions. Omit fractions unless essential.
+Never write "about" before a number. Round to one decimal place instead.
+
+SIGNAL DISCIPLINE
+Pick one time frame for comparisons and stick to it. Do not mix period-over-period with within-period breakdowns.
+If two data points about the same metric conflict, pick the more actionable one. If both are essential, give each its own bullet and explain the tension plainly.
+If a rate changed because volume changed, lead with the volume shift as the explanation &mdash; not as a parenthetical caveat.
+Name at most two segments: the worst performer and, only if meaningfully different, the best. A segment may be a department, team, role, campaign, policy, or any other breakdown in the data.
+Never narrate your own analysis. State findings directly.
+
+DATA HYGIENE
+Omit records that appear to be test, demo, or internal artifacts (e.g. names containing "Test", "Copy", "Demo") without comment.
+Never explain what you excluded or why.
+
+CONCISION:
+After drafting, remove any sentence that restates something already said in a bullet. Each sentence and bullet must add new information or it gets cut.
+
+STRUCTURE Follow this shape exactly, in this order:
+**HEADLINE**
+One sentence in bold.
+Capture the key tension &mdash; if something improved and something worsened, name both.
+Title case, under 15 words.
+Must be specific to this period.
+Good: "Phishing Resilience Holds, But Engineering Remediation Backlog Keeps Growing"
+Bad: "Mixed Results This Quarter"
+3-5 bullets covering the most material findings &mdash; program-level metrics and the biggest risk segment together.
+
+Example:
+    Reporting Rate Improves, But Fail Rate and Engineering Backlog Both Rose
+    Phishing fail rate rose to 5.8% from 5.1% last quarter (+0.7 pts), above the industry benchmark
+    Reporting rate improved to 2.6% from 2.0% &mdash; the one metric moving in the right direction
+    Risk score eased to 32.7 from 34.1 (-1.4 pts)
+    Engineering is the clearest gap: fail rate climbed to 8.5% from 6.7%, with 48 overdue assignments up from 42</pre>
+              </details>
+
+              <details class="prompt-card">
+                <summary>
+                  Leadership Update template prompt
+                  <span class="prompt-meta">Default prompt stored on the Board / C-Suite template summary tile</span>
+                </summary>
+                <pre class="prompt-text">You are an AI-powered reporting assistant generating a Board / C-Suite human risk update.
+
+## CONTEXT
+
+Audience: Board / C-Suite
+Goal: Clear, defensible narrative of overall human cyber risk trend
+
+## DATA SOURCES
+
+Use: Company Risk Score Over Time, Phish Failure Rate Over Time, Simulation Totals, and risk concentration by department/group/location only if materially above company average.
+All numbers must come from tools. No approximations, no internal tool names, no IDs, no employee names. If prior quarter had no simulations, say so plainly.
+
+## OUTPUT FORMAT
+
+Cover these topics in order:
+1. Overall Human Risk Score trend and Phishing Failure Rate (with severity mix only if materially shifted)
+2. Simulation volume context and Reporting Rate trend
+3. Risk concentration signal (or state risk remains broadly distributed)
+
+For each metric, inline the current value, prior value, and delta. Bold only the metric name, current value, prior value, and delta - never bold full sentences.
+
+## TONE AND STYLE
+
+Write like a CISO explaining what actually happened this quarter in a board meeting - clear, confident, direct, and human. When metrics moved, explain what the company did differently (scenario difficulty mix, cadence changes, broader targeting, new hires synced, credential-harvest templates, department-specific campaigns). If not fully confirmed by data, say "Likely driven by..."
+
+Avoid consulting language ("structural deterioration", "stress-testing resilience"), abstract cyber-risk theory, vague generalizations, and academic phrasing. The narrative must clearly answer: "Is human risk improving, stable, or worsening?"</pre>
+              </details>
+
+              <details class="prompt-card">
+                <summary>
+                  CISO Review template prompt
+                  <span class="prompt-meta">Default prompt stored on the Security Leadership/Admin template summary tile</span>
+                </summary>
+                <pre class="prompt-text">You are an AI-powered reporting assistant generating a Security Leadership/Admin insights update.
+
+## CONTEXT
+
+Audience: Security Leadership / Security Admins
+Goal: QTD trend insights + program-aware analysis grounded in company activity
+
+## DATA RULES
+
+All numbers must come from tools. No approximations, no employee names, no IDs, no system references. If prior quarter has no activity, state that plainly.
+
+## OUTPUT FORMAT
+
+Cover these topics in order:
+1. Risk posture trend and Phishing susceptibility with severity mix
+2. Repeat risk signals (if not tracked, state plainly what visibility that limits) and Reporting engagement trend
+3. Training engagement trend
+
+For each metric, inline the current value, prior value, and delta. Bold only the metric name, current value, prior value, and delta - never bold full sentences.
+
+For each shift, include a driver (what changed), program context (what the company did), and an admin signal (what to review or monitor next). Weave these naturally into the paragraphs rather than using sub-bullets.
+
+## TONE AND STYLE
+
+Write like a strong security analyst explaining results in a leadership review - conversational but professional, analytical but not robotic, direct and grounded in how the program actually ran. When metrics moved, explain what likely changed (harder scenarios, broader targeting, new hires synced, cadence increases, credential-harvest templates, department-specific campaigns). If not fully confirmed, say "Likely driven by..."
+
+Avoid mechanical phrasing ("observable shift", "denominator suppression"), academic tone, generic risk commentary not tied to program activity, and compliance-report language. Do not repeat the same sentence structure across topics.</pre>
+              </details>
+
+              <details class="prompt-card">
+                <summary>
+                  Audit Preparedness template prompt
+                  <span class="prompt-meta">Default prompt stored on the Compliance / Audit Committee template summary tile</span>
+                </summary>
+                <pre class="prompt-text">You are an AI-powered reporting assistant generating a Compliance / Audit Committee update.
+
+## CONTEXT
+
+Audience: Compliance Leadership / Audit Committee
+Goal: Compliance coverage, campaign progress, and audit-readiness update
+
+## DATA SOURCES
+
+Use: Campaign Progress by Campaign, Campaign Progress by Department, Policy Acceptance Overview, Employee Training Activity (with Policy Filter where relevant), and Simulation Totals (for audit coverage evidence only). Do not prioritize risk scoring trends, behavioral severity mix, or repeat offender metrics unless they directly impact compliance coverage.
+All numbers must come from tools. No approximations, no employee names, no IDs, no internal system references. If a campaign did not run last quarter, say so plainly.
+
+## OUTPUT FORMAT
+
+Cover these topics in order:
+1. Campaign completion status (overall % vs prior, active vs closed counts if material) and department-level completion gaps (highest/lowest departments, coverage variance)
+2. Policy acceptance rate (% vs prior, key policy attestations) and incomplete/overdue assignments (totals vs prior, audit exposure risk)
+3. Simulation coverage evidence (total delivered vs prior, confirmation of documented testing for control validation)
+
+For each metric, inline the current value, prior value, and delta. Bold only the metric name, current value, prior value, and delta - never bold full sentences.
+
+For each shift, include a driver (what changed), program context (what the company did), and an admin signal (what it means for audit readiness). Weave these naturally into the paragraphs rather than using sub-bullets.
+
+## TONE AND STYLE
+
+Write like a security leader briefing an Audit Committee - conversational but professional, clear and easy to digest, direct and grounded in how the program actually ran. When metrics moved, explain what likely changed (campaign rollout timing, policy refresh cycles, new hires synced, department-specific assignments, reminder cadence adjustments, expanded targeting). If not fully confirmed, say "Likely driven by..."
+
+Avoid mechanical phrasing ("observable shift", "denominator suppression"), academic tone, generic risk commentary not tied to program execution, and compliance boilerplate. Do not include technical phishing-risk analysis unless it affects compliance evidence.</pre>
+              </details>
+            </div>
+
+            <details class="speaker-note">
+              <summary>Speaker note</summary>
+              <p>
+                This is appendix material. In the live talk, open only the runtime assembly first, then one template prompt
+                if the audience asks how much control product teams or users have over the summary voice.
+              </p>
+            </details>
+            </div>
+          </div>
+        </section>
+
+        <section id="export">
+          <div class="section-panel">
+            <p class="section-kicker">Cool new thing #2</p>
+            <h2>PowerPoint export packages the Board for executive workflows</h2>
+            <p class="section-intro">
+              Export is handled as a background job and built with Apache POI, the open source library used for creating
+              Microsoft Office documents programmatically.
+            </p>
+
+            <div class="flow-row" aria-label="Export flow">
+              <article class="flow-node">
+                <span class="card-label label-blue">1</span>
+                <h3>User clicks export</h3>
+                <p>The UI asks for a PowerPoint version of the Board.</p>
+              </article>
+              <article class="flow-node">
+                <span class="card-label label-green">2</span>
+                <h3>Job starts</h3>
+                <p>The system immediately returns a download job so the user is not blocked.</p>
+              </article>
+              <article class="flow-node">
+                <span class="card-label label-amber">3</span>
+                <h3>Slides are built</h3>
+                <p>Summary content and report charts are collected and laid out with Apache POI's PowerPoint APIs.</p>
+              </article>
+              <article class="flow-node">
+                <span class="card-label label-violet">4</span>
+                <h3>File is delivered</h3>
+                <p>The finished PowerPoint is uploaded and appears in the user's download queue.</p>
+              </article>
+            </div>
+
+            <div class="export-flow three">
+              <article class="export-card">
+                <span class="library-badge">Open source library: Apache POI</span>
+                <h3>How slides are generated</h3>
+                <p>
+                  The export service uses Apache POI's XSLF PowerPoint APIs, including the <code>XMLSlideShow</code>
+                  style of document builder, to create a real <code>.pptx</code> file rather than a screenshot bundle.
+                </p>
+                <ul class="export-list">
+                  <li><span class="check">&check;</span><span>Creates the deck structure, layouts, titles, and text boxes.</span></li>
+                  <li><span class="check">&check;</span><span>Places charts and summary content into slide-friendly formats.</span></li>
+                  <li><span class="check">&check;</span><span>Hands the finished file to the normal download flow.</span></li>
+                </ul>
+              </article>
+              <article class="export-card">
+                <h3>What exports well</h3>
+                <ul class="export-list">
+                  <li><span class="check">&check;</span><span>Executive summary slides.</span></li>
+                  <li><span class="check">&check;</span><span>Report charts using the Board's saved filters and dates.</span></li>
+                  <li><span class="check">&check;</span><span>Links back to the Board and specific tiles for follow-up.</span></li>
+                </ul>
+              </article>
+              <article class="export-card">
+                <h3>What to call out</h3>
+                <ul class="export-list">
+                  <li><span class="check">&check;</span><span>Export is asynchronous, so users can continue working.</span></li>
+                  <li><span class="check">&check;</span><span>The Board remains the source of truth after the file is created.</span></li>
+                  <li><span class="check">&check;</span><span>Tables are visible in-app; export focuses on charts and summaries.</span></li>
+                </ul>
+              </article>
+            </div>
+
+            <details class="speaker-note">
+              <summary>Speaker note</summary>
+              <p>
+                Apache POI is worth naming because it explains why we can generate native PowerPoint files inside the
+                service. This is the handoff from product experience to executive workflow: the Board remains live, but
+                the generated deck fits how many leadership meetings already run.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <section id="learnings">
+          <div class="section-panel">
+            <p class="section-kicker">Challenges and learnings</p>
+            <h2>What building Boards taught us</h2>
+            <p class="section-intro">
+              Boards look simple because the user experience is intentionally packaged. Underneath, the hard parts were
+              making reused reporting pieces behave consistently across editing, AI analysis, and export.
+            </p>
+
+            <div class="features-grid" aria-label="Key challenges and learnings">
+              <article class="feature-card">
+                <span class="card-label label-amber">Challenge</span>
+                <h3><span class="icon-box">1</span>Reuse needs strong contracts</h3>
+                <p>
+                  Reporting primitives were a big advantage, but Boards forced them to work together in one durable
+                  package. Saved report views, filters, dates, charts, and table settings all had to mean the same thing
+                  in the editor, the AI workflow, and export.
+                </p>
+              </article>
+              <article class="feature-card">
+                <span class="card-label label-green">Learning</span>
+                <h3><span class="icon-box">2</span>AI quality starts with context</h3>
+                <p>
+                  The summary is only as useful as the context it receives. The default Board prompt, selected tiles,
+                  company data, report tools, and date range matter more than a clever one-off instruction.
+                </p>
+              </article>
+              <article class="feature-card">
+                <span class="card-label label-blue">Challenge</span>
+                <h3><span class="icon-box">3</span>Async work needs visible states</h3>
+                <p>
+                  Summary generation and PowerPoint export are background jobs, so the product has to make progress,
+                  freshness, and completion obvious. Polling, generating states, and download status are part of the
+                  core experience, not just implementation details.
+                </p>
+              </article>
+              <article class="feature-card">
+                <span class="card-label label-violet">Learning</span>
+                <h3><span class="icon-box">4</span>Templates need a clean ownership model</h3>
+                <p>
+                  Managed templates and customer-owned Boards serve different jobs. Keeping library templates separate
+                  from forked team Boards lets Adaptive improve the starting points without overwriting a customer's
+                  customized reporting package.
+                </p>
+              </article>
+              <article class="feature-card">
+                <span class="card-label label-amber">Challenge</span>
+                <h3><span class="icon-box">5</span>Export is a product surface</h3>
+                <p>
+                  A PowerPoint export is not just file generation. It has to preserve the Board narrative, respect saved
+                  scope, choose slide-friendly representations, and still point people back to the live source of truth.
+                </p>
+              </article>
+              <article class="feature-card">
+                <span class="card-label label-green">Learning</span>
+                <h3><span class="icon-box">6</span>The Board is the source of truth</h3>
+                <p>
+                  The strongest mental model is that the Board owns the package: tiles, ordering, scope, summary, and
+                  sharing outputs. AI and export are downstream experiences that read from that same Board state.
+                </p>
+              </article>
+            </div>
+
+            <details class="speaker-note">
+              <summary>Speaker note</summary>
+              <p>
+                This section is useful if the room asks what was hard. Keep it practical: the work was less about one
+                heroic component and more about getting many existing systems to share a consistent Board-level contract.
+              </p>
+            </details>
+          </div>
+        </section>
+
+        <section id="wrap">
+          <div class="section-panel">
+            <p class="section-kicker">Wrap-up</p>
+            <h2>Three things to remember</h2>
+            <div class="closing">
+              <article class="closing-card primary">
+                <h3>Boards are narrative containers</h3>
+                <p>
+                  They combine report configuration, live data, AI interpretation, and presentation output around a
+                  specific business question.
+                </p>
+              </article>
+              <article class="closing-card secondary">
+                <h3>The implementation composes primitives</h3>
+                <p>
+                  Reporting, filters, visualizations, saved views, Board storage, AI workflows, and export jobs each do
+                  one clear part of the overall experience.
+                </p>
+              </article>
+            </div>
+            <p class="fine-print">
+              Suggested close: "Boards are where reporting becomes communication. The feature is valuable because it
+              makes data easier to assemble, explain, and share."
+            </p>
+          </div>
+        </section>
+        <section id="postlaunch">
+          <div class="section-panel">
+            <p class="section-kicker">Post-launch review</p>
+            <h2>First 5 weeks of data</h2>
+            <p class="pl-meta">DB data: Apr 13 – May 19, 2026 &nbsp;·&nbsp; RUM data: Apr 21 – May 19, 2026 &nbsp;·&nbsp; Active companies only</p>
+
+            <p class="pl-narrative">
+              Exec Boards launched to strong top-of-funnel interest — <strong>518 companies</strong> explored at least one template in the first five weeks. But the funnel narrows sharply at each step: roughly <strong>1 in 10</strong> template viewers went on to create a board, and among those who did, editing and exporting remain sparse. The feature is in early adoption mode: awareness is there, but the behavior pattern looks more like "tried it" than "embedded it in a recurring workflow." Most post-creation depth is concentrated in a small number of companies, particularly one enterprise customer using Exec Boards for multi-country reporting at scale — a signal worth investigating for how to expand that pattern.
+            </p>
+            <p class="pl-narrative">
+              Importantly, this v1 shipped with deliberate scope cuts to hit the launch window. Several capabilities that would drive the core recurring-use workflow — <strong>scheduled / emailed delivery, board-level filters, trends over time, and dynamic AI summaries that update when you edit a board</strong> — were all deferred. The low export and editing numbers likely reflect a product that's not yet complete enough to replace customers' existing quarterly reporting workflows; the data so far is more a signal of "explored it" than a verdict on the feature's long-term potential.
+            </p>
+
+            <div class="pl-cols">
+              <div class="pl-col">
+                <p class="pl-col-title green">✓ What's working</p>
+                <ul>
+                  <li>Strong template discovery — CISO Review, Leadership Update, and Audit Preparedness each reached 276–327 companies</li>
+                  <li>AI summary generation is healthy: 99.4% completion rate across 177 generations</li>
+                  <li>Users who do create boards show meaningful customization: 33% of tiles are novel, not copied from library templates</li>
+                  <li>Multi-board use case emerging — one enterprise customer built 8 country-specific boards for regional reporting</li>
+                </ul>
+              </div>
+              <div class="pl-col">
+                <p class="pl-col-title amber">⚠ Where to dig in</p>
+                <ul>
+                  <li>Template view → board creation conversion is ~9.5% (49 of 518 companies) — partly explained by having to fork a board just to preview template contents</li>
+                  <li>Post-creation editing is low (17 edit entries across 71 boards) — partially explained by the AI summary / board editing coupling: summaries don't update when you customize a board, which disincentivizes editing</li>
+                  <li>Exports low (27) — PPT is the only whole-board export format; no PDF option</li>
+                  <li>Schedule/send, board-level filters, trends over time, and PDF export are all deferred — these are the features most likely to drive recurring workflow adoption</li>
+                  <li>AI summary quality described internally as "pulls obvious insights" — uses older GPT-4 model for speed; quality is a known gap</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="pl-scope">
+              <p class="pl-scope-title">v1 Scope Context</p>
+              <div class="pl-scope-grid">
+                <div>
+                  <p class="pl-scope-col-label">Deferred to future milestones</p>
+                  <ul>
+                    <li>Schedule &amp; email delivery of boards</li>
+                    <li>Dynamic AI summaries (update when board is edited)</li>
+                    <li>Board-level filters</li>
+                    <li>Trends over time <em>— came up in 7/7 customer discovery calls</em></li>
+                    <li>PDF export</li>
+                    <li>Whole-board XLSX export</li>
+                  </ul>
+                </div>
+                <div>
+                  <p class="pl-scope-col-label">Known v1 limitations affecting the data</p>
+                  <ul>
+                    <li>Users must fork a board to preview template contents — inflates "created" count with exploratory forks</li>
+                    <li>AI summary quality is surface-level; uses older GPT-4 model for speed</li>
+                    <li>No way to send or share a board outside Adaptive — limits the "deliver to exec" use case</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- 1 · Page visits & discovery -->
+            <div class="pl-subsection">
+              <p class="pl-subsection-label">1 · Page visits &amp; discovery</p>
+              <p class="section-intro" style="margin-bottom:16px;">RUM signals (Apr 21 – May 19) &nbsp;·&nbsp; Template views from DB (more complete)</p>
+
+              <div class="pl-kpi-row">
+                <div class="pl-kpi blue">
+                  <div class="val">1,833</div>
+                  <div class="lbl">Page views</div>
+                  <div class="sub">RUM</div>
+                </div>
+                <div class="pl-kpi blue">
+                  <div class="val">691</div>
+                  <div class="lbl">Board opens</div>
+                  <div class="sub">RUM</div>
+                </div>
+                <div class="pl-kpi green">
+                  <div class="val">518</div>
+                  <div class="lbl">Companies viewed a template</div>
+                  <div class="sub">DB source</div>
+                </div>
+              </div>
+
+              <div class="pl-chart-row">
+                <div class="pl-chart-box" style="flex:1.2;">
+                  <h4>Template views by template (companies)</h4>
+                  <div class="pl-bar-list">
+                    <div class="pl-bar-item">
+                      <div class="pl-bar-label"><span>CISO Review</span><span>327</span></div>
+                      <div class="pl-bar-track"><div class="pl-bar-fill fill-blue" style="width:100%"></div></div>
+                    </div>
+                    <div class="pl-bar-item">
+                      <div class="pl-bar-label"><span>Leadership Update</span><span>301</span></div>
+                      <div class="pl-bar-track"><div class="pl-bar-fill fill-blue" style="width:92%"></div></div>
+                    </div>
+                    <div class="pl-bar-item">
+                      <div class="pl-bar-label"><span>Audit Preparedness</span><span>276</span></div>
+                      <div class="pl-bar-track"><div class="pl-bar-fill fill-blue" style="width:84%"></div></div>
+                    </div>
+                  </div>
+                  <p class="pl-note">Many companies viewed multiple templates. CISO Review leads consistently across both DB and RUM signals.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2 · Board creation -->
+            <div class="pl-subsection">
+              <p class="pl-subsection-label">2 · Board creation</p>
+              <p class="section-intro" style="margin-bottom:16px;">DB source — real boards only (library_report_board_id IS NULL)</p>
+
+              <div class="pl-kpi-row">
+                <div class="pl-kpi green">
+                  <div class="val">71</div>
+                  <div class="lbl">Real boards created</div>
+                </div>
+                <div class="pl-kpi green">
+                  <div class="val">49</div>
+                  <div class="lbl">Companies that created boards</div>
+                </div>
+                <div class="pl-kpi">
+                  <div class="val">1.45</div>
+                  <div class="lbl">Avg boards per company</div>
+                </div>
+                <div class="pl-kpi amber">
+                  <div class="val">~9.5%</div>
+                  <div class="lbl">Template viewer → creator rate</div>
+                  <div class="sub">49 of 518 companies</div>
+                </div>
+              </div>
+
+              <div class="pl-chart-row">
+                <div class="pl-chart-box" style="flex:1.6;">
+                  <h4>Weekly board creation</h4>
+                  <canvas id="weeklyChart"></canvas>
+                </div>
+                <div class="pl-chart-box" style="flex:1;">
+                  <h4>Boards per company</h4>
+                  <div class="pl-bar-list" style="margin-top:8px;">
+                    <div class="pl-bar-item">
+                      <div class="pl-bar-label"><span>1 board</span><span>33 companies</span></div>
+                      <div class="pl-bar-track"><div class="pl-bar-fill fill-green" style="width:100%"></div></div>
+                    </div>
+                    <div class="pl-bar-item">
+                      <div class="pl-bar-label"><span>2 boards</span><span>11 companies</span></div>
+                      <div class="pl-bar-track"><div class="pl-bar-fill fill-green" style="width:33%"></div></div>
+                    </div>
+                    <div class="pl-bar-item">
+                      <div class="pl-bar-label"><span>3 boards</span><span>4 companies</span></div>
+                      <div class="pl-bar-track"><div class="pl-bar-fill fill-green" style="width:12%"></div></div>
+                    </div>
+                    <div class="pl-bar-item">
+                      <div class="pl-bar-label"><span>4+ boards</span><span>1 company</span></div>
+                      <div class="pl-bar-track"><div class="pl-bar-fill fill-green" style="width:3%"></div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3 · Editing & management -->
+            <div class="pl-subsection">
+              <p class="pl-subsection-label">3 · Board editing &amp; management</p>
+
+              <div class="pl-kpi-row">
+                <div class="pl-kpi">
+                  <div class="val">17</div>
+                  <div class="lbl">Edit mode entries</div>
+                  <div class="sub">RUM</div>
+                </div>
+                <div class="pl-kpi">
+                  <div class="val">92</div>
+                  <div class="lbl">Tiles added</div>
+                  <div class="sub">RUM</div>
+                </div>
+                <div class="pl-kpi">
+                  <div class="val">53</div>
+                  <div class="lbl">Tiles removed</div>
+                  <div class="sub">RUM</div>
+                </div>
+                <div class="pl-kpi amber">
+                  <div class="val">27</div>
+                  <div class="lbl">Board exports</div>
+                  <div class="sub">RUM</div>
+                </div>
+              </div>
+
+              <div class="pl-chart-row">
+                <div class="pl-chart-box" style="max-width:260px;">
+                  <h4>Tile content vs library templates</h4>
+                  <canvas id="tileDonut"></canvas>
+                  <p class="pl-note" style="text-align:center;">349 total tiles · 71 real boards</p>
+                </div>
+                <div class="pl-chart-box" style="flex:1;">
+                  <h4>Customization signals</h4>
+                  <div style="margin-top:4px;">
+                    <div class="pl-bar-item" style="margin-bottom:14px;">
+                      <div class="pl-bar-label"><span>Standard library tiles</span><span>234 (67%)</span></div>
+                      <div class="pl-bar-track"><div class="pl-bar-fill fill-blue" style="width:67%"></div></div>
+                    </div>
+                    <div class="pl-bar-item" style="margin-bottom:14px;">
+                      <div class="pl-bar-label"><span>Novel / customized tiles</span><span>115 (33%)</span></div>
+                      <div class="pl-bar-track"><div class="pl-bar-fill fill-violet" style="width:33%"></div></div>
+                    </div>
+                    <div class="pl-bar-item">
+                      <div class="pl-bar-label"><span>Tiles with custom time ranges</span><span>57</span></div>
+                      <div class="pl-bar-track"><div class="pl-bar-fill fill-amber" style="width:16%"></div></div>
+                    </div>
+                  </div>
+                  <p class="pl-note">Novel tiles = reportDefinitionId not present in any library template. Custom time ranges concentrated in one multinational customer building country-specific boards.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4 · Other signals -->
+            <div class="pl-subsection">
+              <p class="pl-subsection-label">4 · Other signals</p>
+              <div class="pl-signal-grid">
+                <div class="pl-signal-card">
+                  <h4>AI Summary Health</h4>
+                  <p><span class="hl">177</span> AI summary generations across real boards.<br><br>
+                  <span class="hl">176 / 177</span> completed — <span class="hl">99.4%</span> success rate. Not a friction point.</p>
+                </div>
+                <div class="pl-signal-card">
+                  <h4>CISO Review Stickiness</h4>
+                  <p>Most-viewed template consistently across DB and RUM. <span class="hl">327 companies</span> viewed it, and it appears to drive more return visits than the other two templates.</p>
+                </div>
+                <div class="pl-signal-card">
+                  <h4>Power User — Multinational</h4>
+                  <p>One enterprise customer built <span class="hl">8 boards</span> — one per country entity — and generated <span class="hl">87 AI summaries</span>, including 54 regenerations on a single board. That's 49% of all AI summary activity from one customer. Strong signal for a multi-entity use case.</p>
+                </div>
+                <div class="pl-signal-card">
+                  <h4>Discovery → Creation Funnel</h4>
+                  <p>
+                    <span class="hl">1,833</span> page views<br>
+                    → <span class="hl">518</span> companies viewed a template<br>
+                    → <span class="hl">49</span> created a board<br>
+                    → <span class="hl">~17</span> went into edit mode<br><br>
+                    Each step loses ~85–90% of the prior cohort.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <script>
+      // Chart.js — weekly board creation
+      const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
+      new Chart(weeklyCtx, {
+        type: 'bar',
+        data: {
+          labels: ['W16 Apr 13', 'W17 Apr 20', 'W18 Apr 28', 'W19 May 5', 'W20 May 12', 'W21 May 19'],
+          datasets: [{
+            label: 'Boards created',
+            data: [30, 12, 9, 7, 9, 4],
+            backgroundColor: 'rgba(10, 124, 99, 0.15)',
+            borderColor: '#0a7c63',
+            borderWidth: 1.5,
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false },
+            tooltip: { callbacks: { label: ctx => ` ${ctx.raw} boards` } }
+          },
+          scales: {
+            x: { ticks: { color: '#627083', font: { size: 11 } }, grid: { color: '#d8dee8' } },
+            y: { ticks: { color: '#627083', stepSize: 5 }, grid: { color: '#d8dee8' }, beginAtZero: true }
+          }
+        }
+      });
+
+      // Chart.js — tile donut
+      const donutCtx = document.getElementById('tileDonut').getContext('2d');
+      new Chart(donutCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Standard library', 'Novel / customized'],
+          datasets: [{
+            data: [234, 115],
+            backgroundColor: ['rgba(39, 94, 254, 0.12)', 'rgba(118, 82, 199, 0.12)'],
+            borderColor: ['#275efe', '#7652c7'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          cutout: '65%',
+          plugins: {
+            legend: { display: true, position: 'bottom', labels: { color: '#627083', font: { size: 11 }, boxWidth: 12, padding: 12 } },
+            tooltip: { callbacks: { label: ctx => ` ${ctx.raw} tiles (${Math.round(ctx.raw/349*100)}%)` } }
+          }
+        }
+      });
+
+      // Speaker notes toggle
+      const notesButton = document.getElementById("toggle-notes");
+      const notes = Array.from(document.querySelectorAll(".speaker-note"));
+      let notesOpen = false;
+
+      notesButton.addEventListener("click", () => {
+        notesOpen = !notesOpen;
+        notes.forEach((note) => {
+          note.open = notesOpen;
+        });
+        notesButton.textContent = notesOpen ? "Hide notes" : "Show notes";
+      });
+    </script>
+  </body>
+</html>
