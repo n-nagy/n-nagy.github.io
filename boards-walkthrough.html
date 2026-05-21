@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
     <title>Boards — Technical Walkthrough &amp; Post-Launch Review</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
     <style>
@@ -1998,16 +1999,27 @@
             <div class="ai-lifecycle">
               <article class="ai-card highlight">
                 <div class="summary-box">
-                  <h3>Why this matters</h3>
+                  <h3>Getting the prompt right took real iteration</h3>
                   <p>
-                    The AI is not just rewriting visible charts. It gets a structured brief about the Board, receives a
-                    common instruction set, and can call report tools to find evidence-backed patterns.
+                    We went through many rounds of testing — starting with a basic approach of feeding a model raw report data for individual customers, then progressively moving to agentic tool use, structured output rules, model comparison, and template-specific tuning before landing on what's in the appendix.
                   </p>
                   <ul>
-                    <li>Shared prompt keeps tone and structure consistent.</li>
-                    <li>Board context keeps each run customer- and date-specific.</li>
-                    <li>Report tools ground conclusions in current metrics.</li>
-                    <li>Saved tile status makes the async experience reliable.</li>
+                    <li>
+                      <strong>We evaluated outputs against a consistent rubric.</strong>
+                      Each iteration was judged on the same criteria: Does it lead with a finding, not a metric walkthrough? Does it quantify deltas against a prior period? Is it readable in under 60 seconds? Does it avoid restating what a chart already shows? Outputs that passed the rubric on one customer but hallucinated on another didn't count as working.
+                    </li>
+                    <li>
+                      <strong>Early outputs read like chart narration, not analysis.</strong>
+                      The first versions walked through reports one by one — "Phishing failure rate was X. Training completion was Y." — with no thread connecting them. This led directly to the <code>Lead with the theme, not the metric</code> rule and the required HEADLINE structure. The model needed an explicit contract for how to open and group findings before it would stop narrating.
+                    </li>
+                    <li>
+                      <strong>Number formatting and comparison behavior had to be made explicit.</strong>
+                      Without constraints, the model bolded almost everything, mixed period-over-period comparisons with within-period breakdowns in the same paragraph, and buried the prior-period figure as a parenthetical afterthought. Rules like <code>bold a maximum of 3–4 numbers only</code>, <code>always compare to the prior period with a delta</code>, and <code>never chain more than two numbers in a single clause</code> came directly from patterns we saw repeatedly break executive readability.
+                    </li>
+                    <li>
+                      <strong>We tested across models before settling on GPT-5.4.</strong>
+                      Earlier iterations ran on GPT-4o. The jump to GPT-5.4 via the ChatGPT Responses API produced measurably better adherence to structured output rules and more accurate use of tool results — especially the multi-step tool-calling pattern where the model needs to call <code>get_report_filters</code> before <code>get_report</code> for each report type. Smaller models tended to skip the filters step and produce plausible-sounding but ungrounded output.
+                    </li>
                   </ul>
                 </div>
               </article>
