@@ -3,108 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carmel Wedding Trip — Nick &amp; Shannon, September 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --c-bg: #FAF8F5; --c-surface: #FFFFFF; --c-text: #2C2825; --c-text-muted: #7A7067;
     --c-text-light: #A39A90; --c-border: #E8E2DB; --c-border-light: #F0EBE5;
-    --c-accent: #B8703F;
+    --c-accent: #B8703F; --c-accent-light: #F5EDE5;
     --c-opt1: #6358B0; --c-opt1-bg: #EEEDFA;
     --c-opt2: #1A7D62; --c-opt2-bg: #E4F5EE;
     --c-opt3: #B04A28; --c-opt3-bg: #FCEEE8;
     --c-warn-bg: #FFF8ED; --c-warn-border: #F5D590; --c-warn-text: #8A5A10;
     --c-winner-bg: #E8F6EF; --c-winner-border: #8DD4B4; --c-winner-text: #0E5E48;
+    --c-confirmed-bg: #EEF5EB; --c-confirmed-border: #A8D4A0; --c-confirmed-text: #2A5A22;
     --c-carmel1: #7A4F2E; --c-carmel1-bg: #FDF3EB;
     --c-carmel2: #3D5A8A; --c-carmel2-bg: #EEF3FA;
-    --c-carmel3: #5A7A3D; --c-carmel3-bg: #EEF5EB;
     --font-display: 'DM Serif Display', Georgia, serif;
     --font-body: 'Source Sans 3', -apple-system, sans-serif;
     --radius: 8px; --radius-lg: 12px;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: var(--font-body); background: var(--c-bg); color: var(--c-text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  body { font-family: var(--font-body); background: var(--c-bg); color: #2C2825; line-height: 1.7; -webkit-font-smoothing: antialiased; }
   .page { max-width: 780px; margin: 0 auto; padding: 3rem 2rem 5rem; }
 
-  a { color: var(--c-accent); text-decoration: none; border-bottom: 1px solid rgba(184,112,63,0.3); transition: border-color 0.15s; }
+  a { color: var(--c-accent); text-decoration: none; border-bottom: 1px solid rgba(184,112,63,0.3); }
   a:hover { border-color: var(--c-accent); }
 
-  /* --- HEADER --- */
+  /* HEADER */
   .header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--c-border); }
   .header-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--c-accent); margin-bottom: 0.5rem; }
-  .header h1 { font-family: var(--font-display); font-size: 32px; font-weight: 400; line-height: 1.25; color: #1A1614 !important; margin-bottom: 0.5rem; }
+  .header h1 { font-family: var(--font-display); font-size: 32px; font-weight: 400; line-height: 1.25; color: #1A1614; margin-bottom: 0.5rem; }
   .header-sub { font-size: 15px; color: var(--c-text-muted); font-weight: 300; }
-  .wedding-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 0.5rem; font-size: 13px; font-weight: 500; color: var(--c-accent); border: 1px solid rgba(184,112,63,0.3); border-radius: 20px; padding: 4px 12px; text-decoration: none; }
-  .wedding-link:hover { background: #F5EDE5; border-color: var(--c-accent); }
+  .wedding-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 0.75rem; font-size: 13px; font-weight: 500; color: var(--c-accent); border: 1px solid rgba(184,112,63,0.3); border-radius: 20px; padding: 4px 12px; text-decoration: none; }
+  .wedding-link:hover { background: var(--c-accent-light); }
 
-  /* --- SECTION TITLES --- */
-  .section-title { font-family: var(--font-display); font-size: 22px; font-weight: 400; color: #1A1614 !important; margin: 3rem 0 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--c-border); }
-  .section-subtitle { font-family: var(--font-display); font-size: 17px; font-weight: 400; color: #1A1614 !important; margin: 2rem 0 0.75rem; }
+  /* CONFIRMED BOOKINGS SUMMARY */
+  .bookings-summary { background: var(--c-confirmed-bg); border: 1px solid var(--c-confirmed-border); border-radius: var(--radius-lg); padding: 1.5rem 1.75rem; margin-bottom: 2rem; }
+  .bookings-title { font-family: var(--font-display); font-size: 18px; color: #1A1614; margin-bottom: 1rem; }
+  .booking-row { display: flex; gap: 12px; padding: 0.5rem 0; align-items: flex-start; border-top: 1px solid var(--c-confirmed-border); }
+  .booking-row:first-of-type { border-top: none; }
+  .booking-status { font-size: 14px; flex-shrink: 0; width: 20px; }
+  .booking-info { flex: 1; font-size: 13px; line-height: 1.55; }
+  .booking-info strong { font-weight: 600; color: #2C2825; display: block; }
+  .booking-info .conf { font-size: 11.5px; color: var(--c-confirmed-text); font-weight: 600; letter-spacing: 0.3px; }
+  .booking-info .detail { color: var(--c-text-muted); font-size: 12px; }
+  .booking-cost { font-size: 13px; font-weight: 600; color: #2C2825; flex-shrink: 0; text-align: right; }
+  .booking-cost .sub { font-size: 11px; color: var(--c-text-muted); font-weight: 400; display: block; }
+  .bookings-total { display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--c-confirmed-border); font-size: 13.5px; }
+  .bookings-total .label { color: var(--c-text-muted); }
+  .bookings-total .amount { font-weight: 600; color: #2C2825; }
+  .tbd-row { opacity: 0.65; }
 
-  /* --- TLDR --- */
+  /* TLDR */
   .tldr { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-lg); padding: 1.75rem 2rem; margin-bottom: 2rem; }
-  .tldr-title { font-family: var(--font-display); font-size: 18px; color: #1A1614 !important; margin-bottom: 0.75rem; }
-  .tldr-desc { font-size: 14px; color: var(--c-text-muted); margin-bottom: 1.25rem; line-height: 1.7; }
-  .tldr-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 1.25rem; }
-  .tldr-card { border-radius: var(--radius); padding: 1rem 1.1rem; font-size: 13px; line-height: 1.65; }
-  .tldr-card.opt1 { background: var(--c-opt1-bg); border: 1px solid #D4D0EE; }
-  .tldr-card.opt2 { background: var(--c-opt2-bg); border: 1px solid #B1DFD0; }
-  .tldr-card.opt3 { background: var(--c-opt3-bg); border: 1px solid #F0CAB9; }
-  .tldr-card-label { font-weight: 600; font-size: 13px; display: block; margin-bottom: 4px; }
-  .tldr-card.opt1 .tldr-card-label { color: var(--c-opt1); }
-  .tldr-card.opt2 .tldr-card-label { color: var(--c-opt2); }
-  .tldr-card.opt3 .tldr-card-label { color: var(--c-opt3); }
-  .tldr-card .sacrifice { font-size: 12px; color: var(--c-text-muted); margin-top: 6px; }
-  .tldr-card .price { display: block; margin-top: 8px; font-weight: 600; font-size: 14px; color: var(--c-text); }
+  .tldr-title { font-family: var(--font-display); font-size: 18px; color: #1A1614; margin-bottom: 0.75rem; }
+  .tldr-desc { font-size: 14px; color: var(--c-text-muted); margin-bottom: 1rem; line-height: 1.7; }
   .winner-box { background: var(--c-winner-bg); border: 1px solid var(--c-winner-border); border-radius: var(--radius); padding: 1rem 1.25rem; font-size: 13.5px; line-height: 1.7; color: var(--c-winner-text); }
   .winner-box strong { font-weight: 600; }
 
-  /* --- OPEN QUESTION --- */
-  .open-question { background: var(--c-surface); border: 2px dashed var(--c-border); border-radius: var(--radius-lg); padding: 1.5rem 1.75rem; margin-bottom: 3rem; }
+  /* OPEN QUESTION */
+  .open-question { background: var(--c-surface); border: 2px dashed var(--c-border); border-radius: var(--radius-lg); padding: 1.5rem 1.75rem; margin-bottom: 2rem; }
   .open-question-label { font-size: 11px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: var(--c-accent); margin-bottom: 0.5rem; }
-  .open-question-title { font-family: var(--font-display); font-size: 20px; color: #1A1614 !important; margin-bottom: 0.4rem; }
+  .open-question-title { font-family: var(--font-display); font-size: 20px; color: #1A1614; margin-bottom: 0.4rem; }
   .open-question-desc { font-size: 13.5px; color: var(--c-text-muted); margin-bottom: 1.25rem; line-height: 1.6; }
-  .carmel-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 1rem; }
+  .carmel-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 1rem; }
   .carmel-card { border-radius: var(--radius); padding: 1rem 1.1rem; font-size: 13px; line-height: 1.65; }
   .carmel-card.c1 { background: var(--c-carmel1-bg); border: 1px solid #E8C9A8; }
   .carmel-card.c2 { background: var(--c-carmel2-bg); border: 1px solid #B8C9E8; }
-  .carmel-card.c3 { background: var(--c-carmel3-bg); border: 1px solid #B8D9A8; }
   .carmel-card-label { font-weight: 600; font-size: 12px; display: block; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.4px; }
   .carmel-card.c1 .carmel-card-label { color: var(--c-carmel1); }
-  .carmel-card.c2 .carmel-card-label { color: var(--c-carmel2); }
-  .carmel-card.c3 .carmel-card-label { color: var(--c-carmel3); }
-  .carmel-card-name { font-family: var(--font-display); font-size: 15px; color: #1A1614 !important; margin-bottom: 6px; }
-  .carmel-card .price { font-weight: 600; font-size: 14px; display: block; margin-top: 8px; color: #1A1614; }
+  .carmel-card.c2 .carmel-card-label { color: #3D5A8A; }
+  .carmel-card-name { font-family: var(--font-display); font-size: 15px; color: #1A1614; margin-bottom: 6px; }
+  .carmel-card .price { font-weight: 600; font-size: 14px; display: block; margin-top: 8px; color: #2C2825; }
   .carmel-card .price-note { font-size: 11.5px; color: var(--c-text-muted); display: block; }
   .carmel-pro { font-size: 12px; line-height: 1.6; margin-top: 4px; color: #2A6B48; }
   .carmel-con { font-size: 12px; line-height: 1.6; margin-top: 4px; color: #8A4020; }
   .carmel-action { font-size: 12.5px; color: var(--c-text-muted); background: var(--c-bg); border: 1px solid var(--c-border); border-radius: var(--radius); padding: 0.6rem 0.9rem; margin-top: 1rem; line-height: 1.6; }
   .carmel-action strong { color: var(--c-text); font-weight: 600; }
 
-  /* --- OPTION BLOCKS --- */
+  /* SECTION */
+  .section-title { font-family: var(--font-display); font-size: 22px; font-weight: 400; color: #1A1614; margin: 3rem 0 1.25rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--c-border); }
+  .section-subtitle { font-family: var(--font-display); font-size: 17px; font-weight: 400; color: #1A1614; margin: 2rem 0 0.75rem; }
+
+  /* OPTION BLOCK */
   .option-block { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-lg); padding: 1.5rem 1.75rem; margin-bottom: 1.25rem; }
   .option-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 0.5rem; flex-wrap: wrap; }
   .option-name { font-family: var(--font-display); font-size: 18px; }
-  .option-name.opt1 { color: var(--c-opt1); }
-  .option-name.opt2 { color: var(--c-opt2); }
-  .option-name.opt3 { color: var(--c-opt3); }
+  .option-name.opta { color: var(--c-opt1); }
+  .option-name.optb { color: var(--c-opt2); }
+  .option-name.optc { color: var(--c-opt3); }
   .option-meta { font-size: 12.5px; color: var(--c-text-muted); }
   .option-tradeoff { font-size: 12.5px; color: var(--c-text-muted); margin-bottom: 1.25rem; padding-bottom: 1rem; border-bottom: 1px solid var(--c-border-light); line-height: 1.6; }
-  .option-tradeoff strong { color: var(--c-text); font-weight: 600; }
+  .option-tradeoff strong { color: #2C2825; font-weight: 600; }
 
-  /* --- DAY ROWS --- */
+  /* DAY ROWS */
   .day { display: flex; gap: 16px; padding: 0.55rem 0; align-items: flex-start; }
   .day + .day { border-top: 1px solid var(--c-border-light); }
   .day-label { min-width: 100px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; color: var(--c-text-muted); padding-top: 2px; flex-shrink: 0; }
   .day-body { font-size: 13.5px; line-height: 1.65; color: #2C2825; }
   .day-body .hotel { display: block; font-size: 12px; color: var(--c-text-light); margin-top: 2px; }
+  .day-body .conf-tag { font-size: 11px; color: var(--c-confirmed-text); font-weight: 600; background: var(--c-confirmed-bg); border: 1px solid var(--c-confirmed-border); border-radius: 4px; padding: 1px 6px; margin-left: 6px; }
   .tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; border-radius: 4px; padding: 1px 7px; margin-left: 6px; vertical-align: middle; position: relative; top: -1px; }
   .tag-travel { background: var(--c-border-light); border: 1px solid var(--c-border); color: var(--c-text-muted); }
   .tag-tbd { background: #FFF0F0; border: 1px solid #F5B8B8; color: #8A2020; }
 
-  /* --- ACTIVITY CARDS --- */
+  /* ACTIVITY CARDS */
   .activity-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 1rem 0 1.5rem; }
   .activity-card { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-lg); padding: 1.25rem; }
-  .activity-card-title { font-family: var(--font-display); font-size: 16px; color: #1A1614 !important; margin-bottom: 0.4rem; }
+  .activity-card-title { font-family: var(--font-display); font-size: 16px; color: #1A1614; margin-bottom: 0.4rem; }
   .activity-card-when { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--c-accent); margin-bottom: 0.75rem; }
   .activity-list { list-style: none; padding: 0; margin: 0; }
   .activity-list li { font-size: 13px; line-height: 1.6; padding: 0.25rem 0; border-top: 1px solid var(--c-border-light); color: #2C2825; }
@@ -112,23 +118,26 @@
   .activity-list li span { font-size: 12px; display: block; color: var(--c-text-muted); }
   .activity-tip { font-size: 12.5px; color: var(--c-text-muted); margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--c-border-light); font-style: italic; line-height: 1.6; }
 
-  /* --- TABLES --- */
+  /* TABLES */
   table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0.75rem 0 1rem; }
   th { text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.3px; text-transform: uppercase; color: var(--c-text-light); border-bottom: 2px solid var(--c-border); padding: 8px 10px; }
   td { padding: 9px 10px; border-bottom: 1px solid var(--c-border-light); vertical-align: top; line-height: 1.55; color: #2C2825; }
   tr:last-child td { border-bottom: none; }
   td strong { font-weight: 600; }
-  td .opt1 { color: var(--c-opt1); } td .opt2 { color: var(--c-opt2); } td .opt3 { color: var(--c-opt3); }
   .total-row td { font-weight: 600; background: var(--c-bg); border-bottom: 1px solid var(--c-border); }
   .total-row:last-child td { border-bottom: none; }
+  .confirmed-row td { background: var(--c-confirmed-bg); }
+  .tbd-cell { color: var(--c-text-muted); font-style: italic; }
 
-  /* --- CALLOUTS --- */
+  /* CALLOUTS */
   .note-box { background: var(--c-bg); border: 1px solid var(--c-border); border-radius: var(--radius); padding: 0.7rem 1rem; font-size: 13px; color: var(--c-text-muted); margin: 0.75rem 0 1rem; line-height: 1.6; }
+  .warn-box { background: var(--c-warn-bg); border: 1px solid var(--c-warn-border); border-radius: var(--radius); padding: 0.7rem 1rem; font-size: 13px; color: var(--c-warn-text); margin: 0.75rem 0 1rem; line-height: 1.6; }
+  .winner-note { background: var(--c-winner-bg); border: 1px solid var(--c-winner-border); border-radius: var(--radius); padding: 0.7rem 1rem; font-size: 13px; color: var(--c-winner-text); margin: 0.75rem 0 1rem; line-height: 1.6; }
   .pick-line { font-size: 13px; color: var(--c-text-muted); margin: 0.25rem 0 0.5rem; }
-  .pick-line strong { color: var(--c-text); font-weight: 600; }
+  .pick-line strong { color: #2C2825; font-weight: 600; }
   .divider { border: none; border-top: 1px solid var(--c-border); margin: 2.5rem 0; }
 
-  /* --- LISTS --- */
+  /* LISTS */
   .checklist { font-size: 14px; line-height: 1.85; padding-left: 0; list-style: none; margin: 0.5rem 0; }
   .checklist li { padding: 0.15rem 0 0.15rem 1.5rem; position: relative; color: #2C2825; }
   .checklist li::before { content: ''; position: absolute; left: 0; top: 0.55rem; width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--c-accent); }
@@ -137,319 +146,303 @@
   .order-list li { padding: 0.2rem 0 0.2rem 2rem; position: relative; counter-increment: booking; color: #2C2825; }
   .order-list li::before { content: counter(booking); position: absolute; left: 0; top: 0.25rem; width: 22px; height: 22px; border-radius: 50%; background: var(--c-accent); color: #FFF; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; }
   .order-list li strong { font-weight: 600; }
+
+  /* ARCHIVE SECTION */
+  .archive-section { margin-top: 4rem; padding-top: 2rem; border-top: 2px dashed var(--c-border); }
+  .archive-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--c-text-light); margin-bottom: 0.5rem; }
+  .archive-title { font-family: var(--font-display); font-size: 22px; color: #1A1614; margin-bottom: 0.5rem; }
+  .archive-desc { font-size: 13.5px; color: var(--c-text-muted); margin-bottom: 2rem; line-height: 1.6; }
+  .archive-option { background: var(--c-surface); border: 1px solid var(--c-border); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-bottom: 1rem; opacity: 0.8; }
+  .archive-option-name { font-family: var(--font-display); font-size: 16px; color: var(--c-text-muted); margin-bottom: 0.25rem; }
+  .archive-option-meta { font-size: 12px; color: var(--c-text-light); margin-bottom: 0.75rem; }
+  .archive-days { font-size: 13px; color: var(--c-text-muted); line-height: 1.7; }
+  .archive-days .arc-day { display: flex; gap: 10px; padding: 0.3rem 0; border-top: 1px solid var(--c-border-light); }
+  .archive-days .arc-day:first-child { border-top: none; }
+  .arc-label { min-width: 90px; font-size: 11px; font-weight: 600; text-transform: uppercase; color: var(--c-text-light); flex-shrink: 0; padding-top: 2px; }
+
   p { font-size: 14px; line-height: 1.7; margin: 0.5rem 0; color: #2C2825; }
   p.table-context { font-size: 13.5px; color: var(--c-text-muted); margin-bottom: 0.75rem; }
 
   @media (max-width: 640px) {
     .page { padding: 2rem 1.25rem 3rem; }
     .header h1 { font-size: 26px; }
-    .tldr-grid, .activity-grid, .carmel-grid { grid-template-columns: 1fr; }
-    .tldr, .open-question, .option-block { padding: 1.25rem; }
+    .activity-grid, .carmel-grid { grid-template-columns: 1fr; }
+    .option-block, .open-question { padding: 1.25rem; }
     .day { flex-direction: column; gap: 4px; }
     .day-label { min-width: unset; }
     table { font-size: 12px; }
     th, td { padding: 7px 6px; }
+    .booking-row { flex-wrap: wrap; }
   }
 </style>
 </head>
 <body>
 <div class="page">
 
+  <!-- HEADER -->
   <div class="header">
     <div class="header-eyebrow">Trip Planning</div>
     <h1>Carmel Wedding Trip</h1>
-    <div class="header-sub">Three itinerary options &middot; one open hotel question &middot; Nick &amp; Shannon &middot; September 2026</div>
+    <div class="header-sub">Option A confirmed &middot; Nick &amp; Shannon &middot; September 2026</div>
     <a href="https://www.zola.com/wedding/maryssaandbranson/event" target="_blank" class="wedding-link">&#128141; Maryssa &amp; Branson — Wedding Website (pw: carmel2026!)</a>
   </div>
 
+  <!-- CONFIRMED BOOKINGS -->
+  <div class="bookings-summary">
+    <div class="bookings-title">Confirmed bookings</div>
+
+    <div class="booking-row">
+      <div class="booking-status">✅</div>
+      <div class="booking-info">
+        <strong>Hertz — Jeep Wrangler 4WD, SFO</strong>
+        <span class="conf">Conf: L60211483F9</span>
+        <span class="detail">Pick-up Wed Sept 9, 1pm · Drop-off Mon Sept 14, 9am · Free cancellation until Sept 6</span>
+      </div>
+      <div class="booking-cost">$614.88<span class="sub">$524.11 billed<br>6,051 pts redeemed</span></div>
+    </div>
+
+    <div class="booking-row">
+      <div class="booking-status">✅</div>
+      <div class="booking-info">
+        <strong>Beach Street Inn &amp; Suites — Santa Cruz</strong>
+        <span class="conf">Conf: 35337152395</span>
+        <span class="detail">Wed Sept 9 – Fri Sept 11 · 2 nights · Free cancellation until Sept 6</span>
+      </div>
+      <div class="booking-cost">$598.92<span class="sub">taxes incl.</span></div>
+    </div>
+
+    <div class="booking-row">
+      <div class="booking-status">✅</div>
+      <div class="booking-info">
+        <strong><a href="https://www.fireplaceinncarmel.com/" target="_blank">Carmel Fireplace Inn</a> — Carmel Queen</strong>
+        <span class="conf">Conf: 4W1GX4RQ5R</span>
+        <span class="detail">Fri Sept 11 – Sun Sept 13 · 2 nights · Balance due $516.79 · Cancel free 7+ days before arrival</span>
+      </div>
+      <div class="booking-cost">$827.13<span class="sub">$310.34 paid<br>$516.79 due</span></div>
+    </div>
+
+    <div class="booking-row tbd-row">
+      <div class="booking-status">⬜</div>
+      <div class="booking-info">
+        <strong>Half Moon Bay — Sun Sept 13</strong>
+        <span class="detail">Not yet booked · <a href="https://oceanohalfmoonbay.com/" target="_blank">Oceano Hotel &amp; Spa</a> recommended</span>
+      </div>
+      <div class="booking-cost"><span class="tbd-cell">~$250–350<br>est.</span></div>
+    </div>
+
+    <div class="booking-row tbd-row">
+      <div class="booking-status">⬜</div>
+      <div class="booking-info">
+        <strong>Flights — PHL → SFO Wed + SFO → PHL Mon</strong>
+        <span class="detail">Not yet booked · American 8:20am out, United 8:50am back</span>
+      </div>
+      <div class="booking-cost"><span class="tbd-cell">~$996–1,040<br>est. for 2</span></div>
+    </div>
+
+    <div class="bookings-total">
+      <span class="label">Confirmed spend so far</span>
+      <span class="amount">$2,040.93 <span style="font-weight:400;font-size:12px;color:var(--c-text-muted)">($524.11 + $598.92 + $310.34 deposit)</span></span>
+    </div>
+  </div>
+
+  <!-- AT A GLANCE -->
   <div class="tldr">
-    <div class="tldr-title">At a glance</div>
-    <p class="tldr-desc">Nick and Shannon traveling from Philly for a wedding in Carmel-by-the-Sea on Saturday Sept 12, 2026. All options are 4 days of PTO. Core itinerary decision is geographic — north (Santa Cruz, Big Basin, Half Moon Bay) vs south (Monterey, Big Sur) — or a compressed version of both. Welcome party Friday Sept 11 at 8pm in Carmel. Wedding Saturday Sept 12 at 4pm at <a href="https://www.folktalewinery.com/" target="_blank">Folktale Winery &amp; Vineyards</a>, Carmel Valley.</p>
-    <div class="tldr-grid">
-      <div class="tldr-card opt1">
-        <span class="tldr-card-label">Option A &mdash; North Focus</span>
-        Wed&ndash;Mon &middot; 4 PTO<br>
-        Santa Cruz, Big Basin &amp; wine<br>
-        HWY 1 drive to Half Moon Bay
-        <div class="sacrifice">&#10007; Skips Big Sur &amp; Monterey</div>
-        <span class="price">~$2,795&ndash;3,060 / couple</span>
-      </div>
-      <div class="tldr-card opt2">
-        <span class="tldr-card-label">Option B &mdash; South Focus</span>
-        Wed&ndash;Mon &middot; 4 PTO<br>
-        Monterey, Carmel Valley wine<br>
-        Big Sur Friday
-        <div class="sacrifice">&#10007; Skips Big Basin</div>
-        <span class="price">~$2,905&ndash;3,170 / couple</span>
-      </div>
-      <div class="tldr-card opt3">
-        <span class="tldr-card-label">Option C &mdash; Balanced</span>
-        Thu&ndash;Tue &middot; 4 PTO<br>
-        Short Monterey, Big Sur Fri<br>
-        Big Basin dedicated Monday
-        <div class="sacrifice">&#10007; Less time everywhere</div>
-        <span class="price">~$2,707&ndash;2,982 / couple</span>
-      </div>
-    </div>
+    <div class="tldr-title">Option A — North Focus</div>
+    <p class="tldr-desc" style="margin-bottom:0.75rem;">Wed Sept 9 – Mon Sept 14 &middot; 4 days PTO each &middot; American 8:20am PHL→SFO out, United 8:50am SFO→PHL back. Prioritizes Santa Cruz beach, Big Basin redwoods, Hallcrest Vineyards, and the scenic HWY 1 drive to Half Moon Bay. Welcome party Friday 8pm in Carmel. Wedding Saturday 4pm at <a href="https://www.folktalewinery.com/" target="_blank">Folktale Winery &amp; Vineyards</a>.</p>
     <div class="winner-box">
-      <strong>How to choose:</strong> Option A if you want a relaxed, nature-forward trip and are ok trading Big Sur for redwoods and Half Moon Bay. Option B if Big Sur and the Monterey Peninsula are the priority and redwoods can wait. Option C if you want to see both sides but accept you're doing everything in shorter bursts. <strong>Resolve the Carmel hotel question below before anything else</strong> — it applies to all three options and has the most time pressure.
+      <strong>Why Option A:</strong> Conscious decision to prioritize the north — Santa Cruz vibe, ancient redwoods, mountain wine country, and the iconic HWY 1 coastal drive — over Big Sur and Monterey. Different trip, not a lesser one. Big Sur will still be there another time.
     </div>
   </div>
 
-  <div class="open-question">
-    <div class="open-question-label">Resolve first &mdash; applies to all options</div>
-    <div class="open-question-title">Where to stay in Carmel &mdash; Fri Sept 11 &amp; Sat Sept 12</div>
-    <p class="open-question-desc">All three scenarios cover the same two nights at nearly identical cost. The difference is location, vibe, and whether another couple splits the two-room suite. Wedding shuttles confirmed from Carmel Mission Inn to <a href="https://www.folktalewinery.com/" target="_blank">Folktale Winery</a>. Welcome party Friday 8pm in Carmel village (TBC exact location).</p>
-    <div class="carmel-grid">
-      <div class="carmel-card c1">
-        <span class="carmel-card-label">Best case</span>
-        <div class="carmel-card-name"><a href="https://www.fireplaceinncarmel.com/" target="_blank">Fireplace Inn</a> &mdash; Two Room Suite</div>
-        <div style="font-size:12px;color:#7A7067;margin-bottom:6px;line-height:1.5;">Split with Jeff &amp; Luciana (or another couple)</div>
-        <div class="carmel-pro">✓ Heart of Carmel village, walkable to everything<br>✓ Boutique charm, gas fireplaces, gardens<br>✓ Best price if split two ways</div>
-        <div class="carmel-con">✗ Need to confirm other couple is unbooked<br>✗ No shuttle — Uber/Lyft to Folktale Winery</div>
-        <span class="price">~$604 / couple<span class="price-note">($1,209 total split 2 ways, taxes incl.)</span></span>
-      </div>
-      <div class="carmel-card c2">
-        <span class="carmel-card-label">Shannon's pick</span>
-        <div class="carmel-card-name"><a href="https://www.fireplaceinncarmel.com/" target="_blank">Fireplace Inn</a> &mdash; Carmel Queen</div>
-        <div style="font-size:12px;color:#7A7067;margin-bottom:6px;line-height:1.5;">Just Nick &amp; Shannon</div>
-        <div class="carmel-pro">✓ Best location in Carmel village<br>✓ Boutique character, cozy atmosphere<br>✓ Walkable to welcome party &amp; Carmel Beach</div>
-        <div class="carmel-con">✗ No shuttle — Uber/Lyft to wedding<br>✗ Not staying with the wedding group</div>
-        <span class="price">$827 / couple<span class="price-note">($827.13 total, taxes incl., direct booking rate)</span></span>
-      </div>
-      <div class="carmel-card c3">
-        <span class="carmel-card-label">Logistics pick</span>
-        <div class="carmel-card-name"><a href="https://www.carmelmissioninn.com/" target="_blank">Carmel Mission Inn</a></div>
-        <div style="font-size:12px;color:#7A7067;margin-bottom:6px;line-height:1.5;">Wedding room block, code 2609HUNTER</div>
-        <div class="carmel-pro">✓ Shuttle confirmed to Folktale Winery<br>✓ Staying with the wedding group<br>✓ No transport to figure out on wedding day</div>
-        <div class="carmel-con">✗ Less charming vs Carmel village<br>✗ Same price as Fireplace Inn solo</div>
-        <span class="price">$827 / couple<span class="price-note">($827.14 total, code 2609HUNTER, taxes incl.)</span></span>
-      </div>
-    </div>
-    <div class="carmel-action">
-      <strong>Next step:</strong> Text Jeff &amp; Luciana — booked in Carmel yet? Pitch the <a href="https://www.fireplaceinncarmel.com/" target="_blank">Fireplace Inn</a> two-room split. Clear winner at $604/couple. If they're committed elsewhere, choose between Fireplace Inn solo (Shannon's preference) or <a href="https://www.carmelmissioninn.com/" target="_blank">Carmel Mission Inn</a> (shuttle + wedding group). Book this week either way.
-    </div>
-  </div>
-
-  <h2 class="section-title">Day-by-day itineraries</h2>
+  <!-- DAY BY DAY -->
+  <h2 class="section-title">Day-by-day itinerary</h2>
 
   <div class="option-block">
     <div class="option-head">
-      <span class="option-name opt1">Option A &mdash; North Focus</span>
-      <span class="option-meta">4 days PTO (both) &middot; Wed Sept 9 &rarr; Mon Sept 14</span>
+      <span class="option-name opta">Option A — North Focus</span>
+      <span class="option-meta">4 days PTO each &middot; Wed Sept 9 &rarr; Mon Sept 14</span>
     </div>
-    <div class="option-tradeoff"><strong>Prioritizes:</strong> Santa Cruz, Big Basin redwoods, Big Basin Vineyards estate, scenic HWY 1 north &nbsp;&bull;&nbsp; <strong>Skips:</strong> Monterey, Big Sur</div>
+    <div class="option-tradeoff"><strong>Prioritizes:</strong> Santa Cruz, Big Basin redwoods, Hallcrest Vineyards, scenic HWY 1 north to Half Moon Bay &nbsp;&bull;&nbsp; <strong>Skips:</strong> Monterey, Big Sur</div>
+
     <div class="day">
       <div class="day-label">Wed Sept 9 <span class="tag tag-travel">Travel</span></div>
-      <div class="day-body">Fly PHL &rarr; SFO ~8&ndash;9am, land noon. Pick up rental car. Drive ~1.5hrs south to Santa Cruz, arrive ~2&ndash;3pm. Check in, walk the Boardwalk area, dinner.<span class="hotel">Hotel: Santa Cruz (1 of 2 nights)</span></div>
+      <div class="day-body">Fly PHL &rarr; SFO American 8:20am, land ~11:36am. Pick up Hertz Jeep Wrangler at SFO (Conf: L60211483F9). Drive ~1.5hrs south to Santa Cruz, arrive ~2&ndash;3pm. Check in, walk the beach, dinner.
+        <span class="hotel">Hotel: <strong>Beach Street Inn &amp; Suites</strong>, Santa Cruz &nbsp;<span class="conf-tag">CONF 35337152395</span></span>
+      </div>
     </div>
+
     <div class="day">
       <div class="day-label">Thu Sept 10</div>
-      <div class="day-body">Morning hike at <a href="https://www.parks.ca.gov/?page_id=540" target="_blank">Big Basin Redwoods State Park</a> — Sempervirens Falls loop (~3&ndash;4hrs). Stop at the <a href="https://www.bigbasinvineyards.com/visit-2/" target="_blank">Big Basin Vineyards estate winery</a> on the drive back down — outdoor patio tasting surrounded by organic vineyards and redwood forest. Evening in Santa Cruz.<span class="hotel">Hotel: Santa Cruz (2 of 2 nights)</span></div>
+      <div class="day-body">Morning hike at <a href="https://www.parks.ca.gov/?page_id=540" target="_blank">Big Basin Redwoods State Park</a> — Sempervirens Falls loop (~3&ndash;4hrs, easy-moderate, check trail status before going). Drive back down the mountain through <strong>Felton</strong> — cute mountain town, worth a quick wander. Stop at <strong>Wild Roots Market</strong> in Felton to grab picnic supplies (cheese, bread, charcuterie), then head to <a href="https://www.hallcrestvineyards.com/" target="_blank">Hallcrest Vineyards</a> (379 Felton Empire Rd, open Thu–Mon 12–5pm) — first certified organic winery in the US, sit on the deck with your picnic and a bottle. Evening back in Santa Cruz.
+        <span class="hotel">Hotel: <strong>Beach Street Inn &amp; Suites</strong>, Santa Cruz &nbsp;<span class="conf-tag">CONF 35337152395</span></span>
+      </div>
     </div>
-    <div class="day">
-      <div class="day-label">Fri Sept 11</div>
-      <div class="day-body">Drive south ~1.5hrs to Carmel. Arrive late morning — explore Carmel village, Ocean Ave, Carmel Beach. Check into hotel. Welcome party 8pm in Carmel.<span class="hotel">Hotel: Carmel &mdash; <span class="tag tag-tbd">See above</span></span></div>
-    </div>
-    <div class="day">
-      <div class="day-label">Sat Sept 12</div>
-      <div class="day-body">Slow morning. Carmel village, beach walk. Wedding at 4pm — <a href="https://www.folktalewinery.com/" target="_blank">Folktale Winery &amp; Vineyards</a>, Carmel Valley Rd.<span class="hotel">Hotel: Carmel &mdash; <span class="tag tag-tbd">See above</span></span></div>
-    </div>
-    <div class="day">
-      <div class="day-label">Sun Sept 13</div>
-      <div class="day-body">Check out. Scenic drive north on HWY 1 — the iconic Carmel to Half Moon Bay stretch. Arrive <a href="https://oceanohalfmoonbay.com/" target="_blank">Half Moon Bay</a>, decompress, dinner.<span class="hotel">Hotel: Half Moon Bay</span></div>
-    </div>
-    <div class="day">
-      <div class="day-label">Mon Sept 14</div>
-      <div class="day-body">Early departure ~6:30am to SFO (~45min). United 8:50am &rarr; PHL 5:30pm. Back to work Tuesday.</div>
-    </div>
-  </div>
 
-  <div class="option-block">
-    <div class="option-head">
-      <span class="option-name opt2">Option B &mdash; South Focus</span>
-      <span class="option-meta">4 days PTO (both) &middot; Wed Sept 9 &rarr; Mon Sept 14</span>
-    </div>
-    <div class="option-tradeoff"><strong>Prioritizes:</strong> Monterey Peninsula, Carmel Valley wine, Big Sur &nbsp;&bull;&nbsp; <strong>Skips:</strong> Big Basin redwoods</div>
-    <div class="day">
-      <div class="day-label">Wed Sept 9 <span class="tag tag-travel">Travel</span></div>
-      <div class="day-body">Fly PHL &rarr; SFO ~8&ndash;9am, land noon. Pick up rental car. Drive ~2hrs to Monterey, arrive ~3&ndash;4pm. Check in, Cannery Row walk, dinner. Travel day only.<span class="hotel">Hotel: Monterey (1 of 2 nights)</span></div>
-    </div>
-    <div class="day">
-      <div class="day-label">Thu Sept 10</div>
-      <div class="day-body">First real day. 17-Mile Drive and Pebble Beach morning. Afternoon Carmel Valley wine tasting — <a href="https://www.bernardus.com/" target="_blank">Bernardus Winery</a>, <a href="https://www.joycewines.com/" target="_blank">Joyce Vineyards</a>. Dinner back in Monterey.<span class="hotel">Hotel: Monterey (2 of 2 nights)</span></div>
-    </div>
     <div class="day">
       <div class="day-label">Fri Sept 11</div>
-      <div class="day-body">Full morning Big Sur — Bixby Bridge, Pfeiffer Beach, McWay Falls, lunch at <a href="https://www.nepenthebigsur.com/" target="_blank">Nepenthe</a>. Drive north to Carmel, check in. Welcome party 8pm.<span class="hotel">Hotel: Carmel &mdash; <span class="tag tag-tbd">See above</span></span></div>
+      <div class="day-body">Wake up 9&ndash;10am. Drive south toward Carmel — can't check in until 3pm so use the morning well. Stop at <strong>17-Mile Drive</strong> through Pebble Beach (~$12/car toll) — Lone Cypress, Bird Rock, iconic coastal views, and it's right on the route. Continue south to Carmel, explore the village and Carmel Beach before checking in at 3pm. Get ready. Welcome party 8pm in Carmel (festive cocktail attire, location TBC). If time allows before 17-Mile Drive, could push further south toward Big Sur — Bixby Bridge is only 20min past Carmel — but don't overcommit before a wedding night.
+        <span class="hotel">Hotel: <strong><a href="https://www.fireplaceinncarmel.com/" target="_blank">Carmel Fireplace Inn</a></strong> &nbsp;<span class="conf-tag">CONF 4W1GX4RQ5R</span></span>
+      </div>
     </div>
-    <div class="day">
-      <div class="day-label">Sat Sept 12</div>
-      <div class="day-body">Slow morning. Carmel village, beach walk. Wedding at 4pm — <a href="https://www.folktalewinery.com/" target="_blank">Folktale Winery &amp; Vineyards</a>.<span class="hotel">Hotel: Carmel &mdash; <span class="tag tag-tbd">See above</span></span></div>
-    </div>
-    <div class="day">
-      <div class="day-label">Sun Sept 13</div>
-      <div class="day-body">Check out. Scenic drive north on HWY 1. Arrive <a href="https://oceanohalfmoonbay.com/" target="_blank">Half Moon Bay</a>, decompress, dinner.<span class="hotel">Hotel: Half Moon Bay</span></div>
-    </div>
-    <div class="day">
-      <div class="day-label">Mon Sept 14</div>
-      <div class="day-body">Early departure ~6:30am to SFO (~45min). United 8:50am &rarr; PHL 5:30pm. Back to work Tuesday.</div>
-    </div>
-  </div>
 
-  <div class="option-block">
-    <div class="option-head">
-      <span class="option-name opt3">Option C &mdash; Balanced</span>
-      <span class="option-meta">4 days PTO (both) &middot; Thu Sept 10 &rarr; Tue Sept 15</span>
-    </div>
-    <div class="option-tradeoff"><strong>Prioritizes:</strong> Seeing both Big Sur and Big Basin &nbsp;&bull;&nbsp; <strong>Tradeoff:</strong> Less time everywhere, most driving, most ambitious</div>
-    <div class="day">
-      <div class="day-label">Thu Sept 10 <span class="tag tag-travel">Travel</span></div>
-      <div class="day-body">Fly PHL &rarr; SFO 9:25am, land 12:28pm. Pick up rental car. Drive ~2hrs to Monterey, arrive ~3&ndash;4pm. Check in, dinner. Travel day only.<span class="hotel">Hotel: Monterey (1 of 1 night)</span></div>
-    </div>
-    <div class="day">
-      <div class="day-label">Fri Sept 11</div>
-      <div class="day-body">Full morning Big Sur — Bixby Bridge, Pfeiffer Beach, McWay Falls, lunch at <a href="https://www.nepenthebigsur.com/" target="_blank">Nepenthe</a>. Drive north to Carmel, check in. Welcome party 8pm.<span class="hotel">Hotel: Carmel &mdash; <span class="tag tag-tbd">See above</span></span></div>
-    </div>
     <div class="day">
       <div class="day-label">Sat Sept 12</div>
-      <div class="day-body">Slow morning. Carmel village, beach walk. Wedding at 4pm — <a href="https://www.folktalewinery.com/" target="_blank">Folktale Winery &amp; Vineyards</a>.<span class="hotel">Hotel: Carmel &mdash; <span class="tag tag-tbd">See above</span></span></div>
+      <div class="day-body">Slow morning. Carmel village, Carmel Beach walk. Wedding at 4pm — <a href="https://www.folktalewinery.com/" target="_blank">Folktale Winery &amp; Vineyards</a>, 8940 Carmel Valley Rd (colorful black tie). Uber/Lyft to venue.
+        <span class="hotel">Hotel: <strong><a href="https://www.fireplaceinncarmel.com/" target="_blank">Carmel Fireplace Inn</a></strong> &nbsp;<span class="conf-tag">CONF 4W1GX4RQ5R</span></span>
+      </div>
     </div>
+
     <div class="day">
       <div class="day-label">Sun Sept 13</div>
-      <div class="day-body">Check out Carmel. Easy drive north to Santa Cruz. Chill recovery day — beach, food, low effort.<span class="hotel">Hotel: Santa Cruz</span></div>
+      <div class="day-body">Check out by 11am. Scenic drive north on HWY 1 — Carmel to Half Moon Bay is one of the best coastal drives in the country. Arrive Half Moon Bay afternoon, decompress, good dinner.
+        <span class="hotel">Hotel: <strong><a href="https://oceanohalfmoonbay.com/" target="_blank">Oceano Hotel &amp; Spa</a></strong>, Half Moon Bay &nbsp;<span class="tag tag-tbd">Book this</span></span>
+      </div>
     </div>
+
     <div class="day">
       <div class="day-label">Mon Sept 14</div>
-      <div class="day-body">Morning hike at <a href="https://www.parks.ca.gov/?page_id=540" target="_blank">Big Basin Redwoods</a> — Sempervirens Falls loop. Stop at the <a href="https://www.bigbasinvineyards.com/visit-2/" target="_blank">Big Basin Vineyards estate winery</a> on the drive back down. Drive to Half Moon Bay for the night.<span class="hotel">Hotel: Half Moon Bay</span></div>
-    </div>
-    <div class="day">
-      <div class="day-label">Tue Sept 15</div>
-      <div class="day-body">Early departure to SFO (~45min). Morning nonstop &rarr; PHL. Back to work Wednesday.</div>
+      <div class="day-body">Early departure ~6:30am to SFO (~45min). Drop Jeep at Hertz by 9am. United 8:50am &rarr; PHL 5:30pm. Back to work Tuesday.
+        <span class="hotel" style="color:var(--c-warn-text)">⚠ Drop-off is 9am, flight is 8:50am — confirm Hertz drop-off logistics at SFO</span>
+      </div>
     </div>
   </div>
 
   <hr class="divider">
 
+  <!-- ACTIVITY GUIDE -->
   <h2 class="section-title">Activity guide</h2>
   <div class="activity-grid">
     <div class="activity-card">
-      <div class="activity-card-when">Options A &amp; C &mdash; Big Basin day</div>
-      <div class="activity-card-title">Big Basin &amp; Wine</div>
+      <div class="activity-card-when">Thursday — Big Basin</div>
+      <div class="activity-card-title">Big Basin Redwoods</div>
       <ul class="activity-list">
-        <li><a href="https://www.parks.ca.gov/?page_id=540" target="_blank"><strong>Big Basin Redwoods SP</strong></a><span>Ancient old-growth. Sempervirens Falls loop ~3.5mi, easy-moderate. Check trail status before going — partially restored after 2020 CZU fire.</span></li>
-        <li><a href="https://www.bigbasinvineyards.com/visit-2/" target="_blank"><strong>Big Basin Vineyards — Estate Winery</strong></a><span>Stop on the drive back down the mountain. Outdoor patio tasting surrounded by CCOF organic vineyards and redwood forest. Pinot, Syrah, and Rhône blends made right there.</span></li>
-        <li><strong>West Cliff Drive</strong><span>Scenic coastal walk back in Santa Cruz — Lighthouse, surfers, seals.</span></li>
-        <li><strong>Tacos Moreno</strong><span>Best cheap tacos in Santa Cruz. Cash only.</span></li>
+        <li><a href="https://www.parks.ca.gov/?page_id=540" target="_blank"><strong>Big Basin Redwoods SP</strong></a><span>Sempervirens Falls loop ~3.5mi, easy-moderate. Ancient old-growth. Check trail status before going — partially restored after 2020 CZU fire.</span></li>
+        <li><strong>Berry Creek Falls Trail</strong><span>More ambitious option — 10mi loop, passes multiple waterfalls. Full day hike if you want it.</span></li>
+        <li><strong>Parking</strong><span>Reserve day-use parking online in advance at parks.ca.gov — fills up fast on weekdays.</span></li>
       </ul>
-      <div class="activity-tip">Hike in the morning, estate winery on the way back down — it's right along the route. Natural flow, no doubling back needed.</div>
+      <div class="activity-tip">Start early, ideally by 9am. Cooler in the morning and you'll want time for the winery in the afternoon.</div>
     </div>
+
     <div class="activity-card">
-      <div class="activity-card-when">Options B &amp; C &mdash; Friday</div>
-      <div class="activity-card-title">Big Sur</div>
+      <div class="activity-card-when">Thursday — Wine</div>
+      <div class="activity-card-title">Hallcrest Vineyards</div>
       <ul class="activity-list">
-        <li><strong>Bixby Creek Bridge</strong><span>Iconic arch bridge on HWY 1 heading south. First major stop.</span></li>
-        <li><strong>Pfeiffer Beach</strong><span>Purple sand, sea stacks. $12 day use fee. Narrow unmarked road before Pfeiffer Big Sur SP.</span></li>
-        <li><strong>McWay Falls</strong><span>80ft waterfall onto beach. Short flat trail at Julia Pfeiffer Burns SP.</span></li>
-        <li><a href="https://www.nepenthebigsur.com/" target="_blank"><strong>Nepenthe</strong></a><span>Clifftop lunch, ocean views. Good turnaround point before heading back to Carmel.</span></li>
+        <li><a href="https://www.hallcrestvineyards.com/" target="_blank"><strong>Hallcrest Vineyards</strong></a><span>379 Felton Empire Rd, Felton CA. Open Thu–Mon 12–5pm. First certified organic winery in the US. Sit on the deck with a bottle.</span></li>
+        <li><strong>Wild Roots Market</strong><span>Down the road from Hallcrest — pick up picnic supplies before the tasting. Cheese, bread, charcuterie.</span></li>
+        <li><strong>Felton town</strong><span>Cute mountain town 5min away. Worth a quick wander after the tasting.</span></li>
       </ul>
-      <div class="activity-tip">Leave Monterey by 8am. Welcome party isn't until 8pm — plenty of day — but factor in the drive back, check-in, and getting ready.</div>
+      <div class="activity-tip">Hallcrest is right on the route back down from Big Basin — stop in Felton on the way back to Santa Cruz. No backtracking needed.</div>
     </div>
+
     <div class="activity-card">
-      <div class="activity-card-when">Option B &mdash; Thursday</div>
-      <div class="activity-card-title">Monterey &amp; Wine</div>
+      <div class="activity-card-when">Friday — Pre-Wedding</div>
+      <div class="activity-card-title">Carmel Village</div>
       <ul class="activity-list">
-        <li><strong>17-Mile Drive</strong><span>Scenic toll road through Pebble Beach, Lone Cypress. ~$12/car.</span></li>
-        <li><a href="https://www.bernardus.com/" target="_blank"><strong>Bernardus Winery</strong></a><span>Top Carmel Valley producer. Pinot &amp; Chardonnay. 20min inland from Carmel.</span></li>
-        <li><a href="https://www.joycewines.com/" target="_blank"><strong>Joyce Vineyards</strong></a><span>Smaller, more intimate. Great Pinot Noir. Also Carmel Valley.</span></li>
-        <li><strong>Carmel Village</strong><span>Walk Ocean Ave, galleries, coffee.</span></li>
-        <li><a href="https://www.montereybayaquarium.org/" target="_blank"><strong>Monterey Bay Aquarium</strong></a><span>Worth it if you haven't been — kelp forest and sea otters are excellent.</span></li>
+        <li><strong>Carmel Beach</strong><span>White sand, turquoise water, dog-friendly. One of the best beaches in California. Worth a morning walk.</span></li>
+        <li><strong>Ocean Avenue</strong><span>Main drag — galleries, boutiques, coffee. Carmel Bakery for breakfast.</span></li>
+        <li><strong>17-Mile Drive</strong><span>If you want to drive it before checking into Carmel — Pebble Beach, Lone Cypress, Bird Rock. ~$12/car toll.</span></li>
+        <li><strong>Carmel Mission</strong><span>Beautiful historic mission a few blocks from the inn. Quick stop.</span></li>
       </ul>
-      <div class="activity-tip">17-Mile Drive in the morning, Carmel Valley wine in the afternoon. Wedding is at Folktale Winery Saturday, so you'll be at a vineyard either way.</div>
+      <div class="activity-tip">Welcome party is 8pm — you have the whole day. Keep Friday relaxed so you arrive at the wedding weekend feeling good, not tired.</div>
     </div>
   </div>
 
   <hr class="divider">
 
+  <!-- FLIGHTS -->
   <h2 class="section-title">Flights</h2>
-  <div class="note-box">On all return days (Mon and Tue), nonstop SFO &rarr; PHL flights only exist before 10am or after 11pm. No viable mid-day nonstop on either day.</div>
+  <div class="note-box">Nonstop SFO &rarr; PHL only exists before 10am or after 11pm. No viable mid-day option — this is why the Monday morning departure from Half Moon Bay (~45min to SFO) works much better than leaving from Carmel (~2hrs).</div>
   <table>
-    <tr><th>Option</th><th>Outbound</th><th>Return</th><th>Price / person</th></tr>
-    <tr><td><strong class="opt1">Option A</strong></td><td>Wed Sept 9 &mdash; American 8:20am PHL&rarr;SFO</td><td>Mon Sept 14 &mdash; United 8:50am SFO&rarr;PHL</td><td>~$498&ndash;520 est.</td></tr>
-    <tr><td><strong class="opt2">Option B</strong></td><td>Wed Sept 9 &mdash; American 8:20am PHL&rarr;SFO</td><td>Mon Sept 14 &mdash; United 8:50am SFO&rarr;PHL</td><td>~$498&ndash;520 est.</td></tr>
-    <tr><td><strong class="opt3">Option C</strong></td><td>Thu Sept 10 &mdash; United 9:25am PHL&rarr;SFO</td><td>Tue Sept 15 &mdash; TBD, similar pricing</td><td>~$484&ndash;510 est.</td></tr>
+    <tr><th>Direction</th><th>Flight</th><th>Status</th><th>Price / person</th></tr>
+    <tr><td>Outbound</td><td>Wed Sept 9 &mdash; American 8:20am PHL &rarr; SFO, arr. 11:36am (nonstop)</td><td class="tbd-cell">Not booked</td><td class="tbd-cell">~$498–520 est.</td></tr>
+    <tr><td>Return</td><td>Mon Sept 14 &mdash; United 8:50am SFO &rarr; PHL, arr. 5:30pm (nonstop)</td><td class="tbd-cell">Not booked</td><td class="tbd-cell">~$498–520 est.</td></tr>
   </table>
-  <div class="note-box">Options A and B have identical flights — the difference is entirely what you do with the days.</div>
+  <div class="warn-box">⚠ The rental car drop-off is 9am Monday at SFO and the flight boards at 8:50am. Confirm how Hertz handles early drop — typically you can drop keys and go, but worth verifying. Confirmation L60211483F9.</div>
 
   <hr class="divider">
 
-  <h2 class="section-title">Hotels by city</h2>
-  <div class="note-box">All non-Carmel rates are best-estimate ranges — &plusmn;10&ndash;15% variance. Excludes lodging tax and parking unless noted.</div>
-
-  <h3 class="section-subtitle">Monterey &mdash; Options B &amp; C only</h3>
+  <!-- COST SUMMARY -->
+  <h2 class="section-title">Full trip cost</h2>
+  <p class="table-context">Mix of confirmed actuals and estimates for remaining bookings.</p>
   <table>
-    <tr><th>Hotel</th><th>Style</th><th>Wed / Thu rate</th><th>Notes</th></tr>
-    <tr><td><strong><a href="https://www.hotelabrego.com/" target="_blank">Hotel Abrego</a></strong></td><td>Boutique</td><td>~$170&ndash;290</td><td>Breakfast + parking included. 20% summer promo — book direct by mid-May.</td></tr>
-    <tr><td><strong><a href="https://www.hotelcasamunras.com/" target="_blank">Casa Munras Garden Hotel</a></strong></td><td>Boutique hacienda</td><td>~$180&ndash;310</td><td>Monterey's oldest hotel, gardens, Est&eacute;ban restaurant, spa.</td></tr>
-  </table>
-  <p class="pick-line"><strong>Best value:</strong> Hotel Abrego &nbsp;&bull;&nbsp; <strong>Best character:</strong> Casa Munras</p>
-
-  <h3 class="section-subtitle">Santa Cruz &mdash; Option A (Wed+Thu), Option C (Sun)</h3>
-  <table>
-    <tr><th>Hotel</th><th>Style</th><th>Weeknight</th><th>Sunday</th><th>Notes</th></tr>
-    <tr><td><strong><a href="https://pacificblueinn.com/" target="_blank">Pacific Blue Inn</a></strong></td><td>Boutique B&amp;B</td><td>~$200&ndash;250</td><td>~$170&ndash;210</td><td>9-room eco-inn, downtown, walkable to everything. Free breakfast &amp; bikes.</td></tr>
-    <tr><td><strong><a href="https://seaandsandinn.com/" target="_blank">Sea &amp; Sand Inn</a></strong></td><td>Boutique oceanfront</td><td>~$300&ndash;370</td><td>~$240&ndash;300</td><td>#1 TripAdvisor SC, ocean views, breakfast + afternoon wine/snacks.</td></tr>
-  </table>
-  <p class="pick-line"><strong>Best value:</strong> Pacific Blue Inn &nbsp;&bull;&nbsp; <strong>Best splurge:</strong> Sea &amp; Sand Inn</p>
-
-  <h3 class="section-subtitle">Half Moon Bay &mdash; Sun night Options A &amp; B, Mon night Option C</h3>
-  <table>
-    <tr><th>Hotel</th><th>Style</th><th>Est. rate</th><th>Notes</th></tr>
-    <tr><td><strong><a href="https://oceanohalfmoonbay.com/" target="_blank">Oceano Hotel &amp; Spa</a></strong></td><td>Boutique coastal</td><td>~$250&ndash;350</td><td>Harbor views, fireplace suites, full spa. ~45min to SFO — much easier than Santa Cruz for early flight.</td></tr>
+    <tr><th>Item</th><th>Status</th><th>Cost</th><th>Notes</th></tr>
+    <tr class="confirmed-row"><td><strong>Rental Car — Hertz Jeep</strong></td><td>✅ Confirmed</td><td><strong>$614.88</strong></td><td>$524.11 billed after 6,051 pts · L60211483F9</td></tr>
+    <tr class="confirmed-row"><td><strong>Santa Cruz — Beach Street Inn</strong></td><td>✅ Confirmed</td><td><strong>$598.92</strong></td><td>2 nights Wed+Thu · 35337152395</td></tr>
+    <tr class="confirmed-row"><td><strong>Carmel — Fireplace Inn</strong></td><td>✅ Confirmed</td><td><strong>$827.13</strong></td><td>2 nights Fri+Sat · $516.79 still due · 4W1GX4RQ5R</td></tr>
+    <tr><td>Half Moon Bay — Oceano Hotel</td><td class="tbd-cell">Not booked</td><td class="tbd-cell">~$275</td><td>1 night Sun Sept 13 · est. before tax</td></tr>
+    <tr><td>Flights (2 passengers)</td><td class="tbd-cell">Not booked</td><td class="tbd-cell">~$996–1,040</td><td>American out + United back, nonstop</td></tr>
+    <tr class="total-row"><td>Confirmed spend</td><td></td><td>$2,040.93</td><td>$524.11 + $598.92 + $310.34 deposit paid</td></tr>
+    <tr class="total-row"><td>Estimated full trip total</td><td></td><td>~$3,300–3,360</td><td>Per couple, all-in</td></tr>
   </table>
 
   <hr class="divider">
 
-  <h2 class="section-title">Total cost comparison</h2>
-  <p class="table-context">Carmel hotel shown as a range. Other hotels use value picks. Rental car at ~$70/day.</p>
-  <table>
-    <tr><th>Cost component</th><th class="opt1">Option A</th><th class="opt2">Option B</th><th class="opt3">Option C</th></tr>
-    <tr><td>Flights (2 passengers)</td><td>~$996&ndash;1,040</td><td>~$996&ndash;1,040</td><td>~$968&ndash;1,020</td></tr>
-    <tr><td>Santa Cruz hotel</td><td>~$420 (2 nights)</td><td>&mdash;</td><td>~$185 (1 night Sun)</td></tr>
-    <tr><td>Monterey hotel</td><td>&mdash;</td><td>~$490 (2 nights)</td><td>~$245 (1 night)</td></tr>
-    <tr><td>Carmel hotel (Fri+Sat)</td><td>$604&ndash;827</td><td>$604&ndash;827</td><td>$604&ndash;827</td></tr>
-    <tr><td>Half Moon Bay hotel</td><td>~$275 (1 night)</td><td>~$275 (1 night)</td><td>~$275 (Mon night)</td></tr>
-    <tr><td>Rental car (~$70/day + gas)</td><td>~$420 (6 days)</td><td>~$420 (6 days)</td><td>~$420 (6 days)</td></tr>
-    <tr><td>Est. taxes + parking</td><td>~$80</td><td>~$120</td><td>~$100</td></tr>
-    <tr class="total-row"><td>Estimated total / couple</td><td>~$2,795&ndash;3,060</td><td>~$2,905&ndash;3,170</td><td>~$2,797&ndash;3,072</td></tr>
-    <tr class="total-row"><td>PTO &mdash; Nick &amp; Shannon</td><td>4 days each</td><td>4 days each</td><td>4 days each</td></tr>
-  </table>
-  <div class="note-box">Carmel hotel taxes already included in quoted prices — not double-counted in taxes/parking row.</div>
-
-  <hr class="divider">
-
-  <h2 class="section-title">Booking order</h2>
+  <!-- REMAINING BOOKINGS -->
+  <h2 class="section-title">Remaining to book</h2>
   <ol class="order-list">
-    <li><strong>Text Jeff &amp; Luciana</strong> — booked in Carmel yet? Pitch the <a href="https://www.fireplaceinncarmel.com/" target="_blank">Fireplace Inn</a> two-room split. First domino.</li>
-    <li><strong>Book Carmel hotel</strong> — <a href="https://www.fireplaceinncarmel.com/" target="_blank">Fireplace Inn</a> or <a href="https://www.carmelmissioninn.com/" target="_blank">Carmel Mission Inn</a> (code 2609HUNTER). Book this week.</li>
-    <li><strong>Decide itinerary A, B, or C</strong> — north vs south vs balanced. Drives outbound flight and remaining hotels.</li>
-    <li><strong>Flights</strong> — American 8:20am Wed + United 8:50am Mon for A or B. United 9:25am Thu + TBD Tue for C.</li>
-    <li><strong>Monterey hotel (B or C)</strong> — <a href="https://www.hotelabrego.com/" target="_blank">Hotel Abrego</a> or <a href="https://www.hotelcasamunras.com/" target="_blank">Casa Munras</a>. Book direct. Abrego promo expires mid-May.</li>
-    <li><strong>Santa Cruz hotel (A or C)</strong> — <a href="https://pacificblueinn.com/" target="_blank">Pacific Blue Inn</a> or <a href="https://seaandsandinn.com/" target="_blank">Sea &amp; Sand Inn</a>. Lower urgency.</li>
-    <li><strong>Half Moon Bay hotel (A, B, or C)</strong> — <a href="https://oceanohalfmoonbay.com/" target="_blank">Oceano Hotel &amp; Spa</a>. Book direct.</li>
+    <li><strong>Half Moon Bay — Oceano Hotel &amp; Spa</strong> — Sunday Sept 13, 1 night. <a href="https://oceanohalfmoonbay.com/" target="_blank">Book direct at oceanohalfmoonbay.com</a>. Closest hotel to SFO on the itinerary, easiest Monday morning.</li>
+    <li><strong>Flights</strong> — American 8:20am Wed Sept 9 PHL&rarr;SFO + United 8:50am Mon Sept 14 SFO&rarr;PHL. Check Google Flights for current pricing.</li>
+    <li><strong>Hallcrest Vineyards reservation</strong> — check <a href="https://www.hallcrestvineyards.com/" target="_blank">hallcrestvineyards.com</a> for whether tasting room requires a reservation. Open Thu–Mon 12–5pm.</li>
+    <li><strong>Big Basin parking</strong> — reserve day-use parking at parks.ca.gov in advance. Fills up, especially on summer/fall weekdays.</li>
   </ol>
 
-  <h2 class="section-title">Key caveats</h2>
+  <!-- KEY CAVEATS -->
+  <h2 class="section-title">Key notes</h2>
   <ul class="checklist">
-    <li><strong>Welcome party is 8pm Friday</strong> — festive cocktail attire. Plenty of time for a full day before getting ready.</li>
-    <li><strong>Wedding is 4pm Saturday at <a href="https://www.folktalewinery.com/" target="_blank">Folktale Winery</a></strong> — colorful black tie. Shuttles confirmed from Carmel Mission Inn; Fireplace Inn guests need Uber/Lyft.</li>
-    <li><strong><a href="https://www.parks.ca.gov/?page_id=540" target="_blank">Big Basin</a> trail status</strong> — check current conditions before committing. Partially restored after 2020 CZU fire.</li>
-    <li><strong><a href="https://www.bigbasinvineyards.com/visit-2/" target="_blank">Big Basin Vineyards estate winery</a></strong> sits right on the mountain route back from the park — hike first, taste on the way back down. No detour needed.</li>
-    <li><strong>Big Sur timing (B &amp; C)</strong> — leave Monterey by 8am Friday. Factor in the drive back, check-in, and getting ready for 8pm.</li>
-    <li><strong>HWY 1 north on Sunday</strong> (Options A &amp; B) — Carmel to Half Moon Bay is one of the best coastal drives in the country.</li>
-    <li><strong>Rental car</strong> — book early, prices rise closer to date. Non-negotiable for this trip.</li>
-    <li>All hotel rates except confirmed Carmel prices are historical estimates — verify before booking.</li>
+    <li><strong>Hertz drop-off vs flight timing</strong> — drop-off is 9am, flight boards 8:50am. Confirm the process with Hertz for same-terminal early drop. Conf: L60211483F9.</li>
+    <li><strong>Fireplace Inn balance</strong> — $516.79 due at check-in Sept 11. Credit card must be physically present at check-in.</li>
+    <li><strong><a href="https://www.parks.ca.gov/?page_id=540" target="_blank">Big Basin trail status</a></strong> — check conditions before Thursday. Partially restored after 2020 CZU fire but some areas still limited.</li>
+    <li><strong>Hallcrest Vineyards</strong> — bring a picnic. Wild Roots Market in Felton is right nearby for supplies. No corkage if you buy their wine on site.</li>
+    <li><strong>Welcome party Friday 8pm</strong> — festive cocktail attire. Location TBC — check the <a href="https://www.zola.com/wedding/maryssaandbranson/event" target="_blank">wedding website</a> for updates.</li>
+    <li><strong>Wedding Saturday 4pm at <a href="https://www.folktalewinery.com/" target="_blank">Folktale Winery</a></strong> — colorful black tie. Uber/Lyft from Fireplace Inn. Budget ~$20–30 each way.</li>
+    <li><strong>HWY 1 drive Sunday</strong> — Carmel to Half Moon Bay is the iconic stretch. One of the best coastal drives in the country. Take your time.</li>
   </ul>
+
+  <!-- ARCHIVE: OPTIONS NOT CHOSEN -->
+  <div class="archive-section">
+    <div class="archive-label">Reference only</div>
+    <div class="archive-title">Options we didn't choose</div>
+    <div class="archive-desc">Kept here for reference. Option A was chosen — north focused, Santa Cruz + Big Basin + Half Moon Bay. Options B and C were the south-focused and balanced alternatives that prioritized Monterey and Big Sur.</div>
+
+    <div class="archive-option">
+      <div class="archive-option-name">Option B — South Focus</div>
+      <div class="archive-option-meta">Wed Sept 9 &rarr; Mon Sept 14 &middot; 4 PTO days &middot; ~$2,905–3,170/couple &middot; Skips Big Basin</div>
+      <div class="archive-days">
+        <div class="arc-day"><div class="arc-label">Wed Sept 9</div><div>Travel day. Fly PHL→SFO. Drive to Monterey. Check in, Cannery Row, dinner.</div></div>
+        <div class="arc-day"><div class="arc-label">Thu Sept 10</div><div>17-Mile Drive and Pebble Beach morning. Afternoon Carmel Valley wine tasting — <a href="https://www.bernardus.com/" target="_blank">Bernardus</a>, <a href="https://www.joycewines.com/" target="_blank">Joyce Vineyards</a>. Hotel: Monterey night 2.</div></div>
+        <div class="arc-day"><div class="arc-label">Fri Sept 11</div><div>Big Sur — Bixby Bridge, Pfeiffer Beach, McWay Falls, lunch at <a href="https://www.nepenthebigsur.com/" target="_blank">Nepenthe</a>. Drive to Carmel, check in. Welcome party 8pm. Hotel: Carmel Fireplace Inn / Mission Inn.</div></div>
+        <div class="arc-day"><div class="arc-label">Sat Sept 12</div><div>Slow Carmel morning. Wedding 4pm at Folktale Winery. Hotel: Carmel.</div></div>
+        <div class="arc-day"><div class="arc-label">Sun Sept 13</div><div>Checkout. Scenic HWY 1 drive north to Half Moon Bay. Decompress. Hotel: Half Moon Bay.</div></div>
+        <div class="arc-day"><div class="arc-label">Mon Sept 14</div><div>Early SFO departure. United 8:50am → PHL 5:30pm.</div></div>
+      </div>
+    </div>
+
+    <div class="archive-option">
+      <div class="archive-option-name">Option C — Balanced (Both Big Sur + Big Basin)</div>
+      <div class="archive-option-meta">Thu Sept 10 &rarr; Tue Sept 15 &middot; 4 PTO days &middot; ~$2,797–3,072/couple &middot; Most ambitious, least time everywhere</div>
+      <div class="archive-days">
+        <div class="arc-day"><div class="arc-label">Thu Sept 10</div><div>Travel day. Fly PHL→SFO. Drive to Monterey. Check in, dinner.</div></div>
+        <div class="arc-day"><div class="arc-label">Fri Sept 11</div><div>Big Sur — Bixby Bridge, Pfeiffer Beach, McWay Falls, Nepenthe. Drive to Carmel, check in. Welcome party 8pm. Hotel: Carmel.</div></div>
+        <div class="arc-day"><div class="arc-label">Sat Sept 12</div><div>Slow Carmel morning. Wedding 4pm at Folktale Winery. Hotel: Carmel.</div></div>
+        <div class="arc-day"><div class="arc-label">Sun Sept 13</div><div>Checkout. Drive to Santa Cruz. Recovery day — beach, food, low effort. Hotel: Santa Cruz.</div></div>
+        <div class="arc-day"><div class="arc-label">Mon Sept 14</div><div>Big Basin hike. Hallcrest Vineyards on the way back. Drive to Half Moon Bay. Hotel: Half Moon Bay.</div></div>
+        <div class="arc-day"><div class="arc-label">Tue Sept 15</div><div>Early SFO departure. Morning nonstop → PHL. Back to work Wednesday.</div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;">
+      <h3 class="section-subtitle" style="margin-top:1rem;">Hotels researched but not booked</h3>
+      <div class="note-box">These were researched during planning and are kept here for reference in case any confirmed bookings need to change.</div>
+      <table>
+        <tr><th>Hotel</th><th>City</th><th>Est. Rate</th><th>Notes</th></tr>
+        <tr><td><a href="https://www.carmelmissioninn.com/" target="_blank"><strong>Carmel Mission Inn</strong></a></td><td>Carmel</td><td>$827/2 nights</td><td>Wedding room block code: 2609HUNTER. Shuttles to Folktale Winery. Chose Fireplace Inn instead for village location.</td></tr>
+        <tr><td><a href="https://pacificblueinn.com/" target="_blank"><strong>Pacific Blue Inn</strong></a></td><td>Santa Cruz</td><td>~$200–250/night</td><td>9-room boutique B&amp;B. Good value, downtown location.</td></tr>
+        <tr><td><a href="https://seaandsandinn.com/" target="_blank"><strong>Sea &amp; Sand Inn</strong></a></td><td>Santa Cruz</td><td>~$418/night</td><td>Oceanfront, #1 TripAdvisor SC, breakfast + wine hour. Chose Beach Street for price.</td></tr>
+        <tr><td><a href="https://www.hotelabrego.com/" target="_blank"><strong>Hotel Abrego</strong></a></td><td>Monterey</td><td>~$170–290/night</td><td>Best value Monterey boutique. Breakfast + parking included.</td></tr>
+        <tr><td><a href="https://www.hotelcasamunras.com/" target="_blank"><strong>Casa Munras Garden Hotel</strong></a></td><td>Monterey</td><td>~$180–310/night</td><td>1824-origin hacienda. Best character in Monterey.</td></tr>
+      </table>
+    </div>
+  </div>
 
 </div>
 </body>
