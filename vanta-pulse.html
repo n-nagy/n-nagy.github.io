@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light">
+<title>Vanta Pulse — A Proposal</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..700;1,300..600&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  color-scheme: only light;
+  --paper: #FCFBF9;
+  --paper-2: #FFFFFF;
+  --ink: #1C1B22;
+  --ink-2: #45434E;
+  --ink-3: #7A7884;
+  --accent: #5B3FE8;
+  --accent-soft: #F1EEFC;
+  --accent-line: #DCD4F8;
+  --rule: #E8E6EE;
+  --rule-soft: #F1EFF4;
+  --wash: #F6F4F1;
+  --warn: #8A5A00;
+  --warn-soft: #FBF6EC;
+  --warn-line: #ECDFC2;
+  --sans: 'Host Grotesk', system-ui, sans-serif;
+  --mono: 'DM Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; background: #FCFBF9; }
+body { font-family: var(--sans); background: var(--paper); color: var(--ink); font-size: 15.5px; line-height: 1.58; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-line); }
+a:hover { border-color: var(--accent); }
+
+/* COVER */
+.cover { padding: 76px 0 44px; border-bottom: 1px solid var(--rule); }
+.cover .mark { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 24px; }
+.cover h1 { font-size: 50px; font-weight: 600; letter-spacing: -0.03em; line-height: 1.02; margin-bottom: 20px; }
+.cover h1 .light { color: var(--ink-3); font-weight: 300; }
+.cover .thesis { font-size: 18px; line-height: 1.5; color: var(--ink-2); max-width: 56ch; font-weight: 300; }
+.cover .thesis-box { margin-top: 18px; background: var(--accent-soft); border: 1px solid var(--accent-line); border-left: 3px solid var(--accent); border-radius: 10px; padding: 18px 22px; font-size: 18px; line-height: 1.45; color: #2E1E80; font-weight: 600; max-width: 58ch; }
+
+/* EXEC SUMMARY */
+.summary { padding: 40px 0; border-bottom: 1px solid var(--rule); }
+.summary .label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.summary h2 { font-size: 24px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 16px; }
+.walkaway { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 18px; }
+.walkaway .w { border: 1px solid var(--rule); border-radius: 11px; padding: 16px 18px; background: var(--paper-2); }
+.walkaway .w .wn { font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 7px; }
+.walkaway .w h4 { font-size: 15px; font-weight: 600; margin-bottom: 5px; }
+.walkaway .w p { font-size: 13px; color: var(--ink-2); margin: 0; line-height: 1.45; }
+
+/* PART DIVIDER */
+.part { padding: 52px 0 8px; }
+.part .pkicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.part h2 { font-size: 34px; font-weight: 600; letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 10px; }
+.part .intent { font-size: 16px; color: var(--ink-2); font-weight: 300; max-width: 60ch; }
+.part .intent b { color: var(--ink); font-weight: 500; }
+.part-rule { height: 2px; background: var(--accent); margin-top: 20px; opacity: 0.85; }
+
+/* SECTION */
+section { padding: 38px 0; border-bottom: 1px solid var(--rule-soft); }
+.eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--accent); margin-bottom: 11px; }
+h3.sec { font-size: 26px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 16px; }
+h4.sub { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; margin: 22px 0 9px; }
+p { margin-bottom: 13px; color: var(--ink-2); }
+p strong, li strong { color: var(--ink); font-weight: 600; }
+.lead { font-size: 17px; color: var(--ink); font-weight: 300; line-height: 1.45; margin-bottom: 16px; }
+ul, ol { padding-left: 20px; margin-bottom: 13px; }
+li { margin-bottom: 6px; color: var(--ink-2); }
+
+/* PULL */
+.pull { font-size: 21px; line-height: 1.38; font-weight: 300; color: var(--ink); border-left: 2px solid var(--accent); padding-left: 20px; margin: 20px 0; letter-spacing: -0.01em; }
+.pull b { font-weight: 600; }
+
+/* BOXES */
+.box { border: 1px solid var(--rule); border-radius: 12px; padding: 18px 20px; margin: 16px 0; background: var(--paper-2); }
+.box .blabel { font-family: var(--mono); font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); margin-bottom: 9px; }
+.box.tinted { background: var(--accent-soft); border-color: var(--accent-line); }
+.box p:last-child, .box ul:last-child, .box li:last-child { margin-bottom: 0; }
+.box.tinted .goal { font-size: 16.5px; color: #2E1E80; font-weight: 500; margin: 0; }
+.assume { background: var(--warn-soft); border: 1px solid var(--warn-line); border-radius: 10px; padding: 13px 17px; margin: 16px 0; font-size: 14px; color: #6E4D12; }
+.assume .blabel { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--warn); margin-bottom: 5px; font-weight: 500; }
+
+/* CARD GRIDS */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 16px 0; }
+.tile { border: 1px solid var(--rule); border-radius: 10px; padding: 15px 17px; background: var(--paper-2); }
+.tile .n { font-family: var(--mono); font-size: 10.5px; color: var(--accent); margin-bottom: 5px; }
+.tile h4 { font-size: 14.5px; font-weight: 600; margin-bottom: 4px; }
+.tile p { font-size: 13px; margin-bottom: 0; color: var(--ink-2); line-height: 1.45; }
+.tile.muted { background: var(--wash); border-color: var(--rule); }
+.tile.fifth { border-color: var(--accent-line); background: var(--accent-soft); }
+.tile.fifth h4, .tile.fifth .n { color: var(--accent); }
+.tile.fifth p { color: #4A3A8A; }
+
+/* LADDER */
+.ladder { margin: 18px 0; }
+.rung { border: 1px solid var(--rule); border-radius: 9px; padding: 12px 18px; margin-bottom: 7px; background: var(--paper-2); }
+.rung .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 2px; }
+.rung .stmt { font-size: 15px; color: var(--ink); font-weight: 500; }
+.rung.r1 { margin-left: 20px; } .rung.r2 { margin-left: 40px; } .rung.r3 { margin-left: 60px; }
+.rung.accent { border-color: var(--accent-line); background: var(--accent-soft); }
+.rung.accent .stmt { color: #2E1E80; }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 14px 0; }
+th { background: var(--wash); text-align: left; padding: 10px 13px; font-weight: 600; font-size: 12px; border: 1px solid var(--rule); color: var(--ink); }
+td { padding: 11px 13px; border: 1px solid var(--rule); vertical-align: top; line-height: 1.45; color: var(--ink-2); }
+td strong { color: var(--ink); }
+.mono-cell { font-family: var(--mono); font-size: 11.5px; color: var(--accent); white-space: nowrap; }
+tr.primary td { background: var(--accent-soft); }
+
+/* DETAILS / COLLAPSIBLE */
+details.disc { border: 1px solid var(--rule); border-radius: 11px; margin-bottom: 9px; background: var(--paper-2); overflow: hidden; }
+details.disc summary { padding: 14px 18px; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 12px; }
+details.disc summary::-webkit-details-marker { display: none; }
+details.disc summary::before { content: '+'; font-family: var(--mono); font-size: 16px; color: var(--accent); flex-shrink: 0; width: 14px; }
+details.disc[open] summary::before { content: '–'; }
+details.disc summary .stitle { font-size: 16px; font-weight: 600; color: var(--ink); }
+details.disc summary .sbadge { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.05em; text-transform: uppercase; padding: 2px 8px; border-radius: 20px; background: var(--wash); color: var(--ink-3); margin-left: auto; }
+details.disc summary .sbadge.p { background: var(--accent); color: #fff; }
+details.disc .dbody { padding: 2px 18px 16px 44px; }
+details.disc .dbody p { font-size: 13.5px; margin-bottom: 0; line-height: 1.5; }
+details.disc .dbody ul { margin: 0; }
+details.disc .dbody li { font-size: 13.5px; }
+
+/* JOURNEY RAIL */
+.journey { margin: 20px 0 14px; overflow-x: auto; }
+.rail-track { position: relative; min-width: 680px; }
+.rail-line { position: absolute; top: 13px; left: 8%; right: 8%; height: 1.5px; background: var(--rule); z-index: 0; }
+.rail { display: flex; align-items: flex-start; gap: 0; position: relative; }
+.stage { flex: 1; padding: 0 4px; }
+.stage .node { width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); border: 1.5px solid var(--accent); color: var(--accent); font-family: var(--mono); font-size: 11px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; position: relative; z-index: 2; }
+.stage .scap { text-align: center; }
+.stage .stitle2 { font-size: 12.5px; font-weight: 600; color: var(--ink); line-height: 1.25; margin-bottom: 3px; }
+.stage .sdesc { font-size: 11px; color: var(--ink-3); line-height: 1.35; }
+.stage.fork .node { border-style: dashed; border-color: var(--warn); background: var(--warn-soft); color: var(--warn); }
+.branch { margin-top: 8px; border: 1px dashed var(--warn-line); border-radius: 7px; padding: 6px 7px; background: var(--warn-soft); }
+.branch .blabel2 { font-family: var(--mono); font-size: 8.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--warn); margin-bottom: 4px; text-align: center; }
+.branch .bopt { font-size: 10.5px; color: #6E4D12; text-align: center; padding: 1px 0; }
+
+/* CONTRACT */
+.contract { border: 1px solid var(--accent-line); border-radius: 12px; overflow: hidden; margin: 14px 0; }
+.contract .chead { background: var(--accent-soft); padding: 11px 18px; font-family: var(--mono); font-size: 12px; color: #2E1E80; border-bottom: 1px solid var(--accent-line); }
+.contract .rows { padding: 6px 0; }
+.crow { display: flex; gap: 14px; padding: 6px 18px; font-size: 13.5px; }
+.crow .field { font-family: var(--mono); font-size: 12px; color: var(--accent); width: 140px; flex-shrink: 0; }
+.crow .cdesc { color: var(--ink-2); }
+
+/* METRICS */
+.metric { border: 1px solid var(--rule); border-radius: 10px; padding: 13px 17px; margin-bottom: 10px; background: var(--paper-2); }
+.metric.nsm { border-color: var(--accent-line); background: var(--accent-soft); }
+.metric .mlabel { font-family: var(--mono); font-size: 10px; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 2px; }
+.metric.nsm .mlabel { color: var(--accent); }
+.metric .mval { font-size: 15px; font-weight: 600; color: var(--ink); }
+.metric .mwhy { font-size: 13px; color: var(--ink-2); margin-top: 2px; line-height: 1.45; }
+
+.foot { padding: 36px 0 70px; text-align: center; color: var(--ink-3); font-size: 12.5px; font-family: var(--mono); }
+
+@media (max-width: 640px) {
+  .cover h1 { font-size: 36px; }
+  .grid2, .grid3, .walkaway { grid-template-columns: 1fr; }
+  .rung.r1,.rung.r2,.rung.r3 { margin-left: 0; }
+  h3.sec { font-size: 22px; }
+  .part h2 { font-size: 27px; }
+}
+@media (prefers-color-scheme: dark) {
+  html, body { background: #FCFBF9 !important; color: #1C1B22 !important; }
+  section, .cover, .summary, .part { background: #FCFBF9 !important; }
+  .box, .tile, details.disc, .rung, .contract, .metric, td { background: #FFFFFF !important; }
+  h1,h2,h3,h4,.stmt,.mval,td strong,p strong,.stitle,.stitle2 { color: #1C1B22 !important; }
+  p,li,td,.sdesc,.mwhy,.intent { color: #45434E !important; }
+  .box.tinted,.metric.nsm,.rung.accent,tr.primary td,.cover .thesis-box,.tile.fifth { background: #F1EEFC !important; }
+  .tile.muted { background: #F6F4F1 !important; }
+  th { background: #F6F4F1 !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="mark">Vanta · Staff PM, Identity Platform · Case Study</div>
+  <h1>Pulse<span class="light">.</span><br><span class="light">A command center for compliance work.</span></h1>
+  <p class="thesis">Vanta tells customers what's wrong, and even how to fix it. But that work is scattered across multiple surfaces, and the product doesn't adapt to or consolidate the many ways customers actually manage it.</p>
+  <div class="thesis-box">Pulse brings every actionable item across Vanta into one prioritized, contextual surface, built on a shared primitive so the next surface plugs in for free.</div>
+</div>
+
+<!-- EXEC SUMMARY -->
+<div class="summary">
+  <div class="label">What you should walk away with</div>
+  <h2>This proposal has three parts.</h2>
+  <p>Read top to bottom it's a narrative: what the investment is, how we'd approach it, and how we'd sequence the work. If you only remember three things, remember these.</p>
+  <div class="walkaway">
+    <div class="w"><div class="wn">Part I · The Brief</div><h4>A real, compounding problem</h4><p>Compliance work is fragmented across surfaces, and it gets worse with every new one Vanta ships.</p></div>
+    <div class="w"><div class="wn">Part II · Vision &amp; Strategy</div><h4>Pulse, on a shared primitive</h4><p>One contextual command center for all compliance work, built on a reusable "action" contract.</p></div>
+    <div class="w"><div class="wn">Part III · How we get there</div><h4>Now, next, later</h4><p>A dependency-sequenced roadmap that consolidates what exists before extending to what's new.</p></div>
+  </div>
+</div>
+
+<!-- ================= PART I ================= -->
+<div class="part">
+  <div class="pkicker">Part I</div>
+  <h2>The Product Brief</h2>
+  <p class="intent"><b>Intent:</b> align on the core details of the investment area, the problem, why it matters now, and what success looks like.</p>
+  <div class="part-rule"></div>
+</div>
+
+<!-- THE PROBLEM -->
+<section id="problem">
+  <div class="eyebrow">The problem</div>
+  <h3 class="sec">Compliance work is fragmented across surfaces that don't share a spine.</h3>
+  <div class="box">
+    <div class="blabel">The fragmentation is already visible inside the product</div>
+    <p style="margin-bottom:0;">Vanta has already tried to answer "show me what I need to do," three separate times. <strong>My Work</strong>, <strong>My Security Tasks</strong>, and <strong>My Access Requests</strong> are three disconnected surfaces. That's the problem in miniature: without a shared primitive, every team that needs a "here's your work" view builds its own.</p>
+  </div>
+  <p>As Vanta has grown, controls, tests, policies, access reviews, vendor risk, risk registers, people management, questionnaires, each surface developed its own view of the work to be done. They share elements like an owner and a status, but there's no common harness tying them together.</p>
+  <p>Four problems are well understood, and we're rallying around them. We'd also name a fifth.</p>
+  <div class="grid2">
+    <div class="tile muted"><div class="n">Given · 01</div><h4>Cognitive overload</h4><p>No single place to see what's due across surfaces.</p></div>
+    <div class="tile muted"><div class="n">Given · 02</div><h4>No prioritization</h4><p>No guidance on what to tackle first.</p></div>
+    <div class="tile muted"><div class="n">Given · 03</div><h4>Poor delegation</h4><p>Work gets assigned over Slack, email, and spreadsheets.</p></div>
+    <div class="tile muted"><div class="n">Given · 04</div><h4>No leadership visibility</h4><p>No view of workload, bottlenecks, or audit-readiness.</p></div>
+  </div>
+  <div class="tile fifth"><div class="n">Identified · 05</div><h4>Bespoke workflow drift</h4><p>Without a central system, Vanta teams will keep building one-off action workflows, compounding the fragmentation with every new surface. This is the platform problem underneath the other four.</p></div>
+</section>
+
+<!-- WHY THIS MATTERS / WHY NOW -->
+<section id="why">
+  <div class="eyebrow">Why this matters, and why now</div>
+  <h3 class="sec">The more a customer leans on Vanta, the harder the work gets to manage.</h3>
+  <p class="lead">Picture the person who owns compliance at a 300-person company, mid-audit. Every morning they check Tests, then Access Reviews, then Policies, then Vendors, then Documents, each with its own idea of "what needs attention."</p>
+  <p>Vanta detects the issues and even has products that inform remediation steps across different paths (CLI, Terraform, and more). But the person accountable for the program has no single place to easily see all the actions that need to happen now, next, and later.</p>
+  <p class="pull">Expanding usage shouldn't make the work harder to manage. Today it does, because staying on top of it requires <b>the customer to be the integration layer.</b></p>
+  <h4 class="sub">Why now</h4>
+  <div class="grid3">
+    <div class="tile"><h4>Critical mass</h4><p>The surface count is high enough that fragmentation now compounds with every new feature.</p></div>
+    <div class="tile"><h4>Foundation exists</h4><p>The Vanta Agent already reasons across surfaces. What's missing is a place to act on it.</p></div>
+    <div class="tile"><h4>Renewal risk</h4><p>Work piling up is a leading indicator of a program losing momentum, and of churn.</p></div>
+  </div>
+  <div class="assume">
+    <div class="blabel">Directional assumptions we'd validate</div>
+    These are the signals we'd expect to confirm now is the moment, not established fact: that overdue-item frequency is trending up, that the inefficiency is voiced in renewal conversations, and that it threatens the continuous-trust promise. We'd confirm them first (covered in <a href="#validate">How we'd validate the assumptions</a>).
+  </div>
+</section>
+
+<!-- SUCCESS -->
+<section id="success">
+  <div class="eyebrow">What success looks like</div>
+  <h3 class="sec">How we'd expect the world to look if we succeed.</h3>
+  <div class="grid3">
+    <div class="tile"><div class="n">01</div><h4>Work matches the org</h4><p>Customers manage work in the ways that fit them. We meet teams where they are, rather than forcing everyone into our flow.</p></div>
+    <div class="tile"><div class="n">02</div><h4>Less time managing</h4><p>Fewer clicks and less time hunting across surfaces, chasing people, and bookkeeping in spreadsheets.</p></div>
+    <div class="tile"><div class="n">03</div><h4>No future drift</h4><p>Reusable primitives mean the next surface plugs into the same foundation instead of inventing its own.</p></div>
+  </div>
+</section>
+
+<!-- ================= PART II ================= -->
+<div class="part">
+  <div class="pkicker">Part II</div>
+  <h2>Vision &amp; Strategy</h2>
+  <p class="intent"><b>Intent:</b> align on our approach to tackling this, the vision, who we serve, the journey, the bets we'd validate, how we measure, and the product itself.</p>
+  <div class="part-rule"></div>
+</div>
+
+<!-- VISION + MISSION LADDER -->
+<section id="vision">
+  <div class="eyebrow">Vision &amp; mission</div>
+  <h3 class="sec">Pulse is a command center for compliance work, in service of Vanta's mission.</h3>
+  <p class="lead">A single surface where work from across Vanta is consolidated, and where each user gets a contextual view shaped by the kind of work they're responsible for.</p>
+  <p>Vanta's mission is to help businesses earn and prove trust, and the way Vanta does that is by making compliance <em>continuous</em>. Continuous only works if the work actually gets done. That's the thread Pulse pulls on.</p>
+  <div class="ladder">
+    <div class="rung r0"><div class="tag">Vanta's mission</div><div class="stmt">Help businesses earn and prove trust.</div></div>
+    <div class="rung r1"><div class="tag">How</div><div class="stmt">By making compliance continuous, not point-in-time.</div></div>
+    <div class="rung r2"><div class="tag">Which depends on</div><div class="stmt">The right work getting done, on time, without falling through the cracks.</div></div>
+    <div class="rung r3 accent"><div class="tag">Pulse's mission (working draft)</div><div class="stmt">Give every team one complete, trustworthy view of their compliance work, so they can stay continuously focused on it instead of chasing it across surfaces.</div></div>
+  </div>
+</section>
+
+<!-- WHO WE'RE BUILDING FOR -->
+<section id="users">
+  <div class="eyebrow">Who we're building for</div>
+  <h3 class="sec">We segment by relationship to the work, not by role.</h3>
+  <p>To advocate for the right needs, we used PARK (Perform, Approve, Review, Know) combined with jobs-to-be-done. We don't segment by role because <strong>responsibilities don't map neatly to roles</strong>: one person can perform some work, approve other work, and just need awareness of the rest.</p>
+  <table>
+    <thead><tr><th>Relationship</th><th>The job-to-be-done</th></tr></thead>
+    <tbody>
+      <tr><td class="mono-cell">Perform</td><td>As a user performing remediation actions identified by Vanta, I need clarity on what work comes first and what action to take.</td></tr>
+      <tr class="primary"><td class="mono-cell">Approve</td><td>As a user approving work done by others, I need to confirm the people I assigned work to have actually completed it.</td></tr>
+      <tr><td class="mono-cell">Review</td><td>As a user reviewing the security posture of my company, I need to give input where it's required without managing every item.</td></tr>
+      <tr><td class="mono-cell">Know</td><td>As a user accountable for the program, I need confidence we're on track without having to manage the work myself.</td></tr>
+    </tbody>
+  </table>
+
+  <h4 class="sub">The same lens, made concrete</h4>
+  <details class="disc">
+    <summary><span class="stitle">John at Acme</span><span class="sbadge p">Approve + Review</span></summary>
+    <div class="dbody"><p>Owns the program. Manages everything inside Vanta but drives execution through Slack and email, including to people who'll never log in. His defining need is the one no one else has: to see what he's doing, what he's delegated out, and whether it's getting done, even when the doing happens somewhere Vanta can't see. He is our primary user.</p></div>
+  </details>
+  <details class="disc">
+    <summary><span class="stitle">The engineering team at Nick's Kicks</span><span class="sbadge">Perform</span></summary>
+    <div class="dbody"><p>All have Vanta accounts. Mostly performing the work. They want a clean queue of what's theirs and how to resolve it. They are not tracking anyone else's work.</p></div>
+  </details>
+  <details class="disc">
+    <summary><span class="stitle">Mike at Attentive</span><span class="sbadge">Know</span></summary>
+    <div class="dbody"><p>Works through a task-tracker integration, but today that's scoped narrowly to tests. Evidence the delegation story exists but is incomplete, and a reminder that the performer often lives outside Vanta entirely.</p></div>
+  </details>
+  <div class="box tinted">
+    <div class="blabel">Who we're deliberately not building for</div>
+    <p style="margin-bottom:0;">We aren't building for the employees at our customers who engage with Vanta outside of PARK, like the non-technical teams who get an email to accept a policy. They don't need a command center; their flows continue as they are today.</p>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+  <div class="eyebrow">The key user journey</div>
+  <h3 class="sec">Every object follows a similar path. Today, each one walks it slightly differently.</h3>
+  <p>One generic journey runs under every actionable item, whatever the object type. Drawing it once is the point: the fragmentation is that each surface handles this path its own way, and breaks at the same two forks.</p>
+  <div class="journey">
+    <div class="rail-track">
+      <div class="rail-line"></div>
+      <div class="rail">
+        <div class="stage"><div class="node">1</div><div class="scap"><div class="stitle2">Trigger</div><div class="sdesc">A test fails, a policy expires, a review comes due</div></div></div>
+        <div class="stage"><div class="node">2</div><div class="scap"><div class="stitle2">Detection</div><div class="sdesc">Vanta already knows. Existing intelligence layer</div></div></div>
+        <div class="stage fork"><div class="node">3</div><div class="scap"><div class="stitle2">Routing</div><div class="sdesc">Who owns this?</div></div><div class="branch"><div class="blabel2">Fork 1</div><div class="bopt">individual</div><div class="bopt">team</div><div class="bopt">nobody</div></div></div>
+        <div class="stage fork"><div class="node">4</div><div class="scap"><div class="stitle2">Surfacing</div><div class="sdesc">Where does it appear?</div></div><div class="branch"><div class="blabel2">Fork 2</div><div class="bopt">in-Vanta</div><div class="bopt">Slack / email</div><div class="bopt">ext. tracker</div></div></div>
+        <div class="stage"><div class="node">5</div><div class="scap"><div class="stitle2">Action</div><div class="sdesc">With the fix attached, not left behind</div></div></div>
+        <div class="stage"><div class="node">6</div><div class="scap"><div class="stitle2">Resolution</div><div class="sdesc">Auto-observed or manually attested</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALIDATE -->
+<section id="validate">
+  <div class="eyebrow">How we'd validate the assumptions</div>
+  <h3 class="sec">Test the bets that justify the investment.</h3>
+  <p>Before committing, we'd confirm the directional assumptions behind the Why Now.</p>
+  <div class="grid3">
+    <div class="tile"><h4>Instrument the trend</h4><p>Pull existing data on overdue frequency and time-to-resolution. Is the problem getting worse, and for whom?</p></div>
+    <div class="tile"><h4>Talk to Approve users</h4><p>Interview accountable owners across SMB and enterprise on how they orchestrate today, and what lives in Slack and spreadsheets.</p></div>
+    <div class="tile"><h4>Mine renewal &amp; CS signal</h4><p>Is "we can't keep work moving" showing up in renewal conversations and support tickets?</p></div>
+  </div>
+
+  <h4 class="sub">Other inputs we'd seek</h4>
+  <p>Three inputs would most change the plan:</p>
+  <ul>
+    <li><strong>The full catalogue of action types across surfaces.</strong> It tells us whether the contract's fields are actually sufficient, or whether a class of work won't fit, which would reshape the abstraction before we build on it.</li>
+    <li><strong>Usage data on the three existing "my work" surfaces.</strong> Who uses them and where they fall short sets the bar Pulse has to clear, and tells us whether consolidation is a real win or just a reshuffle.</li>
+    <li><strong>The task-tracker integration's current scope and roadmap.</strong> External execution is central to the model; if that integration is expanding or constrained, it changes how aggressively we lean on "the performer lives outside Vanta."</li>
+  </ul>
+</section>
+
+<!-- METRICS -->
+<section id="metrics">
+  <div class="eyebrow">How we'll know what good looks like</div>
+  <h3 class="sec">One goal, one star, guardrails.</h3>
+  <div class="box tinted">
+    <div class="blabel">Goal</div>
+    <p class="goal">Make sure the compliance work that matters gets done on time, without forcing teams out of the workflows they already use, on a shared foundation that scales as Vanta adds surfaces.</p>
+  </div>
+  <div class="metric nsm">
+    <div class="mlabel">North Star</div>
+    <div class="mval">% of high-priority actions resolved before their due date</div>
+    <div class="mwhy">An outcome, not activity. Binary at the item level. Counts a resolution no matter where it happened, so it respects "don't force teams into our flow."</div>
+  </div>
+  <div class="grid2">
+    <div class="metric"><div class="mlabel">Supporting</div><div class="mval">Reduction in time / clicks managing work</div><div class="mwhy">Measures whether the orchestrator's job actually got easier.</div></div>
+    <div class="metric"><div class="mlabel">Guardrail</div><div class="mval">Notification volume &amp; mute rate</div><div class="mwhy">On-time resolution should rise while notification volume stays flat or falls, not by notifying more aggressively.</div></div>
+  </div>
+  <p style="margin-top:12px; font-size:14px;">As we build, we'll also watch <strong>adoption of actions by product area</strong>, a build-time check that the foundation is being taken up.</p>
+</section>
+
+<!-- THE PRODUCT -->
+<section id="product">
+  <div class="eyebrow">The product</div>
+  <h3 class="sec">A contextual to-do list, built on a shared action contract.</h3>
+  <p>Pulse is organized around <strong>actions</strong>: discrete, trackable pieces of work, explicitly not notifications. It shows all of a user's work in one place, and layers systems on top to surface what matters most. It has three parts.</p>
+  <div class="grid3">
+    <div class="tile"><div class="n">Part 1</div><h4>Action Interface</h4><p>The consolidated, prioritized, contextual view of actions. The foundation everything else builds on.</p></div>
+    <div class="tile"><div class="n">Part 2</div><h4>AI Context</h4><p>The Agent's cross-surface intelligence embedded in Pulse: prioritization, the fix attached, assisted resolution.</p></div>
+    <div class="tile"><div class="n">Part 3</div><h4>Insights</h4><p>A view into work completed over time: bottlenecks, workload, audit-readiness. Confidence without managing every item.</p></div>
+  </div>
+  <p style="margin-top:6px;">A note on why AI comes before Insights: we already have an engine, the Agent, that can reason across surfaces and accelerate this work. The discipline is not to slap it in before we've defined the action contract and the to-do list structure it operates on. AI is most valuable once it has a clean, consistent set of actions to prioritize and resolve against, which is exactly what Part 1 establishes.</p>
+
+  <h4 class="sub">How it relates to existing notification systems</h4>
+  <p>A <strong>notification service</strong> exists today; we introduce an <strong>action service</strong>. Pulse consolidates actions. The two are deliberately decoupled:</p>
+  <ul>
+    <li><strong>An action can trigger a notification, or not.</strong> Actions are persistent and live in Pulse; notifications are events that point back to them.</li>
+    <li><strong>A notification doesn't always mean a new action.</strong></li>
+  </ul>
+  <p>That separation is how we balance urgency against fatigue: critical work alerts immediately, the long tail is batched, so low-priority items don't generate the same notification volume.</p>
+
+  <h4 class="sub">The mental model: assessing fit</h4>
+  <p>Three form factors are worth weighing for a surface like this. We explored each and assessed its fit for the problem.</p>
+  <table>
+    <thead><tr><th>Model</th><th>Assessment of fit</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Email inbox</strong></td><td>Implies read-and-archive. Compliance items aren't read, they're resolved, and an ignored item is a liability.</td></tr>
+      <tr><td><strong>Feed</strong></td><td>Optimizes for awareness, not action. Too passive for work that demands completion.</td></tr>
+      <tr><td><strong>Task tracker</strong></td><td>Closest fit, but implies Vanta owns execution and replaces tools teams already use.</td></tr>
+    </tbody>
+  </table>
+  <p class="pull">Pulse is a <b>contextual to-do list</b>: it shows what needs attention, who's responsible, and how to resolve it, while staying intentionally distinct from a Linear or Jira.</p>
+  <p>It's adjacent to a task tracker, but it isn't one. We integrate with those tools rather than replace them, customers use Pulse <em>and</em> their tracker together. Pulse is the source of truth for what needs attention; it stays agnostic about where the doing happens. That respects the John-at-Acme reality instead of fighting it.</p>
+
+  <h4 class="sub">The platform spine: one shared contract</h4>
+  <p>Pulse isn't a new surface that aggregates objects. It's a shared capability defined by a contract, because <strong>every Vanta object already shares a near-common shape</strong>: an owner, a status, and an implied action. Any surface that conforms to the contract appears in Pulse with no bespoke work.</p>
+  <details class="disc">
+    <summary><span class="stitle">How today's objects already fit the contract</span></summary>
+    <div class="dbody">
+      <table style="margin-top:6px;">
+        <tbody>
+          <tr><td><strong>Tests</strong></td><td>status, owner, tasks, remediation steps</td></tr>
+          <tr><td><strong>Vendors</strong></td><td>risk, status, owner, assessments</td></tr>
+          <tr><td><strong>Policies</strong></td><td>status, approver</td></tr>
+          <tr><td><strong>Risk register items</strong></td><td>owner, treatment status, status</td></tr>
+          <tr><td><strong>Documents</strong></td><td>owner(s), recurrence, reminders, AI evaluation</td></tr>
+          <tr><td><strong>Questionnaires</strong></td><td>status, owners, accounts, answer-library questions</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+  <details class="disc">
+    <summary><span class="stitle">The action contract</span></summary>
+    <div class="dbody">
+      <div class="contract" style="margin-top:6px;">
+        <div class="chead">interface Action</div>
+        <div class="rows">
+          <div class="crow"><div class="field">owner</div><div class="cdesc">individual, team, or null, routing handles all three</div></div>
+          <div class="crow"><div class="field">status</div><div class="cdesc">open / resolved (binary)</div></div>
+          <div class="crow"><div class="field">priority</div><div class="cdesc">computed: audit-blocking, due-date proximity, blast radius</div></div>
+          <div class="crow"><div class="field">due date</div><div class="cdesc">drives the North Star and prioritization</div></div>
+          <div class="crow"><div class="field">type</div><div class="cdesc">test, policy, access review, vendor, questionnaire</div></div>
+          <div class="crow"><div class="field">guidance payload</div><div class="cdesc">the fix, carried with the action</div></div>
+          <div class="crow"><div class="field">notify?</div><div class="cdesc">whether this action triggers a notification, and how</div></div>
+          <div class="crow"><div class="field">resolution mode</div><div class="cdesc">auto (observed) or manual attestation</div></div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <h4 class="sub">One system, contextual views</h4>
+  <p>Underneath, one contract. On top, the view adapts to the user's relationship to the work: John sees what he owns and what he's delegated out; the Nick's Kicks engineers see a clean personal queue. We considered fully role-specific inboxes and chose against them, they'd reintroduce, at the role level, the fragmentation the contract exists to prevent.</p>
+
+  <h4 class="sub">Scaling down-market and up-market</h4>
+  <p>Down-market, one person could hold every PARK relationship at once: the job is "tell me what to do next," and the win is a single opinionated queue that removes decisions. Up-market, the relationships split across people and teams: the job shifts from doing the work to <em>orchestrating and proving</em> it, and the win is delegation, tracking, and a defensible view for an auditor. Same contract, different center of gravity.</p>
+  <p>One concrete implication: <strong>the North Star reads differently by segment.</strong> Down-market, "high-priority actions resolved on time" may not suffer from the cordination costs we see upmarket. The same metric can apply, but up-market is more of a measure of <em>process</em> health, which we should keep in mind</p>
+</section>
+
+<!-- ================= PART III ================= -->
+<div class="part">
+  <div class="pkicker">Part III</div>
+  <h2>How we get there</h2>
+  <p class="intent"><b>Intent:</b> align on now / next / later priorities. We'll re-evaluate continuously, but lay out the broad sequencing based on what we know today.</p>
+  <div class="part-rule"></div>
+</div>
+
+<!-- PILLARS -->
+<section id="roadmap">
+  <div class="eyebrow">The roadmap</div>
+  <h3 class="sec">Three pillars, sequenced into Now, Next, and Later.</h3>
+  <p>Pulse is built from three pillars. They aren't strictly phased, we'd pull the highest-value slice of each into every stage rather than finishing one before starting the next.</p>
+  <div class="grid3">
+    <div class="tile"><div class="n">Pillar 1</div><h4>Action Interface</h4><p>The contract, the consolidated contextual view, and the resolution model. The foundation.</p></div>
+    <div class="tile"><div class="n">Pillar 2</div><h4>AI Context</h4><p>The Agent's cross-surface intelligence: prioritization, the fix attached, assisted resolution.</p></div>
+    <div class="tile"><div class="n">Pillar 3</div><h4>Insights</h4><p>Completion over time, workload, bottlenecks, audit-readiness.</p></div>
+  </div>
+
+  <details class="disc" open>
+    <summary><span class="stitle">Now</span><span class="sbadge p">Prove the foundation</span></summary>
+    <div class="dbody">
+      <ul>
+        <li><strong>Core Pillar 1:</strong> define and ship the action contract and action service; the contextual view that adapts by relationship; the resolution model; decouple from the notification service</li>
+        <li><strong>MVP slice:</strong> consolidate My Work / My Security Tasks / My Access Requests onto the contract before extending to new object types</li>
+        <li><strong>A thin slice of Pillar 2:</strong> experiment with AI as part of the interface (e.g. computed prioritization), enough to make the queue useful, not the full engine</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>The smallest slice that proves the bet.</strong> Modeling the three existing "my work" surfaces as actions behind one contract tests the abstraction itself, not new surfaces. If one contract represents all three without per-surface special-casing, the shared-primitive bet holds. If it can't, we've learned that for the cost of a consolidation, not a platform.</p>
+      <p><strong>The risk if we sequence wrong.</strong> Extending to new object types before the contract is proven means discovering each needs bespoke fields, the exact fragmentation we set out to eliminate, now baked into the platform. Proving the contract on what exists first is the guardrail.</p>
+    </div>
+  </details>
+  <details class="disc">
+    <summary><span class="stitle">Next</span><span class="sbadge">Deepen and extend</span></summary>
+    <div class="dbody">
+      <ul>
+        <li><strong>Deeper Pillar 1 (the non-MVP work):</strong> extend the contract to new object types (tests and documents first, then issues, access reviews, policies); user customization and control over the view; team and delegated-ownership handling; configurable rules for up-market</li>
+        <li><strong>Pillar 2 iteration:</strong> move AI from prioritization into assisted resolution and the fix-attached experience</li>
+        <li><strong>Basic Pillar 3:</strong> first completion-tracking and program-status views, once enough surfaces emit clean actions to make a rollup trustworthy</li>
+      </ul>
+      <p style="margin-top:12px;"><strong>What Next depends on Now delivering.</strong> Insights is only trustworthy if the action data underneath is complete and consistently shaped. Next can't start until Now has enough surfaces emitting clean actions that a program-level rollup reflects reality.</p>
+    </div>
+  </details>
+  <details class="disc">
+    <summary><span class="stitle">Later</span><span class="sbadge">Mature the surface</span></summary>
+    <div class="dbody"><ul>
+      <li><strong>Deep Pillar 3:</strong> rich in-product insights, bottleneck analysis, audit-readiness forecasting</li>
+      <li><strong>Mature Pillar 2:</strong> proactive, agent-driven resolution across surfaces</li>
+      <li>Full enterprise orchestration surface area on top of the same contract</li>
+    </ul></div>
+  </details>
+</section>
+
+<!-- ENABLEMENT + ARCH + XFN + EXPERIMENT -->
+<section id="enable">
+  <div class="eyebrow">Enabling Vanta Features to Plug In</div>
+  <h3 class="sec">The hard part is adoption, so we make conforming to the contract nearly free.</h3>
+  <p>A shared primitive only works if teams actually adopt it, so the architecture and the org approach are both designed to lower that cost.</p>
+
+  <h4 class="sub">Adoption &amp; architecture</h4>
+  <ul>
+    <li><strong>Low cost to adopt.</strong> For a team like Tests or Policies, conforming is a thin adapter mapping fields they already have (owner, status, due date) onto the contract, plus emitting actions as state changes. Not a schema migration or a rewrite. If it's expensive, teams won't, and the platform fails quietly.</li>
+    <li><strong>Built on what exists.</strong> An action service sits alongside the notification service as the system of record. It reads the existing data model (the Agent proves cross-surface reasoning works), and reuses the regionalized delivery fan-out (US / EU / AUS, to SES, Slack, Teams) rather than rebuilding it.</li>
+    <li><strong>Priority is scored centrally.</strong> Surfaces supply the raw inputs (due date, audit-blocking status, blast radius); the action service applies one scoring model across all of them. If each team scored its own, "high priority" would fragment, the exact thing the contract prevents.</li>
+    <li><strong>Resolution is observed or attested.</strong> Auto-resolve where there's a signal (a tracker status, a test re-run); otherwise the accountable user attests, attestation, not proof.</li>
+  </ul>
+
+  <h4 class="sub">The trade-off worth naming</h4>
+  <p>Pulse asks surface teams to do adapter work that ships no feature on their own roadmap. The pitch we need to make internally is that by leveraging this primitive they can also accomplish their goals and improve the user experience of their product areas. </p>
+
+  <h4 class="sub">Partnership &amp; rollout</h4>
+  <p>We build on the Collaboration team's adjacent primitives rather than over them + we ship in beta: pilot the consolidation of the three existing surfaces with a small cohort, confirm time and clicks drop and on-time resolution holds, then extend to new object types.</p>
+</section>
+
+<!-- RECOMMENDATION -->
+<section id="recommendation">
+  <div class="eyebrow">Wrap Up</div>
+  <h3 class="sec">Build Pulse on a shared action contract, and prove it on what already exists.</h3>
+  <p>Our recommendation is deliberate: a <strong>contextual to-do list</strong>, organized around a reusable <strong>action</strong> primitive, that consolidates the surfaces Vanta has already built before extending to new ones. It's the approach that solves the four problems we set out against and the fifth we identified, respects how customers actually work, and gives every future Vanta surface a place to land for free.</p>
+  <div class="pull">The reason to build this isn't a better inbox. It's that <b>the cost of not building it is paid again with every new surface.</b></div>
+</section>
+
+<div class="foot">Vanta Pulse · Proposal · Nick Nagy</div>
+
+</div>
+</body>
+</html>
